@@ -1,6 +1,7 @@
 'use strict';
 const el = id => document.getElementById(id);
 const colors = {active: '#bdd6c8', gap: '#dfb06c', lost: '#7c8d96'};
+const demoMode = document.body.dataset.demo === 'true';
 let snapshot = null, selected = null, map = null, bounds = null, first = true;
 let lastMessage = 0, socket = null, retry = 1000;
 const layers = new Map();
@@ -69,8 +70,8 @@ function renderAlerts(query) {
 function render() {
   if (!snapshot) return;
   for (const state of ['active','gap','lost']) el(state).textContent = snapshot.counts[state];
-  el('source').textContent = snapshot.source.message;
-  el('updated').textContent = snapshot.source.last_success ? `Last poll ${new Date(snapshot.source.last_success * 1000).toLocaleTimeString()}` : 'No successful poll yet';
+  el('source').textContent = demoMode ? 'Recorded playback — not a current observation' : snapshot.source.message;
+  el('updated').textContent = snapshot.source.last_success ? `${demoMode ? 'Recorded' : 'Last poll'} ${new Date(snapshot.source.last_success * 1000).toLocaleString()}` : 'No successful poll yet';
   const query = el('search').value.trim().toLowerCase();
   renderAlerts(query);
   const tracks = snapshot.tracks.filter(t => t.object_id.includes(query));
@@ -138,7 +139,30 @@ setInterval(() => {
     if (socket && socket.readyState === WebSocket.OPEN) socket.close();
   }
 },1000);
-connect();
+async function startDemo() {
+  connection('Recorded demo — not live');
+  try {
+    const response = await fetch('/static/demo.json');
+    if (!response.ok) throw new Error('Recording unavailable');
+    const data = await response.json();
+    let recording = 0, frame = 0, paused = false;
+    function show() {
+      const current = data.recordings[recording];
+      snapshot = current.frames[frame];
+      const b = snapshot.bounds; bounds = [[b.lamin,b.lomin],[b.lamax,b.lomax]];
+      el('coverage-label').textContent = current.label;
+      el('demo-progress').textContent = `Frame ${frame+1} / ${current.frames.length} · ${paused ? 'Paused' : '2 seconds per recorded event'}`;
+      if (first) { fit(); first = false; }
+      render();
+    }
+    el('demo-recording').onchange = event => { recording = Number(event.target.value); frame = 0; selected = null; first = true; show(); };
+    el('demo-pause').onclick = () => { paused = !paused; el('demo-pause').textContent = paused ? 'Play' : 'Pause'; show(); };
+    el('demo-restart').onclick = () => { frame = 0; selected = null; show(); };
+    show();
+    setInterval(() => { if (!paused) { frame = (frame+1)%data.recordings[recording].frames.length; show(); } },2000);
+  } catch { connection('Demo unavailable'); el('source').textContent = 'Unable to load recording. Reload to try again.'; }
+}
+if (demoMode) startDemo(); else connect();
 
 // Hibernating Cloudflare sockets auto-answer these without waking the tracker.
 setInterval(() => { if (socket?.readyState === WebSocket.OPEN) socket.send('ping'); }, 20000);

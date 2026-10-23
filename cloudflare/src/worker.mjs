@@ -13,6 +13,10 @@ const routes=new Set(['/api/tracks','/api/alerts','/api/health','/api/admin/reco
 export default {
   async fetch(request,env){
     const path=new URL(request.url).pathname;
+    if(env.DEMO_MODE==='true'&&(path.startsWith('/api/')||path.startsWith('/ws/'))){
+      const info={state:'demo',message:'Recorded demo — not live',live_ingestion:false};
+      return path==='/api/health'?json(info):Response.json(info,{status:503,headers:{'Cache-Control':'no-store'}});
+    }
     if(path.startsWith('/api/')||path.startsWith('/ws/')){
       if(!routes.has(path))return new Response('Not found',{status:404});
       return env.AIRSPACE.get(env.AIRSPACE.idFromName('bay-area-v1')).fetch(request);
@@ -103,6 +107,7 @@ export class Airspace extends DurableObject {
     return {Authorization:`Bearer ${this.token}`};
   }
   async alarm(){
+    if(this.env.DEMO_MODE==='true'){await this.ctx.storage.deleteAlarm();return;}
     // Re-arm before I/O so interruption cannot permanently stop the feed.
     await this.ctx.storage.setAlarm(Date.now()+60000);
     const checkpoint=this.core.dump(),events=[];

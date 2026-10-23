@@ -12,6 +12,7 @@
   "durable_objects": {"bindings": [{"name": "AIRSPACE", "class_name": "Airspace"}]},
   "migrations": [{"tag": "v1", "new_sqlite_classes": ["Airspace"]}],
   "vars": {
+    "DEMO_MODE": "true",
     "POLL_SECONDS": "240",
     "RAW_RECORD_LIMIT": "64",
     "MAX_CLIENTS": "20"

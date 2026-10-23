@@ -121,3 +121,23 @@ connectivity failure, not evidence that credentials alone will resolve it.
 `/api/health` exposes the current retry status and `last_success`; do not treat
 an empty map during an outage as zero aircraft. Retries continue with backoff.
 The local Python deployment remains available during investigation.
+
+## Recorded demo deployment
+
+The public deployment currently uses `DEMO_MODE: "true"` in `wrangler.jsonc`.
+The asset build generates browser playback from the existing replay fixtures:
+recorded OpenSky aircraft and a separate, explicitly synthetic alert walkthrough.
+Original timestamps are preserved. Each recorded event displays for two seconds;
+this is accelerated event playback, not real-time movement or interpolation.
+Pause, restart, and recording selection run entirely in the visitor's browser.
+
+The page is prominently labeled **Recorded demo — not live**. No WebSocket or
+live API is used. API health reports demo mode; other live API/WebSocket routes
+return 503. Existing Durable Object alarms stop on their next invocation (within
+one minute under normal scheduling), without contacting OpenSky. Static map tiles
+still come from OpenStreetMap. No paid service or billing configuration is added.
+
+To restore live mode after resolving feed access, set `DEMO_MODE` to `"false"`
+and run `npm run deploy`. This rebuilds the live page and re-enables the existing
+backend; the first live API request schedules collection. Historical state is
+retained. Generated demo assets are not committed.
