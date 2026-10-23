@@ -1,0 +1,271 @@
+# Sentinel
+
+A real-time airspace and maritime awareness tool. **M0–M4 implemented:** an async
+OpenSky poller with normalized observations, in-memory tracks, bounded history,
+stale-track aging, append-only raw recording, and a live Leaflet map served by
+FastAPI, signal-gap and emergency-squawk alerts, and deterministic offline replay.
+PostgreSQL, Kalman filtering, additional anomaly rules, and ships are later milestones.
+
+## Run
+
+Requires Python 3.11+ (tested locally with Python 3.14).
+
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install -e '.[dev]'
+.venv/bin/sentinel --config config.toml
+```
+
+Stop with Ctrl-C or SIGTERM. To make a single request with no retry waits:
+
+```sh
+.venv/bin/sentinel --config config.toml --once
+```
+
+`python -m sentinel` also works in the installed environment. Without `--config`,
+the same Bay Area defaults are built in. Edit `config.toml` to change the bounds,
+15-second interval, request timeout, and backoff limits. Bounds use decimal degrees.
+
+Each successful poll prints UTC receipt time, OpenSky's source timestamp, and
+`aircraft_count`. The count includes all returned state vectors, including ground
+traffic; it is not an airborne-only count. Empty or null states prints zero.
+Errors go to stderr and never print a misleading zero count. One-shot failures
+and persistent authorization/configuration errors exit with status 1.
+
+## Authentication and quotas
+
+Anonymous access works without credentials. For authenticated access, create an
+API client in your OpenSky account and set **both** `OPENSKY_CLIENT_ID` and
+`OPENSKY_CLIENT_SECRET` in your shell environment. Password/basic authentication
+is not supported. Sentinel obtains and refreshes OAuth bearer tokens automatically.
+Do not commit credentials. `.env` is ignored by Git but is not automatically loaded.
+
+According to the [OpenSky REST documentation](https://openskynetwork.github.io/opensky-api/rest.html)
+(checked October 23, 2026), anonymous users receive 400 credits/day, standard
+users 4,000, and active feeders 8,000. This 4-square-degree bounding box costs one
+credit per request. Polling every 15 seconds consumes about 5,760 credits/day;
+anonymous access lasts roughly 100 minutes and standard access roughly 16.7 hours
+if no other requests consume the quota. A 30-second interval uses about 2,880/day.
+
+Network errors, invalid responses, HTTP 408/425/429, and server errors trigger
+exponential backoff with jitter, capped at the configured maximum. Server-provided
+`Retry-After` (seconds or HTTP date) and `X-Rate-Limit-Retry-After-Seconds` are
+honored even when they exceed that cap. Successful polls reset backoff. A bearer
+401 refreshes the token once; persistent authorization errors stop with a message.
+Polling is sequential, targets 15 seconds between successful request starts, and
+never runs concurrent requests or attempts to catch up on missed intervals.
+
+## Tests
+
+```sh
+.venv/bin/python -m pytest -q
+```
+
+Tests use mocked HTTP responses and injected waits, requiring neither credentials
+nor network access. They cover count output, bounds, empty results, validation,
+timeouts, malformed data, retry recovery, quota delays, and OAuth refresh.
+M0 tests use synthetic HTTP responses; M4 adds recorded synthetic scenarios and a live OpenSky capture.
+
+## Observations and tracks (M1)
+
+Each usable position becomes an immutable `Observation`. It retains both the
+source position timestamp (`time_position`) and UTC receipt time as epoch seconds.
+Altitude is barometric meters, speed is meters/second, and heading is degrees
+clockwise from north. Missing optional values remain null. Invalid rows or missing
+positions are counted as rejected without discarding other aircraft in the response.
+
+Tracks are keyed by `(source, object_id)`; ICAO24 identifiers are lowercased.
+`first_seen` and `last_seen` refer to accepted position timestamps. Only strictly
+newer positions enter history. Duplicate timestamps and out-of-order updates are
+ignored by the position history. M3 independently examines squawk changes using
+the source last-contact timestamp. Polling an
+old position repeatedly does not keep its track alive. This is position freshness,
+not proof of a transponder outage; M3 alerts apply additional source-health and airport checks.
+
+The `[tracks]` settings control a 120-observation history limit and aging:
+
+- Active until silence exceeds 60 seconds.
+- Gap after 60 seconds, lost after 300 seconds.
+- Removed after 1,800 seconds; a later fresh observation starts a new track.
+
+A separate timer checks aging every second, including during pending network
+requests and long retry waits. Newer positions can reactivate a track; old input
+cannot recreate an already expired track. The manager never moves its clock
+backward. Each successful poll prints added observations, rejected rows, and
+active/gap/lost counts. Track state is in memory and starts empty on each launch.
+
+## Raw recording
+
+`[recording].raw_log_path` defaults to `data/raw.jsonl`, relative to the launch
+working directory. Sentinel appends one JSON object per line and flushes each
+record before processing. A recording error stops the pipeline. Flush does not
+guarantee survival of a power failure; there is no per-record disk `fsync`.
+
+Records carry schema `version: 1`, a session ID, a UTC epoch `timestamp`, and `kind`:
+
+- `session`: track settings for the new, initially empty manager.
+- `response`: source, HTTP status, exact decoded HTTP body bytes in `body_base64`,
+  and an allowlist of content-type and retry headers. Written before validation,
+  including malformed and error responses. HTTP compression is decoded by httpx.
+- `tick`: an explicit clock advance, allowing future replay to reproduce silence.
+
+OAuth token responses, credentials, and request authorization headers are not
+recorded. A network failure has no response body to record; timer ticks continue.
+Files append across launches, with session IDs separating runs. Use one process
+per log file. Logs are excluded from Git and currently have no rotation or size
+limit. M4 replays these recorded inputs and clock events offline; see Replay below.
+
+## Live map (M2)
+
+```sh
+.venv/bin/python -m pip install -e '.[dev]'
+.venv/bin/sentinel --config config.toml --serve
+```
+
+Open http://127.0.0.1:8000. Use `--port 8001` if needed. The server binds only to
+localhost and starts one poller and aging timer; do not run a separate poller or
+multiple server workers against the same raw log. Stop with Ctrl-C. Closing the
+browser does not stop the server or its API usage.
+
+The map shows heading arrows (a circle for unknown heading), recent position
+trails, and active/gap/lost colors. Select an aircraft marker or list row for
+position, altitude, speed, heading, and squawk. Search by ICAO24, toggle trails,
+and use Fit coverage to return to the configured bounding box. Trails accumulate
+while this process runs and are limited by `history_size`. Predictions are not implemented yet.
+
+The browser receives a full snapshot every second over `/ws/tracks`, reconnects
+with backoff, and removes expired tracks from the map. These snapshots do not
+increase the OpenSky polling rate. The header reports the browser connection;
+the Data source panel separately reports successful polling, retrying, or stopped
+ingestion. Data can remain visible during an interruption and should be treated
+as stale. A stopped ingestion task leaves the map available for inspection.
+
+- `GET /api/tracks`: snapshot with source status, counts, latest positions, and trails.
+- `GET /api/health`: source status and the last successful receipt timestamp.
+- `WS /ws/tracks`: full snapshots, including empty states and track removals.
+- `GET /docs`: generated API documentation.
+
+Leaflet 1.9.4 loads from unpkg with integrity checks; map tiles load from
+OpenStreetMap with attribution. Internet access is required for both. A visible
+message explains map-resource failures; the aircraft list still works if the map
+library cannot load. This is a local development service without user accounts.
+
+M2 tests exercise static pages, REST snapshots, WebSocket connections and
+reconnections, source failures, and pipeline shutdown with mocked HTTP data.
+
+## Alerts (M3)
+
+The pipeline emits `signal_gap` and `emergency_squawk` events. The map's Recent
+alert events panel and colored rings show event locations, including events whose
+tracks have since expired. Select an event to open its map popup. Red rings mark
+emergency-code events; amber rings mark gaps. These are historical events, not
+an assertion that an emergency is still active. Events without a usable position
+appear in the list only. Search filters aircraft and alerts by ICAO24.
+
+`GET /api/alerts` and WebSocket snapshots return the most recent 200 events from
+the current session, newest first. All emitted events append to
+`[recording].alert_log_path` (`data/alerts.jsonl` in the sample configuration).
+When omitted, this file is `alerts.jsonl` beside the raw log. Each event includes
+an ID, session, type, source, object ID, detection timestamp, last known coordinates
+(or null), and rule details. Raw and alert files must be different. Events are
+flushed before appearing in the UI; a logging failure stops ingestion. Logs have
+no rotation and the UI does not reload historical sessions on restart.
+
+### Signal gaps
+
+`[alerts].gap_seconds` defaults to 60 seconds. An aircraft must first have had a
+fresh accepted position during this session. The rule emits once per silent
+episode, only while successful source responses remain recent. Fresh positions
+rearm the rule. Ground positions, positions within `airport_radius_km` (8 km) of
+an airport reference point, and positions outside reference coverage are suppressed.
+Track coloring still uses the separate `[tracks]` thresholds.
+
+Failed requests, entirely unusable position batches, stale source snapshots, or
+more than `source_stale_seconds` (45) without a healthy response suppress gap
+alerts. After recovery, a full `gap_seconds` grace period precedes any gap alert.
+Thus source outages do not immediately produce a backlog of aircraft alerts.
+Choose source_stale_seconds above your polling interval if changing that interval.
+A gap means missing position data, not proof of a disabled transponder: reception
+loss, coverage boundaries, and unlisted landing sites can still cause gaps.
+
+The bundled airport reference includes 718 non-closed airports, heliports, and
+other facilities from [OurAirports public-domain data](https://ourairports.com/data/),
+retrieved October 23, 2026. Alert coverage is 36–40 N, 124–120 W, with facilities
+collected one degree beyond that boundary. This community-maintained dataset is
+not guaranteed complete. Outside this region, provide `airport_file` as a JSON
+file containing `coverage` (lamin/lamax/lomin/lomax) and a nonempty `airports` list
+with `id`, `lat`, and `lon`. Include a buffer around your coverage region at least
+as wide as the configured suppression radius. The complete reference and rule
+settings are recorded in the raw session entry for future replay.
+
+### Emergency squawks
+
+Observed 7500, 7600, and 7700 codes generate events for unlawful interference,
+radio communication failure, and general emergency respectively, consistent with
+the [FAA transponder guidance](https://www.faa.gov/Air_Traffic/publications/atpubs/atc_html/chap5_section_2.html).
+They report a received code, not a confirmed incident.
+
+Squawk evaluation is independent of position acceptance. A newer last-contact
+message can trigger an alert even without a new or usable position; the last known
+position is used when available and its timestamp is recorded. Stale contact data
+and out-of-order/duplicate contact timestamps are ignored. Repeated emergency
+codes emit once until a different observed code appears; missing codes do not
+clear the episode. Deduplication expires after `dedup_retention_seconds` (1800),
+so a long-unseen aircraft may produce a new event on return.
+
+Raw logs also record `source_failure` and `source_stopped` events for replay.
+A stopped event cannot be persisted if the raw log itself is no longer writable.
+Tests cover rule boundaries, deduplication, recovery, source outages, startup
+staleness, airport/ground suppression, missing coordinates, log failures, and
+alert delivery through REST/WebSocket snapshots.
+
+## Replay (M4)
+
+Replay a controlled scenario without OpenSky credentials or network access:
+
+```sh
+.venv/bin/sentinel --replay tests/fixtures/scenario.jsonl
+```
+
+This fixture produces four events: a gap, squawk 7700, a second gap after recovery,
+and squawk 7600. Its final tick expires the aircraft. The JSON report contains all
+emitted alerts (including IDs and timestamps), final track states with full bounded
+histories, source status, processed record count, and the final recorded time.
+
+```sh
+.venv/bin/sentinel --replay data/raw.jsonl --list-sessions
+.venv/bin/sentinel --replay data/raw.jsonl --session SESSION_ID
+.venv/bin/sentinel --replay tests/fixtures/opensky-live.jsonl --output replay-result.json
+```
+
+The default selects the last session header in an append-only log. Each session
+starts with empty state; select an explicit ID to reproduce an older run. Output
+files must not already exist, protecting inputs and previous reports. The input
+log is never modified. Replay runs as fast as possible, with no sleeps, server,
+network calls, credential reads, or writes to production raw/alert logs. `--serve`,
+`--once`, and `--config` cannot be combined with `--replay`. This milestone provides
+CLI replay and a Python frame callback for demos/tests, not timed map playback.
+
+Live and replay share the observation normalization, track manager, response
+validation, and anomaly engine. Replay uses the session's embedded thresholds and
+airport reference; it does not load the current config or airport file. File order
+is authoritative, even if timestamps move backward. Recorded ticks advance aging,
+and source failures control alert suppression; replay never invents retries or
+extra end-of-file time. `source_stopped` records preserve fatal ingestion status.
+
+A recording must have complete JSONL records and an M3-or-newer session header
+with alert settings and airport reference. Unsupported versions, malformed log
+records, unknown event kinds, and truncated lines fail with a line number. Invalid
+HTTP bodies are valid raw evidence and are handled just as in live mode. Legacy
+sessions remain listable but cannot promise reproducibility and are rejected.
+Use a finished recording or stable copy: replay is not a tailing service. As with
+any write-before-process log, a crash after a response was flushed but before it
+was processed may leave an unapplied final event; replay applies the complete
+recorded response. Exact parity assumes the live run processed its recorded events.
+
+`tests/fixtures/scenario.jsonl` exercises duplicates, out-of-order positions, gaps,
+emergency episodes, malformed responses, outages, recovery, bounded history, and
+expiry. `opensky-live.jsonl` contains two real captured OpenSky responses and their
+intervening ticks, with a checked-in expected result: 180 tracks and 333 history
+points. Tests also compare freshly recorded live-pipeline output to replay,
+including exact alert IDs and timestamps, and verify repeatable offline results.

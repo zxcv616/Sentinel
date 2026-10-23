@@ -1,0 +1,5967 @@
+{
+  "alerts": [],
+  "counts": {
+    "active": 166,
+    "gap": 12,
+    "lost": 2
+  },
+  "records": 19,
+  "session": "896d90cc-3546-4774-bf66-331f0aa2ea1f",
+  "source": {
+    "last_success": 1792793920.820906,
+    "message": "Receiving OpenSky positions",
+    "state": "live"
+  },
+  "timestamp": 1792793920.820906,
+  "tracks": [
+    {
+      "first_seen": 1792793892.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 188.44,
+          "lat": 37.617,
+          "lon": -122.3787,
+          "object_id": "3c4b29",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 5.14,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793892.0
+        }
+      ],
+      "last_seen": 1792793892.0,
+      "object_id": "3c4b29",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": 7216.14,
+          "heading": 173.39,
+          "lat": 38.3876,
+          "lon": -122.792,
+          "object_id": "4077d4",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 219.06,
+          "squawk": "3704",
+          "status": "airborne",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": 6957.06,
+          "heading": 173.23,
+          "lat": 38.3464,
+          "lon": -122.7859,
+          "object_id": "4077d4",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 218.1,
+          "squawk": "3704",
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "4077d4",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 7018.02,
+          "heading": 43.02,
+          "lat": 38.3664,
+          "lon": -121.6433,
+          "object_id": "407c02",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 199.83,
+          "squawk": "1763",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 7231.38,
+          "heading": 43.13,
+          "lat": 38.3936,
+          "lon": -121.6111,
+          "object_id": "407c02",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 200.18,
+          "squawk": "1763",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "407c02",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793834.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 298.12,
+          "lat": 37.6093,
+          "lon": -122.3867,
+          "object_id": "71bd79",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 2.06,
+          "squawk": "1122",
+          "status": "ground",
+          "timestamp": 1792793834.0
+        }
+      ],
+      "last_seen": 1792793834.0,
+      "object_id": "71bd79",
+      "source": "opensky",
+      "state": "gap"
+    },
+    {
+      "first_seen": 1792793876.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 244.69,
+          "lat": 37.6222,
+          "lon": -122.3815,
+          "object_id": "86d624",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 3.6,
+          "squawk": "6154",
+          "status": "ground",
+          "timestamp": 1792793876.0
+        },
+        {
+          "altitude": null,
+          "heading": 120.94,
+          "lat": 37.6205,
+          "lon": -122.3822,
+          "object_id": "86d624",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 5.14,
+          "squawk": "6154",
+          "status": "ground",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "86d624",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793898.0,
+      "history": [
+        {
+          "altitude": 5250.18,
+          "heading": 75.75,
+          "lat": 37.8612,
+          "lon": -121.7602,
+          "object_id": "8990a4",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 198.51,
+          "squawk": "7522",
+          "status": "airborne",
+          "timestamp": 1792793898.0
+        },
+        {
+          "altitude": 5577.84,
+          "heading": 75.79,
+          "lat": 37.8707,
+          "lon": -121.7132,
+          "object_id": "8990a4",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 201.13,
+          "squawk": "7522",
+          "status": "airborne",
+          "timestamp": 1792793919.0
+        }
+      ],
+      "last_seen": 1792793919.0,
+      "object_id": "8990a4",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 39.38,
+          "lat": 37.353,
+          "lon": -121.9229,
+          "object_id": "a01548",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": null,
+          "heading": 39.38,
+          "lat": 37.353,
+          "lon": -121.9229,
+          "object_id": "a01548",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793916.0
+        }
+      ],
+      "last_seen": 1792793916.0,
+      "object_id": "a01548",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 1028.7,
+          "heading": 256.72,
+          "lat": 38.4858,
+          "lon": -121.5491,
+          "object_id": "a01e7a",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 47.04,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 1043.94,
+          "heading": 256.92,
+          "lat": 38.4837,
+          "lon": -121.5608,
+          "object_id": "a01e7a",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 52.29,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a01e7a",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 883.92,
+          "heading": 152.07,
+          "lat": 37.4006,
+          "lon": -122.2511,
+          "object_id": "a0316b",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 48.33,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 883.92,
+          "heading": 155.35,
+          "lat": 37.3922,
+          "lon": -122.2462,
+          "object_id": "a0316b",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 48.11,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a0316b",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 3535.68,
+          "heading": 139.92,
+          "lat": 37.7742,
+          "lon": -122.5404,
+          "object_id": "a05910",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 148.6,
+          "squawk": "6610",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 3421.38,
+          "heading": 139.99,
+          "lat": 37.7527,
+          "lon": -122.5176,
+          "object_id": "a05910",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 146.43,
+          "squawk": "6610",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a05910",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793837.0,
+      "history": [
+        {
+          "altitude": 800.1,
+          "heading": 304.08,
+          "lat": 38.6726,
+          "lon": -122.8336,
+          "object_id": "a05aad",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 42.23,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793837.0
+        }
+      ],
+      "last_seen": 1792793837.0,
+      "object_id": "a05aad",
+      "source": "opensky",
+      "state": "gap"
+    },
+    {
+      "first_seen": 1792793878.0,
+      "history": [
+        {
+          "altitude": -30.48,
+          "heading": 180.0,
+          "lat": 37.6176,
+          "lon": -122.3795,
+          "object_id": "a05dbc",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793878.0
+        },
+        {
+          "altitude": null,
+          "heading": 180.0,
+          "lat": 37.6176,
+          "lon": -122.3795,
+          "object_id": "a05dbc",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793913.0
+        }
+      ],
+      "last_seen": 1792793913.0,
+      "object_id": "a05dbc",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": 182.88,
+          "heading": 86.6,
+          "lat": 38.622,
+          "lon": -122.0308,
+          "object_id": "a062ca",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 52.05,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": 182.88,
+          "heading": 155.68,
+          "lat": 38.6189,
+          "lon": -122.0195,
+          "object_id": "a062ca",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 58.71,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "a062ca",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": 30.48,
+          "heading": 307.02,
+          "lat": 37.8972,
+          "lon": -121.2455,
+          "object_id": "a092ad",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 39.3,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": 121.92,
+          "heading": 309.9,
+          "lat": 37.902,
+          "lon": -121.2529,
+          "object_id": "a092ad",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 40.9,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a092ad",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 960.12,
+          "heading": 151.07,
+          "lat": 37.2913,
+          "lon": -122.0879,
+          "object_id": "a0b6f9",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 67.01,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 990.6,
+          "heading": 152.3,
+          "lat": 37.2801,
+          "lon": -122.0805,
+          "object_id": "a0b6f9",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 69.72,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a0b6f9",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 208.12,
+          "lat": 37.6229,
+          "lon": -122.3825,
+          "object_id": "a0b841",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": "7207",
+          "status": "ground",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": null,
+          "heading": 205.31,
+          "lat": 37.6229,
+          "lon": -122.3825,
+          "object_id": "a0b841",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": "7207",
+          "status": "ground",
+          "timestamp": 1792793916.0
+        }
+      ],
+      "last_seen": 1792793916.0,
+      "object_id": "a0b841",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 3299.46,
+          "heading": 192.64,
+          "lat": 37.618,
+          "lon": -122.4544,
+          "object_id": "a0d30c",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 204.56,
+          "squawk": "3604",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 3710.94,
+          "heading": 192.11,
+          "lat": 37.5796,
+          "lon": -122.4651,
+          "object_id": "a0d30c",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 208.36,
+          "squawk": "3604",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a0d30c",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 784.86,
+          "heading": 226.38,
+          "lat": 38.1285,
+          "lon": -122.4141,
+          "object_id": "a0dcde",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 60.4,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 784.86,
+          "heading": 226.08,
+          "lat": 38.1207,
+          "lon": -122.4242,
+          "object_id": "a0dcde",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 57.85,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a0dcde",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 350.52,
+          "heading": 100.01,
+          "lat": 38.5819,
+          "lon": -121.8888,
+          "object_id": "a0faad",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 62.16,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 342.9,
+          "heading": 168.11,
+          "lat": 38.5738,
+          "lon": -121.8795,
+          "object_id": "a0faad",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 59.93,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a0faad",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 1226.82,
+          "heading": 263.57,
+          "lat": 38.5285,
+          "lon": -121.5969,
+          "object_id": "a10f22",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 36.76,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 1280.16,
+          "heading": 262.09,
+          "lat": 38.5275,
+          "lon": -121.6057,
+          "object_id": "a10f22",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 37.4,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793919.0
+        }
+      ],
+      "last_seen": 1792793919.0,
+      "object_id": "a10f22",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 274.32,
+          "heading": 321.58,
+          "lat": 37.4866,
+          "lon": -122.0078,
+          "object_id": "a120a6",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 38.08,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 259.08,
+          "heading": 301.33,
+          "lat": 37.4912,
+          "lon": -122.0154,
+          "object_id": "a120a6",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 41.56,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a120a6",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": 1584.96,
+          "heading": 156.48,
+          "lat": 37.5646,
+          "lon": -122.0352,
+          "object_id": "a12aa0",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 108.28,
+          "squawk": "7533",
+          "status": "airborne",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": 1455.42,
+          "heading": 176.54,
+          "lat": 37.545,
+          "lon": -122.0272,
+          "object_id": "a12aa0",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 110.81,
+          "squawk": "7533",
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "a12aa0",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 807.72,
+          "heading": 317.68,
+          "lat": 37.2536,
+          "lon": -121.8101,
+          "object_id": "a130ff",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 85.58,
+          "squawk": "5321",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 701.04,
+          "heading": 318.78,
+          "lat": 37.2658,
+          "lon": -121.8236,
+          "object_id": "a130ff",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 82.76,
+          "squawk": "5321",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a130ff",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 50.62,
+          "lat": 37.3549,
+          "lon": -121.9236,
+          "object_id": "a14ee9",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 4.37,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": null,
+          "heading": 137.81,
+          "lat": 37.3543,
+          "lon": -121.9226,
+          "object_id": "a14ee9",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 6.43,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a14ee9",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 1584.96,
+          "heading": 172.64,
+          "lat": 37.3626,
+          "lon": -121.4658,
+          "object_id": "a14f14",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 108.41,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 1584.96,
+          "heading": 173.69,
+          "lat": 37.3429,
+          "lon": -121.4629,
+          "object_id": "a14f14",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 103.0,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a14f14",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 815.34,
+          "heading": 158.84,
+          "lat": 37.3344,
+          "lon": -122.1256,
+          "object_id": "a15739",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 34.2,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 800.1,
+          "heading": 232.77,
+          "lat": 37.3285,
+          "lon": -122.1275,
+          "object_id": "a15739",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 32.31,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a15739",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 1402.08,
+          "heading": 94.64,
+          "lat": 38.4824,
+          "lon": -122.4872,
+          "object_id": "a161a2",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 57.29,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 1325.88,
+          "heading": 93.04,
+          "lat": 38.4818,
+          "lon": -122.4736,
+          "object_id": "a161a2",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 58.21,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "a161a2",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 38.1,
+          "heading": 3.41,
+          "lat": 38.5819,
+          "lon": -121.8569,
+          "object_id": "a171f7",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 43.29,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 106.68,
+          "heading": 2.94,
+          "lat": 38.59,
+          "lon": -121.8564,
+          "object_id": "a171f7",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 40.18,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a171f7",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793891.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 348.75,
+          "lat": 37.4579,
+          "lon": -122.1129,
+          "object_id": "a178a5",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793891.0
+        }
+      ],
+      "last_seen": 1792793891.0,
+      "object_id": "a178a5",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 6598.92,
+          "heading": 307.36,
+          "lat": 37.3923,
+          "lon": -121.7173,
+          "object_id": "a183d3",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 180.58,
+          "squawk": "7666",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 6492.24,
+          "heading": 307.23,
+          "lat": 37.4132,
+          "lon": -121.7519,
+          "object_id": "a183d3",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 180.26,
+          "squawk": "7666",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a183d3",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793879.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 275.62,
+          "lat": 37.614,
+          "lon": -122.384,
+          "object_id": "a1878a",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 1.54,
+          "squawk": "6732",
+          "status": "ground",
+          "timestamp": 1792793879.0
+        }
+      ],
+      "last_seen": 1792793879.0,
+      "object_id": "a1878a",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793898.0,
+      "history": [
+        {
+          "altitude": 822.96,
+          "heading": 62.1,
+          "lat": 38.4352,
+          "lon": -121.6765,
+          "object_id": "a1b2e3",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 49.48,
+          "squawk": "0336",
+          "status": "airborne",
+          "timestamp": 1792793898.0
+        },
+        {
+          "altitude": 792.48,
+          "heading": 66.64,
+          "lat": 38.4392,
+          "lon": -121.6659,
+          "object_id": "a1b2e3",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 49.31,
+          "squawk": "0336",
+          "status": "airborne",
+          "timestamp": 1792793919.0
+        }
+      ],
+      "last_seen": 1792793919.0,
+      "object_id": "a1b2e3",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793892.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 11.25,
+          "lat": 37.7118,
+          "lon": -122.2138,
+          "object_id": "a1f94c",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793892.0
+        },
+        {
+          "altitude": null,
+          "heading": 11.25,
+          "lat": 37.7118,
+          "lon": -122.2138,
+          "object_id": "a1f94c",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793912.0
+        }
+      ],
+      "last_seen": 1792793912.0,
+      "object_id": "a1f94c",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 210.94,
+          "lat": 37.6587,
+          "lon": -122.1177,
+          "object_id": "a20ed1",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.32,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": null,
+          "heading": 202.5,
+          "lat": 37.6587,
+          "lon": -122.1177,
+          "object_id": "a20ed1",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.06,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793906.0
+        }
+      ],
+      "last_seen": 1792793906.0,
+      "object_id": "a20ed1",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793618.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 118.12,
+          "lat": 37.6192,
+          "lon": -122.3668,
+          "object_id": "a21679",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 12.35,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793618.0
+        }
+      ],
+      "last_seen": 1792793618.0,
+      "object_id": "a21679",
+      "source": "opensky",
+      "state": "lost"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 213.36,
+          "heading": 146.15,
+          "lat": 37.4803,
+          "lon": -122.1131,
+          "object_id": "a217df",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 52.65,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 205.74,
+          "heading": 143.81,
+          "lat": 37.4722,
+          "lon": -122.1059,
+          "object_id": "a217df",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 52.27,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a217df",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 132.19,
+          "lat": 37.3587,
+          "lon": -121.9197,
+          "object_id": "a21dc4",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": null,
+          "heading": 132.19,
+          "lat": 37.3587,
+          "lon": -121.9197,
+          "object_id": "a21dc4",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793916.0
+        }
+      ],
+      "last_seen": 1792793916.0,
+      "object_id": "a21dc4",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 1638.3,
+          "heading": 45.8,
+          "lat": 38.1434,
+          "lon": -121.6939,
+          "object_id": "a233e0",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 78.22,
+          "squawk": "4270",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 1638.3,
+          "heading": 45.27,
+          "lat": 38.1536,
+          "lon": -121.6808,
+          "object_id": "a233e0",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 76.76,
+          "squawk": "4270",
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "a233e0",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793894.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 95.62,
+          "lat": 37.7086,
+          "lon": -122.2137,
+          "object_id": "a2396e",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793894.0
+        },
+        {
+          "altitude": null,
+          "heading": 95.62,
+          "lat": 37.7086,
+          "lon": -122.2137,
+          "object_id": "a2396e",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793909.0
+        }
+      ],
+      "last_seen": 1792793909.0,
+      "object_id": "a2396e",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 121.92,
+          "heading": 263.75,
+          "lat": 38.2024,
+          "lon": -121.2789,
+          "object_id": "a23ea7",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 37.78,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 243.84,
+          "heading": 263.25,
+          "lat": 38.2015,
+          "lon": -121.2881,
+          "object_id": "a23ea7",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 39.37,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a23ea7",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 259.08,
+          "heading": 138.05,
+          "lat": 38.1036,
+          "lon": -121.8977,
+          "object_id": "a241c7",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 54.64,
+          "squawk": "5234",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 266.7,
+          "heading": 60.6,
+          "lat": 38.1,
+          "lon": -121.8879,
+          "object_id": "a241c7",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 41.92,
+          "squawk": "5234",
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "a241c7",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 1409.7,
+          "heading": 301.3,
+          "lat": 38.5365,
+          "lon": -121.1489,
+          "object_id": "a24abd",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 75.26,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 1341.12,
+          "heading": 302.83,
+          "lat": 38.5441,
+          "lon": -121.1644,
+          "object_id": "a24abd",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 75.91,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "a24abd",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": 457.2,
+          "heading": 153.94,
+          "lat": 37.4836,
+          "lon": -122.468,
+          "object_id": "a266c8",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 52.69,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": 457.2,
+          "heading": 161.57,
+          "lat": 37.4741,
+          "lon": -122.4633,
+          "object_id": "a266c8",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 55.31,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "a266c8",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793912.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 306.56,
+          "lat": 37.6623,
+          "lon": -122.1251,
+          "object_id": "a286d4",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 3.6,
+          "squawk": "2124",
+          "status": "ground",
+          "timestamp": 1792793912.0
+        }
+      ],
+      "last_seen": 1792793912.0,
+      "object_id": "a286d4",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793877.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 70.31,
+          "lat": 37.6306,
+          "lon": -122.3955,
+          "object_id": "a290d0",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 7.46,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793877.0
+        },
+        {
+          "altitude": null,
+          "heading": 118.12,
+          "lat": 37.6298,
+          "lon": -122.3922,
+          "object_id": "a290d0",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 7.72,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "a290d0",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793895.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 90.0,
+          "lat": 37.5091,
+          "lon": -122.2474,
+          "object_id": "a29cf8",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793895.0
+        },
+        {
+          "altitude": null,
+          "heading": 90.0,
+          "lat": 37.5091,
+          "lon": -122.2473,
+          "object_id": "a29cf8",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793915.0
+        }
+      ],
+      "last_seen": 1792793915.0,
+      "object_id": "a29cf8",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793892.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 36.56,
+          "lat": 37.6852,
+          "lon": -121.4408,
+          "object_id": "a2a4c1",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 3.86,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793892.0
+        },
+        {
+          "altitude": null,
+          "heading": 106.88,
+          "lat": 37.6858,
+          "lon": -121.4399,
+          "object_id": "a2a4c1",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 3.09,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a2a4c1",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 4084.32,
+          "heading": 137.9,
+          "lat": 37.139,
+          "lon": -121.5733,
+          "object_id": "a2a823",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 194.14,
+          "squawk": "3353",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 4312.92,
+          "heading": 137.87,
+          "lat": 37.1118,
+          "lon": -121.5425,
+          "object_id": "a2a823",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 196.32,
+          "squawk": "3353",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a2a823",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 4846.32,
+          "heading": 299.33,
+          "lat": 37.546,
+          "lon": -121.817,
+          "object_id": "a2af91",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 166.99,
+          "squawk": "4072",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 4846.32,
+          "heading": 299.17,
+          "lat": 37.5613,
+          "lon": -121.8516,
+          "object_id": "a2af91",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 166.74,
+          "squawk": "0222",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a2af91",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 944.88,
+          "heading": 103.42,
+          "lat": 37.4352,
+          "lon": -122.0226,
+          "object_id": "a2dc02",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 46.54,
+          "squawk": "4272",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 1005.84,
+          "heading": 102.86,
+          "lat": 37.4331,
+          "lon": -122.0118,
+          "object_id": "a2dc02",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 48.55,
+          "squawk": "4272",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a2dc02",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 152.4,
+          "heading": 22.46,
+          "lat": 38.5261,
+          "lon": -121.5291,
+          "object_id": "a2ec85",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 41.75,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 182.88,
+          "heading": 28.35,
+          "lat": 38.5332,
+          "lon": -121.5245,
+          "object_id": "a2ec85",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 44.42,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "a2ec85",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": 129.54,
+          "heading": 331.7,
+          "lat": 37.8436,
+          "lon": -121.6396,
+          "object_id": "a2ee2e",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 45.57,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": 213.36,
+          "heading": 38.03,
+          "lat": 37.8517,
+          "lon": -121.6392,
+          "object_id": "a2ee2e",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 50.94,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "a2ee2e",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": 2263.14,
+          "heading": 122.97,
+          "lat": 37.4824,
+          "lon": -121.0434,
+          "object_id": "a32373",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 90.75,
+          "squawk": "4216",
+          "status": "airborne",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": 2255.52,
+          "heading": 123.06,
+          "lat": 37.4729,
+          "lon": -121.0252,
+          "object_id": "a32373",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 91.46,
+          "squawk": "4216",
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "a32373",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793780.0,
+      "history": [
+        {
+          "altitude": 381.0,
+          "heading": 115.02,
+          "lat": 37.6751,
+          "lon": -121.8442,
+          "object_id": "a325b4",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 51.09,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793780.0
+        }
+      ],
+      "last_seen": 1792793780.0,
+      "object_id": "a325b4",
+      "source": "opensky",
+      "state": "gap"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 815.34,
+          "heading": 136.3,
+          "lat": 37.4545,
+          "lon": -122.2048,
+          "object_id": "a33241",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 96.06,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 944.88,
+          "heading": 143.67,
+          "lat": 37.4414,
+          "lon": -122.1903,
+          "object_id": "a33241",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 98.98,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a33241",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 213.75,
+          "lat": 37.512,
+          "lon": -122.2507,
+          "object_id": "a33872",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 2.06,
+          "squawk": "0342",
+          "status": "ground",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": null,
+          "heading": 230.62,
+          "lat": 37.5117,
+          "lon": -122.251,
+          "object_id": "a33872",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 1.29,
+          "squawk": "0342",
+          "status": "ground",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a33872",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 306.56,
+          "lat": 37.7293,
+          "lon": -122.2122,
+          "object_id": "a33a30",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": null,
+          "heading": 306.56,
+          "lat": 37.7293,
+          "lon": -122.2122,
+          "object_id": "a33a30",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793907.0
+        }
+      ],
+      "last_seen": 1792793907.0,
+      "object_id": "a33a30",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 518.16,
+          "heading": 51.46,
+          "lat": 38.141,
+          "lon": -122.3243,
+          "object_id": "a358a5",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 38.81,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 457.2,
+          "heading": 42.61,
+          "lat": 38.1463,
+          "lon": -122.3183,
+          "object_id": "a358a5",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 34.95,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a358a5",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 731.52,
+          "heading": 119.01,
+          "lat": 37.8162,
+          "lon": -122.2981,
+          "object_id": "a36cff",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 70.0,
+          "squawk": "1730",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 731.52,
+          "heading": 118.85,
+          "lat": 37.8098,
+          "lon": -122.2836,
+          "object_id": "a36cff",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 69.3,
+          "squawk": "1730",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a36cff",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 2788.92,
+          "heading": 112.23,
+          "lat": 38.2022,
+          "lon": -122.2654,
+          "object_id": "a3779a",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 127.82,
+          "squawk": "4201",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 2979.42,
+          "heading": 113.06,
+          "lat": 38.1925,
+          "lon": -122.2359,
+          "object_id": "a3779a",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 139.22,
+          "squawk": "4201",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a3779a",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793888.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 135.0,
+          "lat": 37.3696,
+          "lon": -121.9316,
+          "object_id": "a3a65f",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793888.0
+        },
+        {
+          "altitude": null,
+          "heading": 135.0,
+          "lat": 37.3695,
+          "lon": -121.9316,
+          "object_id": "a3a65f",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793912.0
+        }
+      ],
+      "last_seen": 1792793912.0,
+      "object_id": "a3a65f",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 441.96,
+          "heading": 221.34,
+          "lat": 37.9431,
+          "lon": -122.0389,
+          "object_id": "a3b757",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 74.0,
+          "squawk": "3325",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 434.34,
+          "heading": 285.33,
+          "lat": 37.9401,
+          "lon": -122.0544,
+          "object_id": "a3b757",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 66.15,
+          "squawk": "3325",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a3b757",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 3200.4,
+          "heading": 232.5,
+          "lat": 38.4974,
+          "lon": -122.418,
+          "object_id": "a3c1e6",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 167.31,
+          "squawk": "3627",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 3009.9,
+          "heading": 232.55,
+          "lat": 38.4781,
+          "lon": -122.4499,
+          "object_id": "a3c1e6",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 163.29,
+          "squawk": "3627",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a3c1e6",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 960.12,
+          "heading": 223.93,
+          "lat": 38.5206,
+          "lon": -122.1726,
+          "object_id": "a3c677",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 77.86,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 960.12,
+          "heading": 248.99,
+          "lat": 38.5133,
+          "lon": -122.1888,
+          "object_id": "a3c677",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 76.05,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a3c677",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 5013.96,
+          "heading": 310.77,
+          "lat": 37.6582,
+          "lon": -122.1241,
+          "object_id": "a3ea17",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 172.53,
+          "squawk": "3105",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 4876.8,
+          "heading": 310.7,
+          "lat": 37.6791,
+          "lon": -122.1548,
+          "object_id": "a3ea17",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 169.63,
+          "squawk": "3105",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a3ea17",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793894.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 149.06,
+          "lat": 37.7257,
+          "lon": -122.2045,
+          "object_id": "a3ecce",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793894.0
+        },
+        {
+          "altitude": null,
+          "heading": 149.06,
+          "lat": 37.7257,
+          "lon": -122.2045,
+          "object_id": "a3ecce",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793904.0
+        }
+      ],
+      "last_seen": 1792793904.0,
+      "object_id": "a3ecce",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793898.0,
+      "history": [
+        {
+          "altitude": 1089.66,
+          "heading": 194.29,
+          "lat": 38.4194,
+          "lon": -121.2774,
+          "object_id": "a3f3fb",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 83.35,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793898.0
+        },
+        {
+          "altitude": 1089.66,
+          "heading": 193.61,
+          "lat": 38.4045,
+          "lon": -121.2821,
+          "object_id": "a3f3fb",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 83.1,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a3f3fb",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 899.16,
+          "heading": 329.37,
+          "lat": 37.7489,
+          "lon": -121.9474,
+          "object_id": "a40acb",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 45.44,
+          "squawk": "0340",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 861.06,
+          "heading": 326.48,
+          "lat": 37.7564,
+          "lon": -121.9539,
+          "object_id": "a40acb",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 49.37,
+          "squawk": "0340",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a40acb",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793898.0,
+      "history": [
+        {
+          "altitude": 419.1,
+          "heading": 33.89,
+          "lat": 37.4964,
+          "lon": -122.1304,
+          "object_id": "a41518",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 41.52,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793898.0
+        },
+        {
+          "altitude": 510.54,
+          "heading": 64.94,
+          "lat": 37.5007,
+          "lon": -122.1216,
+          "object_id": "a41518",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 43.73,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793919.0
+        }
+      ],
+      "last_seen": 1792793919.0,
+      "object_id": "a41518",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 5608.32,
+          "heading": 260.46,
+          "lat": 37.624,
+          "lon": -121.0303,
+          "object_id": "a44633",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 192.49,
+          "squawk": "7261",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 5402.58,
+          "heading": 260.23,
+          "lat": 37.6181,
+          "lon": -121.0749,
+          "object_id": "a44633",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 191.06,
+          "squawk": "7261",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a44633",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": 1554.48,
+          "heading": 341.96,
+          "lat": 37.3557,
+          "lon": -122.1115,
+          "object_id": "a449cb",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 117.95,
+          "squawk": "1441",
+          "status": "airborne",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": 1485.9,
+          "heading": 344.02,
+          "lat": 37.3771,
+          "lon": -122.1198,
+          "object_id": "a449cb",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 113.98,
+          "squawk": "1441",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a449cb",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": 2461.26,
+          "heading": 264.69,
+          "lat": 37.6143,
+          "lon": -121.7078,
+          "object_id": "a4570a",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 116.77,
+          "squawk": "6715",
+          "status": "airborne",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": 2324.1,
+          "heading": 264.67,
+          "lat": 37.6123,
+          "lon": -121.7349,
+          "object_id": "a4570a",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 116.25,
+          "squawk": "6715",
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "a4570a",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 1645.92,
+          "heading": 147.88,
+          "lat": 38.4792,
+          "lon": -122.8225,
+          "object_id": "a4b1e9",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 83.21,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 1638.3,
+          "heading": 148.18,
+          "lat": 38.4657,
+          "lon": -122.8118,
+          "object_id": "a4b1e9",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 82.94,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a4b1e9",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793778.0,
+      "history": [
+        {
+          "altitude": 7.62,
+          "heading": 317.42,
+          "lat": 38.0864,
+          "lon": -121.3516,
+          "object_id": "a4b410",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 25.85,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793778.0
+        }
+      ],
+      "last_seen": 1792793778.0,
+      "object_id": "a4b410",
+      "source": "opensky",
+      "state": "gap"
+    },
+    {
+      "first_seen": 1792793892.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 357.19,
+          "lat": 38.6951,
+          "lon": -121.5909,
+          "object_id": "a4b5b6",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 1.54,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793892.0
+        },
+        {
+          "altitude": null,
+          "heading": 28.12,
+          "lat": 38.6948,
+          "lon": -121.5909,
+          "object_id": "a4b5b6",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 1.29,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793914.0
+        }
+      ],
+      "last_seen": 1792793914.0,
+      "object_id": "a4b5b6",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 182.88,
+          "heading": 33.96,
+          "lat": 37.6353,
+          "lon": -122.3609,
+          "object_id": "a4b7d7",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 89.32,
+          "squawk": "1734",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 411.48,
+          "heading": 52.29,
+          "lat": 37.6472,
+          "lon": -122.3454,
+          "object_id": "a4b7d7",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 91.68,
+          "squawk": "1734",
+          "status": "airborne",
+          "timestamp": 1792793919.0
+        }
+      ],
+      "last_seen": 1792793919.0,
+      "object_id": "a4b7d7",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793735.0,
+      "history": [
+        {
+          "altitude": 426.72,
+          "heading": 336.8,
+          "lat": 38.4388,
+          "lon": -122.7716,
+          "object_id": "a4bd24",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 66.6,
+          "squawk": "2003",
+          "status": "airborne",
+          "timestamp": 1792793735.0
+        }
+      ],
+      "last_seen": 1792793735.0,
+      "object_id": "a4bd24",
+      "source": "opensky",
+      "state": "gap"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 1127.76,
+          "heading": 316.97,
+          "lat": 38.5575,
+          "lon": -122.1235,
+          "object_id": "a4dd1b",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 52.78,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 1143.0,
+          "heading": 319.46,
+          "lat": 38.565,
+          "lon": -122.1324,
+          "object_id": "a4dd1b",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 51.45,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a4dd1b",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793887.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 39.38,
+          "lat": 37.7089,
+          "lon": -122.2174,
+          "object_id": "a4dd35",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793887.0
+        },
+        {
+          "altitude": null,
+          "heading": 39.38,
+          "lat": 37.7089,
+          "lon": -122.2174,
+          "object_id": "a4dd35",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "a4dd35",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": 190.5,
+          "heading": 200.02,
+          "lat": 38.0995,
+          "lon": -122.479,
+          "object_id": "a4e80d",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 70.63,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": 182.88,
+          "heading": 187.34,
+          "lat": 38.0858,
+          "lon": -122.4828,
+          "object_id": "a4e80d",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 68.47,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a4e80d",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 800.1,
+          "heading": 273.95,
+          "lat": 38.4319,
+          "lon": -122.4799,
+          "object_id": "a551a2",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 29.91,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 830.58,
+          "heading": 274.01,
+          "lat": 38.4323,
+          "lon": -122.4872,
+          "object_id": "a551a2",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 29.4,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a551a2",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 8298.18,
+          "heading": 160.24,
+          "lat": 38.5953,
+          "lon": -122.9363,
+          "object_id": "a553ce",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 232.86,
+          "squawk": "6340",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 8069.58,
+          "heading": 160.34,
+          "lat": 38.5549,
+          "lon": -122.9178,
+          "object_id": "a553ce",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 227.81,
+          "squawk": "6340",
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "a553ce",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793833.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 236.25,
+          "lat": 37.6182,
+          "lon": -122.381,
+          "object_id": "a56050",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": "1762",
+          "status": "ground",
+          "timestamp": 1792793833.0
+        }
+      ],
+      "last_seen": 1792793833.0,
+      "object_id": "a56050",
+      "source": "opensky",
+      "state": "gap"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 91.44,
+          "heading": 321.63,
+          "lat": 37.3231,
+          "lon": -121.81,
+          "object_id": "a56285",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 31.49,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 30.48,
+          "heading": 322.94,
+          "lat": 37.3278,
+          "lon": -121.8144,
+          "object_id": "a56285",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 31.59,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a56285",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": 906.78,
+          "heading": 327.89,
+          "lat": 38.5549,
+          "lon": -121.3232,
+          "object_id": "a5906a",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 92.92,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": 769.62,
+          "heading": 326.49,
+          "lat": 38.5699,
+          "lon": -121.3354,
+          "object_id": "a5906a",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 93.17,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "a5906a",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793895.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 28.12,
+          "lat": 37.6201,
+          "lon": -122.3853,
+          "object_id": "a5954e",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.9,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793895.0
+        },
+        {
+          "altitude": null,
+          "heading": 28.12,
+          "lat": 37.6203,
+          "lon": -122.3852,
+          "object_id": "a5954e",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.9,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793915.0
+        }
+      ],
+      "last_seen": 1792793915.0,
+      "object_id": "a5954e",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 3154.68,
+          "heading": 95.74,
+          "lat": 38.8019,
+          "lon": -122.9472,
+          "object_id": "a59da3",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 113.23,
+          "squawk": "4233",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 3162.3,
+          "heading": 96.02,
+          "lat": 38.7998,
+          "lon": -122.9207,
+          "object_id": "a59da3",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 112.77,
+          "squawk": "4233",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a59da3",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793884.0,
+      "history": [
+        {
+          "altitude": 853.44,
+          "heading": 233.47,
+          "lat": 37.1909,
+          "lon": -122.4145,
+          "object_id": "a5b244",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 51.86,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793884.0
+        },
+        {
+          "altitude": 876.3,
+          "heading": 262.57,
+          "lat": 37.1857,
+          "lon": -122.4278,
+          "object_id": "a5b244",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 47.73,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793911.0
+        }
+      ],
+      "last_seen": 1792793911.0,
+      "object_id": "a5b244",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793898.0,
+      "history": [
+        {
+          "altitude": 1737.36,
+          "heading": 57.53,
+          "lat": 37.7124,
+          "lon": -122.2237,
+          "object_id": "a5cc35",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 127.44,
+          "squawk": "0463",
+          "status": "airborne",
+          "timestamp": 1792793898.0
+        },
+        {
+          "altitude": 2034.54,
+          "heading": 56.37,
+          "lat": 37.7258,
+          "lon": -122.1977,
+          "object_id": "a5cc35",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 130.98,
+          "squawk": "6336",
+          "status": "airborne",
+          "timestamp": 1792793919.0
+        }
+      ],
+      "last_seen": 1792793919.0,
+      "object_id": "a5cc35",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793898.0,
+      "history": [
+        {
+          "altitude": 5433.06,
+          "heading": 75.46,
+          "lat": 37.9262,
+          "lon": -121.4171,
+          "object_id": "a5d319",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 213.12,
+          "squawk": "1737",
+          "status": "airborne",
+          "timestamp": 1792793898.0
+        },
+        {
+          "altitude": 5623.56,
+          "heading": 75.29,
+          "lat": 37.9363,
+          "lon": -121.3683,
+          "object_id": "a5d319",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 212.75,
+          "squawk": "1737",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a5d319",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793918.0,
+      "history": [
+        {
+          "altitude": 5852.16,
+          "heading": 318.22,
+          "lat": 37.0215,
+          "lon": -121.1334,
+          "object_id": "a5f90e",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 168.33,
+          "squawk": "0010",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a5f90e",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 358.14,
+          "heading": 282.72,
+          "lat": 38.7716,
+          "lon": -121.1796,
+          "object_id": "a61c6c",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 49.05,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 327.66,
+          "heading": 281.31,
+          "lat": 38.7737,
+          "lon": -121.192,
+          "object_id": "a61c6c",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 55.09,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a61c6c",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 143.44,
+          "lat": 37.461,
+          "lon": -122.1155,
+          "object_id": "a63f3a",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 4.63,
+          "squawk": "1200",
+          "status": "ground",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": null,
+          "heading": 140.62,
+          "lat": 37.4598,
+          "lon": -122.1143,
+          "object_id": "a63f3a",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 8.75,
+          "squawk": "1200",
+          "status": "ground",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a63f3a",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": 868.68,
+          "heading": 157.31,
+          "lat": 37.8909,
+          "lon": -122.0462,
+          "object_id": "a64b96",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 61.34,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": 891.54,
+          "heading": 157.54,
+          "lat": 37.8806,
+          "lon": -122.0405,
+          "object_id": "a64b96",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 57.89,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a64b96",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 1188.72,
+          "heading": 106.98,
+          "lat": 38.0573,
+          "lon": -122.5471,
+          "object_id": "a6593e",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 89.83,
+          "squawk": "7676",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 1226.82,
+          "heading": 100.99,
+          "lat": 38.0523,
+          "lon": -122.5261,
+          "object_id": "a6593e",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 91.71,
+          "squawk": "7676",
+          "status": "airborne",
+          "timestamp": 1792793919.0
+        }
+      ],
+      "last_seen": 1792793919.0,
+      "object_id": "a6593e",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 3550.92,
+          "heading": 342.51,
+          "lat": 37.0594,
+          "lon": -121.9949,
+          "object_id": "a67960",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 118.12,
+          "squawk": "7643",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 3436.62,
+          "heading": 342.6,
+          "lat": 37.0803,
+          "lon": -122.0031,
+          "object_id": "a67960",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 116.99,
+          "squawk": "7643",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a67960",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 230.62,
+          "lat": 37.3529,
+          "lon": -121.9235,
+          "object_id": "a6d685",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 2.83,
+          "squawk": "5367",
+          "status": "ground",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": null,
+          "heading": 227.81,
+          "lat": 37.3528,
+          "lon": -121.9236,
+          "object_id": "a6d685",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 1.54,
+          "squawk": "5367",
+          "status": "ground",
+          "timestamp": 1792793905.0
+        }
+      ],
+      "last_seen": 1792793905.0,
+      "object_id": "a6d685",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 609.6,
+          "heading": 300.07,
+          "lat": 37.6055,
+          "lon": -122.006,
+          "object_id": "a6d6ec",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 101.65,
+          "squawk": "5601",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 495.3,
+          "heading": 300.21,
+          "lat": 37.615,
+          "lon": -122.0269,
+          "object_id": "a6d6ec",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 101.2,
+          "squawk": "5601",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a6d6ec",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793658.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 47.81,
+          "lat": 37.3675,
+          "lon": -121.9281,
+          "object_id": "a708bf",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": "3224",
+          "status": "ground",
+          "timestamp": 1792793658.0
+        }
+      ],
+      "last_seen": 1792793658.0,
+      "object_id": "a708bf",
+      "source": "opensky",
+      "state": "gap"
+    },
+    {
+      "first_seen": 1792793886.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 115.31,
+          "lat": 37.6066,
+          "lon": -122.3813,
+          "object_id": "a7101e",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 3.34,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793886.0
+        },
+        {
+          "altitude": null,
+          "heading": 30.94,
+          "lat": 37.6069,
+          "lon": -122.3807,
+          "object_id": "a7101e",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 3.09,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793908.0
+        }
+      ],
+      "last_seen": 1792793908.0,
+      "object_id": "a7101e",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 5196.84,
+          "heading": 176.68,
+          "lat": 37.9119,
+          "lon": -122.5105,
+          "object_id": "a720eb",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 213.34,
+          "squawk": "1632",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 4998.72,
+          "heading": 176.51,
+          "lat": 37.8729,
+          "lon": -122.5076,
+          "object_id": "a720eb",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 211.31,
+          "squawk": "1632",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a720eb",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 152.4,
+          "heading": 175.03,
+          "lat": 37.6567,
+          "lon": -122.1368,
+          "object_id": "a72e5b",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 47.51,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 182.88,
+          "heading": 135.0,
+          "lat": 37.6487,
+          "lon": -122.1295,
+          "object_id": "a72e5b",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 53.84,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793919.0
+        }
+      ],
+      "last_seen": 1792793919.0,
+      "object_id": "a72e5b",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793882.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 45.0,
+          "lat": 37.621,
+          "lon": -122.3775,
+          "object_id": "a7337e",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.06,
+          "squawk": "7141",
+          "status": "ground",
+          "timestamp": 1792793882.0
+        }
+      ],
+      "last_seen": 1792793882.0,
+      "object_id": "a7337e",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793865.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 50.62,
+          "lat": 37.3333,
+          "lon": -121.8188,
+          "object_id": "a736e5",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 2.31,
+          "squawk": "1200",
+          "status": "ground",
+          "timestamp": 1792793865.0
+        }
+      ],
+      "last_seen": 1792793865.0,
+      "object_id": "a736e5",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 140.62,
+          "lat": 37.4579,
+          "lon": -122.1125,
+          "object_id": "a74d56",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": null,
+          "heading": 140.62,
+          "lat": 37.4579,
+          "lon": -122.1125,
+          "object_id": "a74d56",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793910.0
+        }
+      ],
+      "last_seen": 1792793910.0,
+      "object_id": "a74d56",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 335.28,
+          "heading": 75.85,
+          "lat": 37.5472,
+          "lon": -122.1031,
+          "object_id": "a75ed6",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 63.13,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 396.24,
+          "heading": 76.63,
+          "lat": 37.55,
+          "lon": -122.0886,
+          "object_id": "a75ed6",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 64.51,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "a75ed6",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 129.54,
+          "heading": 26.57,
+          "lat": 37.6435,
+          "lon": -122.1015,
+          "object_id": "a7b489",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 34.51,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 114.3,
+          "heading": 349.51,
+          "lat": 37.6492,
+          "lon": -122.0998,
+          "object_id": "a7b489",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 28.25,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "a7b489",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793614.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 320.62,
+          "lat": 37.5144,
+          "lon": -122.2509,
+          "object_id": "a7dffd",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": "4562",
+          "status": "ground",
+          "timestamp": 1792793614.0
+        }
+      ],
+      "last_seen": 1792793614.0,
+      "object_id": "a7dffd",
+      "source": "opensky",
+      "state": "lost"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 1981.2,
+          "heading": 193.98,
+          "lat": 37.4191,
+          "lon": -122.3253,
+          "object_id": "a7e6cf",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 136.25,
+          "squawk": "1623",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 1821.18,
+          "heading": 152.32,
+          "lat": 37.3947,
+          "lon": -122.3218,
+          "object_id": "a7e6cf",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 129.55,
+          "squawk": "1623",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a7e6cf",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793889.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 227.81,
+          "lat": 37.3628,
+          "lon": -121.9357,
+          "object_id": "a802fa",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793889.0
+        },
+        {
+          "altitude": null,
+          "heading": 227.81,
+          "lat": 37.3628,
+          "lon": -121.9357,
+          "object_id": "a802fa",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793914.0
+        }
+      ],
+      "last_seen": 1792793914.0,
+      "object_id": "a802fa",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 5775.96,
+          "heading": 0.36,
+          "lat": 37.9216,
+          "lon": -122.0328,
+          "object_id": "a808df",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 82.31,
+          "squawk": "3265",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 5905.5,
+          "heading": 0.36,
+          "lat": 37.9375,
+          "lon": -122.0327,
+          "object_id": "a808df",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 81.28,
+          "squawk": "3265",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a808df",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": 5661.66,
+          "heading": 172.42,
+          "lat": 37.9956,
+          "lon": -121.0036,
+          "object_id": "a81453",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 144.28,
+          "squawk": "1712",
+          "status": "airborne",
+          "timestamp": 1792793896.0
+        }
+      ],
+      "last_seen": 1792793896.0,
+      "object_id": "a81453",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 2331.72,
+          "heading": 277.58,
+          "lat": 37.4793,
+          "lon": -121.8399,
+          "object_id": "a85964",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 120.92,
+          "squawk": "3417",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 2240.28,
+          "heading": 277.13,
+          "lat": 37.4823,
+          "lon": -121.8688,
+          "object_id": "a85964",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 120.28,
+          "squawk": "3417",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a85964",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 6042.66,
+          "heading": 132.29,
+          "lat": 37.4951,
+          "lon": -121.4107,
+          "object_id": "a86361",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 138.39,
+          "squawk": "3656",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 6217.92,
+          "heading": 132.18,
+          "lat": 37.4782,
+          "lon": -121.3872,
+          "object_id": "a86361",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 133.3,
+          "squawk": "3656",
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "a86361",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": 45.72,
+          "heading": 303.21,
+          "lat": 37.6535,
+          "lon": -122.1114,
+          "object_id": "a868cb",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 33.82,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": -7.62,
+          "heading": 300.17,
+          "lat": 37.6565,
+          "lon": -122.1176,
+          "object_id": "a868cb",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 25.59,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a868cb",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 868.68,
+          "heading": 195.8,
+          "lat": 37.419,
+          "lon": -122.4244,
+          "object_id": "a8990f",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 56.67,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 876.3,
+          "heading": 165.17,
+          "lat": 37.4084,
+          "lon": -122.4253,
+          "object_id": "a8990f",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 54.28,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a8990f",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": 746.76,
+          "heading": 252.99,
+          "lat": 38.5342,
+          "lon": -121.9961,
+          "object_id": "a89d42",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 45.73,
+          "squawk": "0204",
+          "status": "airborne",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": 655.32,
+          "heading": 1.43,
+          "lat": 38.5386,
+          "lon": -122.0013,
+          "object_id": "a89d42",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 41.17,
+          "squawk": "0204",
+          "status": "airborne",
+          "timestamp": 1792793916.0
+        }
+      ],
+      "last_seen": 1792793916.0,
+      "object_id": "a89d42",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 1074.42,
+          "heading": 50.62,
+          "lat": 38.0419,
+          "lon": -121.8637,
+          "object_id": "a8c348",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 44.59,
+          "squawk": "5232",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 1066.8,
+          "heading": 107.6,
+          "lat": 38.043,
+          "lon": -121.8517,
+          "object_id": "a8c348",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 56.13,
+          "squawk": "5232",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a8c348",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793702.0,
+      "history": [
+        {
+          "altitude": 91.44,
+          "heading": 305.88,
+          "lat": 38.2533,
+          "lon": -122.5974,
+          "object_id": "a8c966",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 29.84,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793702.0
+        }
+      ],
+      "last_seen": 1792793702.0,
+      "object_id": "a8c966",
+      "source": "opensky",
+      "state": "gap"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": 243.84,
+          "heading": 43.12,
+          "lat": 37.599,
+          "lon": -121.2344,
+          "object_id": "a8ee45",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 44.4,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": 274.32,
+          "heading": 52.0,
+          "lat": 37.6047,
+          "lon": -121.227,
+          "object_id": "a8ee45",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 41.78,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "a8ee45",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793769.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 30.94,
+          "lat": 37.6064,
+          "lon": -122.3826,
+          "object_id": "a92384",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793769.0
+        },
+        {
+          "altitude": null,
+          "heading": 92.81,
+          "lat": 37.6069,
+          "lon": -122.382,
+          "object_id": "a92384",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793915.0
+        }
+      ],
+      "last_seen": 1792793915.0,
+      "object_id": "a92384",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 2712.72,
+          "heading": 173.97,
+          "lat": 38.2928,
+          "lon": -121.5316,
+          "object_id": "a92ec2",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 146.91,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 2712.72,
+          "heading": 173.99,
+          "lat": 38.265,
+          "lon": -121.5279,
+          "object_id": "a92ec2",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 147.43,
+          "squawk": "4253",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a92ec2",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": 1043.94,
+          "heading": 268.77,
+          "lat": 37.6917,
+          "lon": -121.54,
+          "object_id": "a9ad12",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 72.04,
+          "squawk": "4234",
+          "status": "airborne",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": 1036.32,
+          "heading": 269.58,
+          "lat": 37.6914,
+          "lon": -121.557,
+          "object_id": "a9ad12",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 70.48,
+          "squawk": "4234",
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "a9ad12",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 205.74,
+          "heading": 144.33,
+          "lat": 37.4586,
+          "lon": -122.0963,
+          "object_id": "a9c56a",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 53.82,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 205.74,
+          "heading": 146.91,
+          "lat": 37.4502,
+          "lon": -122.0887,
+          "object_id": "a9c56a",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 54.65,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a9c56a",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 1950.72,
+          "heading": 312.1,
+          "lat": 37.7308,
+          "lon": -121.5973,
+          "object_id": "a9e524",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 57.55,
+          "squawk": "2031",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 1950.72,
+          "heading": 313.2,
+          "lat": 37.7382,
+          "lon": -121.6074,
+          "object_id": "a9e524",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 57.87,
+          "squawk": "2031",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a9e524",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793914.0,
+      "history": [
+        {
+          "altitude": 243.84,
+          "heading": 188.8,
+          "lat": 38.2472,
+          "lon": -122.411,
+          "object_id": "a9ed2d",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 43.73,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793914.0
+        }
+      ],
+      "last_seen": 1792793914.0,
+      "object_id": "a9ed2d",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 228.6,
+          "heading": 179.49,
+          "lat": 38.2176,
+          "lon": -122.2551,
+          "object_id": "a9ff60",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 58.13,
+          "squawk": "5526",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 266.7,
+          "heading": 201.19,
+          "lat": 38.2076,
+          "lon": -122.2591,
+          "object_id": "a9ff60",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 54.07,
+          "squawk": "5526",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "a9ff60",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 2255.52,
+          "heading": 170.15,
+          "lat": 37.6285,
+          "lon": -121.0813,
+          "object_id": "aa2e4c",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 75.19,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 2255.52,
+          "heading": 168.92,
+          "lat": 37.6144,
+          "lon": -121.078,
+          "object_id": "aa2e4c",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 74.96,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "aa2e4c",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 1615.44,
+          "heading": 95.77,
+          "lat": 37.8982,
+          "lon": -121.5635,
+          "object_id": "aa3053",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 51.19,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 1615.44,
+          "heading": 102.26,
+          "lat": 37.8967,
+          "lon": -121.5524,
+          "object_id": "aa3053",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 48.43,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "aa3053",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 640.08,
+          "heading": 48.37,
+          "lat": 38.9433,
+          "lon": -121.0621,
+          "object_id": "aa445f",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 43.36,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 609.6,
+          "heading": 351.43,
+          "lat": 38.9501,
+          "lon": -121.0592,
+          "object_id": "aa445f",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 37.98,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "aa445f",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 548.64,
+          "heading": 291.67,
+          "lat": 37.5784,
+          "lon": -122.246,
+          "object_id": "aa4c42",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 83.59,
+          "squawk": "6427",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 457.2,
+          "heading": 289.0,
+          "lat": 37.5839,
+          "lon": -122.2644,
+          "object_id": "aa4c42",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 82.16,
+          "squawk": "6427",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "aa4c42",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 2849.88,
+          "heading": 153.34,
+          "lat": 37.5363,
+          "lon": -122.325,
+          "object_id": "aa56f7",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 139.88,
+          "squawk": "0505",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 2674.62,
+          "heading": 154.59,
+          "lat": 37.5132,
+          "lon": -122.3111,
+          "object_id": "aa56f7",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 136.69,
+          "squawk": "0505",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "aa56f7",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 1851.66,
+          "heading": 230.63,
+          "lat": 37.6784,
+          "lon": -122.4356,
+          "object_id": "aa73b9",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 137.07,
+          "squawk": "3321",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 2225.04,
+          "heading": 229.92,
+          "lat": 37.662,
+          "lon": -122.4603,
+          "object_id": "aa73b9",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 135.82,
+          "squawk": "3321",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "aa73b9",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 270.0,
+          "lat": 38.6946,
+          "lon": -121.5964,
+          "object_id": "aa7a83",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 2.57,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": null,
+          "heading": 270.0,
+          "lat": 38.6946,
+          "lon": -121.5967,
+          "object_id": "aa7a83",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.06,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793914.0
+        }
+      ],
+      "last_seen": 1792793914.0,
+      "object_id": "aa7a83",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 480.06,
+          "heading": 156.29,
+          "lat": 38.2383,
+          "lon": -122.5759,
+          "object_id": "aa9fbe",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 60.12,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 556.26,
+          "heading": 150.85,
+          "lat": 38.2282,
+          "lon": -122.57,
+          "object_id": "aa9fbe",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 61.26,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "aa9fbe",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 7879.08,
+          "heading": 148.53,
+          "lat": 37.5264,
+          "lon": -121.8195,
+          "object_id": "aaaae6",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 269.01,
+          "squawk": "3221",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 8100.06,
+          "heading": 148.43,
+          "lat": 37.483,
+          "lon": -121.786,
+          "object_id": "aaaae6",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 274.13,
+          "squawk": "3221",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "aaaae6",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793894.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 25.31,
+          "lat": 38.6952,
+          "lon": -121.5945,
+          "object_id": "aaadb2",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793894.0
+        },
+        {
+          "altitude": null,
+          "heading": 25.31,
+          "lat": 38.6952,
+          "lon": -121.5945,
+          "object_id": "aaadb2",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793914.0
+        }
+      ],
+      "last_seen": 1792793914.0,
+      "object_id": "aaadb2",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 180.0,
+          "lat": 38.6931,
+          "lon": -121.5987,
+          "object_id": "aab1af",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 8.23,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": null,
+          "heading": 180.0,
+          "lat": 38.6916,
+          "lon": -121.5987,
+          "object_id": "aab1af",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 6.69,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "aab1af",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 3002.28,
+          "heading": 51.68,
+          "lat": 37.8451,
+          "lon": -122.469,
+          "object_id": "aac136",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 134.42,
+          "squawk": "3371",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 3192.78,
+          "heading": 50.25,
+          "lat": 37.861,
+          "lon": -122.4441,
+          "object_id": "aac136",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 139.18,
+          "squawk": "3371",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "aac136",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793845.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 326.25,
+          "lat": 37.6094,
+          "lon": -122.3855,
+          "object_id": "aae6cd",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 3.34,
+          "squawk": "4117",
+          "status": "ground",
+          "timestamp": 1792793845.0
+        }
+      ],
+      "last_seen": 1792793845.0,
+      "object_id": "aae6cd",
+      "source": "opensky",
+      "state": "gap"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 10972.8,
+          "heading": 349.7,
+          "lat": 38.5791,
+          "lon": -121.3597,
+          "object_id": "aaf0c3",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 201.31,
+          "squawk": "1372",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 10980.42,
+          "heading": 349.7,
+          "lat": 38.6162,
+          "lon": -121.3683,
+          "object_id": "aaf0c3",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 201.31,
+          "squawk": "1372",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "aaf0c3",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793872.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 180.0,
+          "lat": 38.5867,
+          "lon": -121.855,
+          "object_id": "aaf4d3",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.06,
+          "squawk": "4421",
+          "status": "ground",
+          "timestamp": 1792793872.0
+        }
+      ],
+      "last_seen": 1792793872.0,
+      "object_id": "aaf4d3",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793898.0,
+      "history": [
+        {
+          "altitude": 609.6,
+          "heading": 237.17,
+          "lat": 37.6848,
+          "lon": -121.8793,
+          "object_id": "ab05e2",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 37.96,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793898.0
+        },
+        {
+          "altitude": 647.7,
+          "heading": 256.48,
+          "lat": 37.6823,
+          "lon": -121.8885,
+          "object_id": "ab05e2",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 41.8,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "ab05e2",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 152.4,
+          "heading": 5.38,
+          "lat": 38.6725,
+          "lon": -121.3999,
+          "object_id": "ab3c29",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 43.92,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 297.18,
+          "heading": 6.82,
+          "lat": 38.6807,
+          "lon": -121.399,
+          "object_id": "ab3c29",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 47.67,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "ab3c29",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 4998.72,
+          "heading": 167.38,
+          "lat": 37.9782,
+          "lon": -122.6963,
+          "object_id": "ab3dc3",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 216.67,
+          "squawk": "1626",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 4800.6,
+          "heading": 166.74,
+          "lat": 37.9389,
+          "lon": -122.6847,
+          "object_id": "ab3dc3",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 213.0,
+          "squawk": "1626",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "ab3dc3",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793739.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 118.12,
+          "lat": 37.6156,
+          "lon": -122.3583,
+          "object_id": "ab5d80",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 3.6,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793739.0
+        }
+      ],
+      "last_seen": 1792793739.0,
+      "object_id": "ab5d80",
+      "source": "opensky",
+      "state": "gap"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": 548.64,
+          "heading": 335.18,
+          "lat": 37.4639,
+          "lon": -122.3151,
+          "object_id": "ab7639",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 45.34,
+          "squawk": "5351",
+          "status": "airborne",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": 518.16,
+          "heading": 336.23,
+          "lat": 37.4721,
+          "lon": -122.3198,
+          "object_id": "ab7639",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 47.22,
+          "squawk": "5351",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "ab7639",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793891.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 126.56,
+          "lat": 37.7095,
+          "lon": -122.213,
+          "object_id": "abb4ea",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793891.0
+        },
+        {
+          "altitude": null,
+          "heading": 126.56,
+          "lat": 37.7095,
+          "lon": -122.213,
+          "object_id": "abb4ea",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793916.0
+        }
+      ],
+      "last_seen": 1792793916.0,
+      "object_id": "abb4ea",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": 99.06,
+          "heading": 297.49,
+          "lat": 37.6021,
+          "lon": -122.3355,
+          "object_id": "abb8c4",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 71.33,
+          "squawk": "2075",
+          "status": "airborne",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": 22.86,
+          "heading": 298.22,
+          "lat": 37.6085,
+          "lon": -122.3507,
+          "object_id": "abb8c4",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 71.81,
+          "squawk": "2075",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "abb8c4",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": 0.0,
+          "heading": 48.81,
+          "lat": 37.3525,
+          "lon": -121.917,
+          "object_id": "abba06",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 5.47,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793896.0
+        }
+      ],
+      "last_seen": 1792793896.0,
+      "object_id": "abba06",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793748.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 47.81,
+          "lat": 37.3669,
+          "lon": -121.9274,
+          "object_id": "abbd8d",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793748.0
+        }
+      ],
+      "last_seen": 1792793748.0,
+      "object_id": "abbd8d",
+      "source": "opensky",
+      "state": "gap"
+    },
+    {
+      "first_seen": 1792793875.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 47.81,
+          "lat": 37.3653,
+          "lon": -121.9256,
+          "object_id": "abc107",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793875.0
+        }
+      ],
+      "last_seen": 1792793875.0,
+      "object_id": "abc107",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 4191.0,
+          "heading": 262.34,
+          "lat": 37.5858,
+          "lon": -121.3195,
+          "object_id": "abefba",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 177.52,
+          "squawk": "7303",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 3992.88,
+          "heading": 262.63,
+          "lat": 37.5814,
+          "lon": -121.3615,
+          "object_id": "abefba",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 176.37,
+          "squawk": "7303",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "abefba",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": 160.02,
+          "heading": 60.05,
+          "lat": 38.5484,
+          "lon": -121.8591,
+          "object_id": "abfa36",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 35.03,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": 114.3,
+          "heading": 357.8,
+          "lat": 38.5534,
+          "lon": -121.8574,
+          "object_id": "abfa36",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 26.77,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "abfa36",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 3322.32,
+          "heading": 257.21,
+          "lat": 37.5496,
+          "lon": -121.6286,
+          "object_id": "ac04c3",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 148.76,
+          "squawk": "0702",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 3192.78,
+          "heading": 253.06,
+          "lat": 37.5421,
+          "lon": -121.6627,
+          "object_id": "ac04c3",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 150.04,
+          "squawk": "0702",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "ac04c3",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 15.24,
+          "heading": 298.61,
+          "lat": 37.6116,
+          "lon": -122.3526,
+          "object_id": "ac0831",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 77.35,
+          "squawk": "7152",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": -45.72,
+          "heading": 297.94,
+          "lat": 37.6178,
+          "lon": -122.3673,
+          "object_id": "ac0831",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 66.97,
+          "squawk": "7152",
+          "status": "airborne",
+          "timestamp": 1792793916.0
+        }
+      ],
+      "last_seen": 1792793916.0,
+      "object_id": "ac0831",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 219.38,
+          "lat": 38.5627,
+          "lon": -121.2883,
+          "object_id": "ac1437",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 3.86,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 7.62,
+          "heading": 233.44,
+          "lat": 38.5608,
+          "lon": -121.2915,
+          "object_id": "ac1437",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 3.6,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "ac1437",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793889.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 180.0,
+          "lat": 38.6962,
+          "lon": -121.5941,
+          "object_id": "ac2c79",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793889.0
+        },
+        {
+          "altitude": null,
+          "heading": 180.0,
+          "lat": 38.6962,
+          "lon": -121.5941,
+          "object_id": "ac2c79",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793910.0
+        }
+      ],
+      "last_seen": 1792793910.0,
+      "object_id": "ac2c79",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 3512.82,
+          "heading": 69.87,
+          "lat": 37.9029,
+          "lon": -122.09,
+          "object_id": "ac3e3a",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 176.42,
+          "squawk": "0337",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 3718.56,
+          "heading": 70.0,
+          "lat": 37.9145,
+          "lon": -122.0499,
+          "object_id": "ac3e3a",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 179.02,
+          "squawk": "3256",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "ac3e3a",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793896.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 47.81,
+          "lat": 37.3666,
+          "lon": -121.927,
+          "object_id": "ac41ce",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793896.0
+        },
+        {
+          "altitude": null,
+          "heading": 47.81,
+          "lat": 37.3666,
+          "lon": -121.927,
+          "object_id": "ac41ce",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793916.0
+        }
+      ],
+      "last_seen": 1792793916.0,
+      "object_id": "ac41ce",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 3619.5,
+          "heading": 251.13,
+          "lat": 37.6852,
+          "lon": -121.4325,
+          "object_id": "ac536c",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 171.8,
+          "squawk": "1411",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 3459.48,
+          "heading": 250.9,
+          "lat": 37.6749,
+          "lon": -121.4703,
+          "object_id": "ac536c",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 168.22,
+          "squawk": "1411",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "ac536c",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 1676.4,
+          "heading": 72.12,
+          "lat": 38.6216,
+          "lon": -122.423,
+          "object_id": "ac5a97",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 67.03,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 1676.4,
+          "heading": 73.81,
+          "lat": 38.6252,
+          "lon": -122.4076,
+          "object_id": "ac5a97",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 66.43,
+          "squawk": "1645",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "ac5a97",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 647.7,
+          "heading": 297.08,
+          "lat": 37.5554,
+          "lon": -122.2247,
+          "object_id": "ac5ed9",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 101.69,
+          "squawk": "7302",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 548.64,
+          "heading": 297.95,
+          "lat": 37.5641,
+          "lon": -122.2451,
+          "object_id": "ac5ed9",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 95.51,
+          "squawk": "7302",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "ac5ed9",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 30.48,
+          "heading": 21.37,
+          "lat": 38.2069,
+          "lon": -122.2858,
+          "object_id": "ac60f1",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 50.82,
+          "squawk": "4267",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 121.92,
+          "heading": 19.57,
+          "lat": 38.2154,
+          "lon": -122.2816,
+          "object_id": "ac60f1",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 49.14,
+          "squawk": "4267",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "ac60f1",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 640.08,
+          "heading": 138.6,
+          "lat": 37.3089,
+          "lon": -121.7685,
+          "object_id": "ac79ef",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 52.12,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 701.04,
+          "heading": 139.83,
+          "lat": 37.3015,
+          "lon": -121.76,
+          "object_id": "ac79ef",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 51.84,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "ac79ef",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793873.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 50.62,
+          "lat": 37.365,
+          "lon": -121.9253,
+          "object_id": "ac8b2e",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793873.0
+        }
+      ],
+      "last_seen": 1792793873.0,
+      "object_id": "ac8b2e",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 2567.94,
+          "heading": 78.69,
+          "lat": 37.3422,
+          "lon": -121.7441,
+          "object_id": "ac9cc8",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 73.45,
+          "squawk": "3347",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 2560.32,
+          "heading": 76.72,
+          "lat": 37.3451,
+          "lon": -121.7271,
+          "object_id": "ac9cc8",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 76.12,
+          "squawk": "3347",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "ac9cc8",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793898.0,
+      "history": [
+        {
+          "altitude": 2865.12,
+          "heading": 160.4,
+          "lat": 38.1149,
+          "lon": -121.4018,
+          "object_id": "aca07a",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 72.08,
+          "squawk": "4263",
+          "status": "airborne",
+          "timestamp": 1792793898.0
+        },
+        {
+          "altitude": 2865.12,
+          "heading": 160.54,
+          "lat": 38.102,
+          "lon": -121.3961,
+          "object_id": "aca07a",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 72.57,
+          "squawk": "4263",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "aca07a",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793890.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 284.06,
+          "lat": 37.6584,
+          "lon": -122.1173,
+          "object_id": "acbaf8",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793890.0
+        },
+        {
+          "altitude": null,
+          "heading": 284.06,
+          "lat": 37.6584,
+          "lon": -122.1173,
+          "object_id": "acbaf8",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793910.0
+        }
+      ],
+      "last_seen": 1792793910.0,
+      "object_id": "acbaf8",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793820.0,
+      "history": [
+        {
+          "altitude": 38.1,
+          "heading": 219.35,
+          "lat": 38.2511,
+          "lon": -122.5935,
+          "object_id": "accfac",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 33.26,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793820.0
+        }
+      ],
+      "last_seen": 1792793820.0,
+      "object_id": "accfac",
+      "source": "opensky",
+      "state": "gap"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 1798.32,
+          "heading": 140.78,
+          "lat": 37.5041,
+          "lon": -121.721,
+          "object_id": "acff5c",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 57.77,
+          "squawk": "4215",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 1805.94,
+          "heading": 135.0,
+          "lat": 37.4955,
+          "lon": -121.7123,
+          "object_id": "acff5c",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 56.75,
+          "squawk": "4215",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "acff5c",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793866.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 210.94,
+          "lat": 37.6106,
+          "lon": -122.3846,
+          "object_id": "ad1560",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793866.0
+        },
+        {
+          "altitude": null,
+          "heading": 210.94,
+          "lat": 37.6106,
+          "lon": -122.3846,
+          "object_id": "ad1560",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793916.0
+        }
+      ],
+      "last_seen": 1792793916.0,
+      "object_id": "ad1560",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 165.94,
+          "lat": 37.7065,
+          "lon": -122.2179,
+          "object_id": "ad1697",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 6.69,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": null,
+          "heading": 129.38,
+          "lat": 37.7056,
+          "lon": -122.2166,
+          "object_id": "ad1697",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 9.77,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793919.0
+        }
+      ],
+      "last_seen": 1792793919.0,
+      "object_id": "ad1697",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 830.58,
+          "heading": 115.92,
+          "lat": 37.6026,
+          "lon": -121.1702,
+          "object_id": "ad37e6",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 61.2,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 807.72,
+          "heading": 117.78,
+          "lat": 37.5971,
+          "lon": -121.1566,
+          "object_id": "ad37e6",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 65.12,
+          "squawk": null,
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "ad37e6",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 701.04,
+          "heading": 326.04,
+          "lat": 37.2788,
+          "lon": -121.7705,
+          "object_id": "ad66e9",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 30.39,
+          "squawk": "4210",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 609.6,
+          "heading": 323.9,
+          "lat": 37.2834,
+          "lon": -121.7748,
+          "object_id": "ad66e9",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 30.56,
+          "squawk": "4210",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "ad66e9",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 304.8,
+          "heading": 142.54,
+          "lat": 37.3542,
+          "lon": -121.8137,
+          "object_id": "ad7b58",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 49.9,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 304.8,
+          "heading": 143.13,
+          "lat": 37.3459,
+          "lon": -121.8071,
+          "object_id": "ad7b58",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 54.02,
+          "squawk": "1200",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "ad7b58",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 1005.84,
+          "heading": 292.25,
+          "lat": 37.5382,
+          "lon": -122.1215,
+          "object_id": "ad7f3a",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 97.83,
+          "squawk": "6244",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 914.4,
+          "heading": 291.74,
+          "lat": 37.5452,
+          "lon": -122.1427,
+          "object_id": "ad7f3a",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 95.82,
+          "squawk": "6244",
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "ad7f3a",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793882.0,
+      "history": [
+        {
+          "altitude": null,
+          "heading": 267.19,
+          "lat": 37.6847,
+          "lon": -121.4354,
+          "object_id": "adcef3",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793882.0
+        },
+        {
+          "altitude": null,
+          "heading": 267.19,
+          "lat": 37.6847,
+          "lon": -121.4354,
+          "object_id": "adcef3",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 0.0,
+          "squawk": null,
+          "status": "ground",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "adcef3",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 1447.8,
+          "heading": 337.42,
+          "lat": 37.1889,
+          "lon": -121.9313,
+          "object_id": "ae26b7",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 56.27,
+          "squawk": "7441",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 1371.6,
+          "heading": 337.42,
+          "lat": 37.199,
+          "lon": -121.9366,
+          "object_id": "ae26b7",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 56.27,
+          "squawk": "7441",
+          "status": "airborne",
+          "timestamp": 1792793918.0
+        }
+      ],
+      "last_seen": 1792793918.0,
+      "object_id": "ae26b7",
+      "source": "opensky",
+      "state": "active"
+    },
+    {
+      "first_seen": 1792793897.0,
+      "history": [
+        {
+          "altitude": 5966.46,
+          "heading": 157.15,
+          "lat": 38.2729,
+          "lon": -122.793,
+          "object_id": "c0307c",
+          "received_at": 1792793905.818115,
+          "source": "opensky",
+          "speed": 223.86,
+          "squawk": "0027",
+          "status": "airborne",
+          "timestamp": 1792793897.0
+        },
+        {
+          "altitude": 5775.96,
+          "heading": 159.8,
+          "lat": 38.2357,
+          "lon": -122.7736,
+          "object_id": "c0307c",
+          "received_at": 1792793920.820906,
+          "source": "opensky",
+          "speed": 222.0,
+          "squawk": "0027",
+          "status": "airborne",
+          "timestamp": 1792793917.0
+        }
+      ],
+      "last_seen": 1792793917.0,
+      "object_id": "c0307c",
+      "source": "opensky",
+      "state": "active"
+    }
+  ]
+}

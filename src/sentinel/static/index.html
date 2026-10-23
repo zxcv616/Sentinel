@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sentinel · Airspace</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="/static/style.css">
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script defer src="/static/app.js"></script>
+</head>
+<body>
+  <header><div class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 2 29 25H3Z M16 10 22 21H10Z"/></svg></span><div><h1>SENTINEL</h1><span>OPERATIONS / AIRSPACE</span></div></div><div class="header-context">SENTINEL <span>/</span> COMMON OPERATING PICTURE</div><div id="connection" role="status">Connecting…</div></header>
+  <main>
+    <aside>
+      <div class="eyebrow section-index">01 / SURVEILLANCE</div><h2>Airspace overview<span class="heading-cross" aria-hidden="true">+</span></h2><p class="muted">Aircraft tracking &amp; event monitoring</p>
+      <div class="stats"><div><b id="active">0</b><span><i class="dot active"></i> Active</span></div><div><b id="gap">0</b><span><i class="dot gap"></i> Gap</span></div><div><b id="lost">0</b><span><i class="dot lost"></i> Lost</span></div></div>
+      <div class="source"><span class="eyebrow">SOURCE / OPENSKY</span><p id="source" role="status">Waiting for first update</p><small id="updated">No successful poll yet</small></div>
+      <section class="alerts-panel"><div class="eyebrow">EVENT LOG <span id="alert-count">0</span></div><p id="alerts-empty" class="muted">No alerts in this session.</p><div id="alerts" aria-label="Recent alert events"></div><p class="muted">Recorded events · last known positions</p></section>
+      <div class="controls"><button id="fit">Fit coverage</button><label><input type="checkbox" id="trails" checked> Recent trails</label></div>
+      <label for="search" class="eyebrow">TRACK DIRECTORY</label><input id="search" type="search" placeholder="Search ICAO24 identifier…" autocomplete="off">
+      <p id="empty" class="muted">Waiting for aircraft…</p><div id="aircraft" aria-label="Aircraft list"></div>
+      <section id="detail" hidden><div class="eyebrow">SELECTED AIRCRAFT</div><h3 id="detail-title"></h3><dl id="detail-fields"></dl></section>
+      <footer>Observed positions only. Gaps may reflect source outages. This display is not for navigation.</footer>
+    </aside>
+    <section class="map-shell"><div class="map-heading"><div><span class="eyebrow">GEOSPATIAL VIEW</span><strong id="coverage-label">Coverage area</strong></div><span class="map-mode">OBSERVED POSITIONS</span></div><div id="map" aria-label="Live aircraft map"></div><div class="legend"><span class="legend-label">TRACK STATE</span><span class="dot active"></span>Active <span class="dot gap"></span>Gap <span class="dot lost"></span>Lost</div><div id="map-error" role="status" hidden></div></section>
+  </main>
+</body>
+</html>

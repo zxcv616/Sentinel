@@ -1,0 +1,4321 @@
+{
+  "source": "https://davidmegginson.github.io/ourairports-data/airports.csv",
+  "retrieved": "2026-10-23",
+  "license": "Public Domain",
+  "coverage": {
+    "lamin": 36,
+    "lamax": 40,
+    "lomin": -124,
+    "lomax": -120
+  },
+  "airports": [
+    {
+      "id": "00CL",
+      "name": "Williams Ag Airport",
+      "lat": 39.427188,
+      "lon": -121.763427
+    },
+    {
+      "id": "01CL",
+      "name": "Swansboro Country Airport",
+      "lat": 38.7999,
+      "lon": -120.734001
+    },
+    {
+      "id": "01NV",
+      "name": "Lantana Ranch Airport",
+      "lat": 38.76390075683594,
+      "lon": -119.0270004272461
+    },
+    {
+      "id": "05CL",
+      "name": "Pope Valley Airport",
+      "lat": 38.6106987,
+      "lon": -122.39099884
+    },
+    {
+      "id": "07CL",
+      "name": "Richvale Airport",
+      "lat": 39.49769973754883,
+      "lon": -121.77100372314453
+    },
+    {
+      "id": "08CA",
+      "name": "PG&E Placerville Service Center Heliport",
+      "lat": 38.695211,
+      "lon": -120.826086
+    },
+    {
+      "id": "08CL",
+      "name": "Kistler Ranch Airport",
+      "lat": 37.858272,
+      "lon": -120.552079
+    },
+    {
+      "id": "08CN",
+      "name": "Tulare Motor Sports #1 Heliport",
+      "lat": 36.172031,
+      "lon": -119.306181
+    },
+    {
+      "id": "09CA",
+      "name": "Mee Memorial Hospital Heliport",
+      "lat": 36.205514,
+      "lon": -121.132541
+    },
+    {
+      "id": "09CL",
+      "name": "Alta Sierra Airport",
+      "lat": 39.113800048828125,
+      "lon": -121.05699920654297
+    },
+    {
+      "id": "09CN",
+      "name": "Tulare Motor Sports #2 Heliport",
+      "lat": 36.182556,
+      "lon": -119.313572
+    },
+    {
+      "id": "0CA9",
+      "name": "Blech Ranch Airport",
+      "lat": 35.592797,
+      "lon": -120.338058
+    },
+    {
+      "id": "0CL0",
+      "name": "Yosemite Hidden Lake Ranch Airport",
+      "lat": 37.11800003049999,
+      "lon": -119.913002014
+    },
+    {
+      "id": "0CN1",
+      "name": "Fiorini Ranch Airport",
+      "lat": 37.452178,
+      "lon": -120.764758
+    },
+    {
+      "id": "0CN2",
+      "name": "Sutter Butte Dusters Airport",
+      "lat": 39.228622,
+      "lon": -121.688265
+    },
+    {
+      "id": "0O0",
+      "name": "San Luis Reservoir Seaplane Base",
+      "lat": 37.05830001831055,
+      "lon": -121.1259994506836
+    },
+    {
+      "id": "0O4",
+      "name": "Corning Municipal Airport",
+      "lat": 39.944555,
+      "lon": -122.170851
+    },
+    {
+      "id": "0Q3",
+      "name": "Sonoma Valley Airport",
+      "lat": 38.223499,
+      "lon": -122.449997
+    },
+    {
+      "id": "0Q4",
+      "name": "Selma Airport",
+      "lat": 36.581600189208984,
+      "lon": -119.65799713134766
+    },
+    {
+      "id": "0Q9",
+      "name": "Sonoma Skypark Airport",
+      "lat": 38.257702,
+      "lon": -122.433998
+    },
+    {
+      "id": "10CN",
+      "name": "Adventist Health St Helena Heliport",
+      "lat": 38.543333,
+      "lon": -122.475
+    },
+    {
+      "id": "11CA",
+      "name": "Turner Field",
+      "lat": 36.673301696777344,
+      "lon": -119.72200012207031
+    },
+    {
+      "id": "11CN",
+      "name": "Shasta Regional Medical Center Heliport",
+      "lat": 40.585095,
+      "lon": -122.387899
+    },
+    {
+      "id": "12CA",
+      "name": "Faber Vineyards Airport",
+      "lat": 38.10960006713867,
+      "lon": -121.16899871826172
+    },
+    {
+      "id": "12CL",
+      "name": "Newton Field",
+      "lat": 36.156898498535156,
+      "lon": -119.8499984741211
+    },
+    {
+      "id": "12CN",
+      "name": "Richter Airport",
+      "lat": 39.268306,
+      "lon": -122.116689
+    },
+    {
+      "id": "13CL",
+      "name": "Maine Prairie Airport",
+      "lat": 38.38130187988281,
+      "lon": -121.8239974975586
+    },
+    {
+      "id": "15CA",
+      "name": "Stanford Health Care East Heliport",
+      "lat": 37.435195,
+      "lon": -122.174588
+    },
+    {
+      "id": "16CA",
+      "name": "Police Pistol Range Heliport",
+      "lat": 37.719398498535156,
+      "lon": -122.4990005493164
+    },
+    {
+      "id": "16CL",
+      "name": "Mother Lode Service Center Heliport",
+      "lat": 38.08466,
+      "lon": -120.537945
+    },
+    {
+      "id": "17CL",
+      "name": "Las Trancas Airport",
+      "lat": 37.088545,
+      "lon": -122.273691
+    },
+    {
+      "id": "18CA",
+      "name": "Twin Cities Community Hospital Heliport",
+      "lat": 35.55500030517578,
+      "lon": -120.71900177001953
+    },
+    {
+      "id": "18CL",
+      "name": "Bowles Airport",
+      "lat": 39.2859992980957,
+      "lon": -121.69400024414062
+    },
+    {
+      "id": "19CN",
+      "name": "Stewarts Point Heliport",
+      "lat": 38.666969,
+      "lon": -123.413461
+    },
+    {
+      "id": "1A8",
+      "name": "Empire Airport",
+      "lat": 40.580025,
+      "lon": -119.35087
+    },
+    {
+      "id": "1C9",
+      "name": "Frazier Lake Airpark",
+      "lat": 36.95330047607422,
+      "lon": -121.46499633789062
+    },
+    {
+      "id": "1CA1",
+      "name": "Belridge Strip",
+      "lat": 35.467905,
+      "lon": -119.72203
+    },
+    {
+      "id": "1CL6",
+      "name": "Lake Park Helistop",
+      "lat": 38.547698974609375,
+      "lon": -121.37999725341797
+    },
+    {
+      "id": "1Q1",
+      "name": "Kingtech Field",
+      "lat": 36.162495,
+      "lon": -119.050434
+    },
+    {
+      "id": "1Q5",
+      "name": "Gravelly Valley Airport",
+      "lat": 39.449902,
+      "lon": -122.955002
+    },
+    {
+      "id": "20CL",
+      "name": "Mysterious Valley Airport",
+      "lat": 38.749298,
+      "lon": -122.366997
+    },
+    {
+      "id": "22CA",
+      "name": "Commodore Center Seaplane Base",
+      "lat": 37.878893,
+      "lon": -122.512697
+    },
+    {
+      "id": "22CL",
+      "name": "Double Tree Farm Airport",
+      "lat": 39.29990005493164,
+      "lon": -121.35900115966797
+    },
+    {
+      "id": "24CL",
+      "name": "Boswell Airport",
+      "lat": 36.088444,
+      "lon": -119.541392
+    },
+    {
+      "id": "25CL",
+      "name": "Van Dyke Strip",
+      "lat": 38.867218,
+      "lon": -121.489429
+    },
+    {
+      "id": "26CA",
+      "name": "Boeckmann Ranch Airport",
+      "lat": 38.42689895629883,
+      "lon": -121.1719970703125
+    },
+    {
+      "id": "27CL",
+      "name": "Sopwith Farm Airport",
+      "lat": 38.747100830078125,
+      "lon": -121.572998046875
+    },
+    {
+      "id": "28CA",
+      "name": "Dos Palos Airport",
+      "lat": 36.964044,
+      "lon": -120.62994
+    },
+    {
+      "id": "28CN",
+      "name": "San Joaquin Community Hospital Heliport",
+      "lat": 35.383222,
+      "lon": -119.020638
+    },
+    {
+      "id": "29CN",
+      "name": "Miller's Mother Lode Airport",
+      "lat": 38.845032,
+      "lon": -120.831075
+    },
+    {
+      "id": "2CL4",
+      "name": "American Display Heliport",
+      "lat": 40.522098541259766,
+      "lon": -122.30400085449219
+    },
+    {
+      "id": "2CL5",
+      "name": "Kovr Heliport",
+      "lat": 38.59159851074219,
+      "lon": -121.54499816894531
+    },
+    {
+      "id": "2CL9",
+      "name": "Mustang Airport",
+      "lat": 38.33440017700195,
+      "lon": -121.30400085449219
+    },
+    {
+      "id": "2CN4",
+      "name": "Wonderful Pistachios & Almonds Airport",
+      "lat": 35.664623,
+      "lon": -119.893518
+    },
+    {
+      "id": "2CN5",
+      "name": "Regional Medical Center Of San Jose H1 Heliport",
+      "lat": 37.3625,
+      "lon": -121.850278
+    },
+    {
+      "id": "2NV2",
+      "name": "Gibb Ranch Airport",
+      "lat": 39.835629,
+      "lon": -119.675904
+    },
+    {
+      "id": "2Q5",
+      "name": "Parker Carson Airport",
+      "lat": 39.201583,
+      "lon": -119.683444
+    },
+    {
+      "id": "30CA",
+      "name": "Indian Valley Hospital Heliport",
+      "lat": 40.141201,
+      "lon": -120.937226
+    },
+    {
+      "id": "30NV",
+      "name": "LZ-52 Heliport",
+      "lat": 38.994222,
+      "lon": -119.761636
+    },
+    {
+      "id": "32CA",
+      "name": "Stone Airstrip",
+      "lat": 36.331538,
+      "lon": -119.825177
+    },
+    {
+      "id": "32CL",
+      "name": "Bob's Flying Service Inc Airport",
+      "lat": 38.83319854736328,
+      "lon": -121.71800231933594
+    },
+    {
+      "id": "33CL",
+      "name": "Oak Country Ranch Airport",
+      "lat": 35.56829833984375,
+      "lon": -120.7969970703125
+    },
+    {
+      "id": "34CL",
+      "name": "Burney Service Center Heliport",
+      "lat": 40.893609,
+      "lon": -121.651354
+    },
+    {
+      "id": "34CN",
+      "name": "Bonanza Hills Airport",
+      "lat": 37.52349853515625,
+      "lon": -120.39800262451172
+    },
+    {
+      "id": "36CA",
+      "name": "Stone Land County Airport",
+      "lat": 36.131900787353516,
+      "lon": -119.98600006103516
+    },
+    {
+      "id": "38CL",
+      "name": "Riego Flight Strip",
+      "lat": 38.75410079956055,
+      "lon": -121.56300354003906
+    },
+    {
+      "id": "38CN",
+      "name": "Sanborn Airport",
+      "lat": 39.10929870605469,
+      "lon": -121.88400268554688
+    },
+    {
+      "id": "39CN",
+      "name": "Adventist Health Ukiah Valley Heliport",
+      "lat": 39.153027,
+      "lon": -123.202127
+    },
+    {
+      "id": "3CA7",
+      "name": "Metz Airport",
+      "lat": 36.32830047607422,
+      "lon": -121.18699645996094
+    },
+    {
+      "id": "3CL0",
+      "name": "UC Davis Medical Center Tower II Heliport",
+      "lat": 38.554831,
+      "lon": -121.455491
+    },
+    {
+      "id": "3CN7",
+      "name": "Alta Mesa Airpark",
+      "lat": 38.379143,
+      "lon": -121.221728
+    },
+    {
+      "id": "3NV3",
+      "name": "Remlinger Ranch Heliport",
+      "lat": 39.25910186767578,
+      "lon": -119.75499725341797
+    },
+    {
+      "id": "3O8",
+      "name": "Harris Ranch Airport",
+      "lat": 36.247813,
+      "lon": -120.238323
+    },
+    {
+      "id": "40CL",
+      "name": "Joby Aero, Inc Heliport",
+      "lat": 37.024194,
+      "lon": -122.156749
+    },
+    {
+      "id": "41CA",
+      "name": "Silver Creek Ranch Airport",
+      "lat": 40.3176,
+      "lon": -123.253998
+    },
+    {
+      "id": "42CN",
+      "name": "Peg Field",
+      "lat": 36.70909881591797,
+      "lon": -119.40499877929688
+    },
+    {
+      "id": "43NV",
+      "name": "Topaz Ranch Airport",
+      "lat": 38.72871,
+      "lon": -119.466067
+    },
+    {
+      "id": "45CL",
+      "name": "Hell'er High Water Airport",
+      "lat": 40.141878,
+      "lon": -123.399124
+    },
+    {
+      "id": "45CN",
+      "name": "Hermitage Airport",
+      "lat": 37.880691,
+      "lon": -120.194936
+    },
+    {
+      "id": "48CL",
+      "name": "PG&E Grass Valley Service Center Heliport",
+      "lat": 39.200334,
+      "lon": -121.061343
+    },
+    {
+      "id": "49CL",
+      "name": "El Peco Ranch Airport",
+      "lat": 36.90549850463867,
+      "lon": -120.177001953125
+    },
+    {
+      "id": "49CN",
+      "name": "Rancho Tehama Airport",
+      "lat": 40.01599884033203,
+      "lon": -122.38999938964844
+    },
+    {
+      "id": "4CA2",
+      "name": "Funny Farm Airport",
+      "lat": 37.9468994140625,
+      "lon": -121.64700317382812
+    },
+    {
+      "id": "4CA3",
+      "name": "Camp Parks Heliport",
+      "lat": 37.70830154418945,
+      "lon": -121.89299774169922
+    },
+    {
+      "id": "4CA7",
+      "name": "Johnsen Airport",
+      "lat": 39.67070007324219,
+      "lon": -121.88600158691406
+    },
+    {
+      "id": "4CL5",
+      "name": "Mercy San Juan Hospital Heliport",
+      "lat": 38.669114,
+      "lon": -121.314348
+    },
+    {
+      "id": "4CL8",
+      "name": "Hanford Community Medical Center Helistop",
+      "lat": 36.329739,
+      "lon": -119.659609
+    },
+    {
+      "id": "51CL",
+      "name": "Vetters Sky Ranch Airport",
+      "lat": 38.230499267578125,
+      "lon": -121.22200012207031
+    },
+    {
+      "id": "52CN",
+      "name": "Ponderosa Sky Ranch Airport",
+      "lat": 40.343903,
+      "lon": -121.772611
+    },
+    {
+      "id": "53CL",
+      "name": "Lofty Redwoods Airport",
+      "lat": 38.85960006713867,
+      "lon": -123.59100341796875
+    },
+    {
+      "id": "53CN",
+      "name": "Thayer Aviation Airport",
+      "lat": 39.074902,
+      "lon": -121.917999
+    },
+    {
+      "id": "54CN",
+      "name": "Akin Airport",
+      "lat": 38.754101,
+      "lon": -120.899002
+    },
+    {
+      "id": "57CN",
+      "name": "Van Vleck Airport",
+      "lat": 38.46910095214844,
+      "lon": -121.07499694824219
+    },
+    {
+      "id": "58CN",
+      "name": "Jackson Lake Heliport",
+      "lat": 39.462398529052734,
+      "lon": -120.56600189208984
+    },
+    {
+      "id": "59CN",
+      "name": "James Brothers Airport",
+      "lat": 38.83489990234375,
+      "lon": -121.52999877929688
+    },
+    {
+      "id": "5CA1",
+      "name": "Chevron - San Ardo Heliport",
+      "lat": 35.956367,
+      "lon": -120.869629
+    },
+    {
+      "id": "5CA3",
+      "name": "San Rafel Private Heliport",
+      "lat": 37.94660186767578,
+      "lon": -122.48699951171875
+    },
+    {
+      "id": "5CA7",
+      "name": "Agro-West Airport",
+      "lat": 36.334538,
+      "lon": -120.247532
+    },
+    {
+      "id": "5CA8",
+      "name": "Howard Private Airport",
+      "lat": 38.256536,
+      "lon": -120.931845
+    },
+    {
+      "id": "5CA9",
+      "name": "Konocti  - Clear Lake Seaplane Base",
+      "lat": 38.977699,
+      "lon": -122.718002
+    },
+    {
+      "id": "5CL0",
+      "name": "Grupe Ranch Airport",
+      "lat": 37.339615,
+      "lon": -119.857463
+    },
+    {
+      "id": "5CL1",
+      "name": "Hart Ranch Airport",
+      "lat": 35.40470123,
+      "lon": -120.5250015
+    },
+    {
+      "id": "5CL2",
+      "name": "St Louise Regional Hospital Heliport",
+      "lat": 37.035800933800004,
+      "lon": -121.571998596
+    },
+    {
+      "id": "5CL3",
+      "name": "Mapes Ranch Airport",
+      "lat": 37.667999267578125,
+      "lon": -121.1989974975586
+    },
+    {
+      "id": "5CL4",
+      "name": "Natividad Medical Center Heliport",
+      "lat": 36.697493,
+      "lon": -121.634556
+    },
+    {
+      "id": "5CL9",
+      "name": "Table Mountain Field",
+      "lat": 37.1413,
+      "lon": -119.508003
+    },
+    {
+      "id": "5CN5",
+      "name": "Palmaz Ranch Heliport",
+      "lat": 40.036588,
+      "lon": -120.763475
+    },
+    {
+      "id": "5Q2",
+      "name": "US Forest Service Chester Heliport",
+      "lat": 40.28850173949999,
+      "lon": -121.242996216
+    },
+    {
+      "id": "60CA",
+      "name": "Q Area Heliport",
+      "lat": 38.044898986816406,
+      "lon": -122.00700378417969
+    },
+    {
+      "id": "60CL",
+      "name": "California Highway Patrol Academy Airport",
+      "lat": 38.594499,
+      "lon": -121.568188
+    },
+    {
+      "id": "61CN",
+      "name": "California Highway Patrol Headquarters Helipad",
+      "lat": 38.598106,
+      "lon": -121.488231
+    },
+    {
+      "id": "63CL",
+      "name": "G3 Ranch Airport",
+      "lat": 38.71659851074219,
+      "lon": -122.13899993896484
+    },
+    {
+      "id": "63CN",
+      "name": "Meadowlark Field",
+      "lat": 37.66130065917969,
+      "lon": -121.69400024414062
+    },
+    {
+      "id": "64CA",
+      "name": "Tahoe Forest Hospital Heliport",
+      "lat": 39.324124,
+      "lon": -120.200281
+    },
+    {
+      "id": "65CA",
+      "name": "SCE San Joaquin Heliport",
+      "lat": 36.18299,
+      "lon": -119.333578
+    },
+    {
+      "id": "65CL",
+      "name": "Al Divine Airport",
+      "lat": 36.514400482177734,
+      "lon": -119.76399993896484
+    },
+    {
+      "id": "65CN",
+      "name": "Bottimore Ranch Airport",
+      "lat": 38.303434,
+      "lon": -121.250868
+    },
+    {
+      "id": "66CA",
+      "name": "Rancho San Simeon Airport",
+      "lat": 35.60770034790039,
+      "lon": -121.11000061035156
+    },
+    {
+      "id": "67CA",
+      "name": "Chapman Farms Airport",
+      "lat": 37.072491,
+      "lon": -120.376215
+    },
+    {
+      "id": "67CL",
+      "name": "Davis Airport",
+      "lat": 39.20100021362305,
+      "lon": -122.04900360107422
+    },
+    {
+      "id": "67CN",
+      "name": "El Dorado Irrigation District Heliport",
+      "lat": 38.76449,
+      "lon": -120.54829
+    },
+    {
+      "id": "68CA",
+      "name": "Lake California Air Park",
+      "lat": 40.36109924316406,
+      "lon": -122.21600341796875
+    },
+    {
+      "id": "69CL",
+      "name": "Medlock Field",
+      "lat": 38.615501403808594,
+      "lon": -121.74700164794922
+    },
+    {
+      "id": "6CA6",
+      "name": "Eagle Ridge Ranch Airport",
+      "lat": 38.327701568603516,
+      "lon": -120.47699737548828
+    },
+    {
+      "id": "6CL4",
+      "name": "Manzanita Airport",
+      "lat": 37.457828,
+      "lon": -119.741921
+    },
+    {
+      "id": "6CL8",
+      "name": "Harley Airport",
+      "lat": 37.950801849365234,
+      "lon": -121.24299621582031
+    },
+    {
+      "id": "6CN6",
+      "name": "Kaiser Permanente South Sacramento Heliport",
+      "lat": 38.469856,
+      "lon": -121.420743
+    },
+    {
+      "id": "6Q0",
+      "name": "Columbia Heliport",
+      "lat": 38.03459930419922,
+      "lon": -120.41200256347656
+    },
+    {
+      "id": "71CA",
+      "name": "Fresh Pond Heliport",
+      "lat": 38.76020050048828,
+      "lon": -120.53600311279297
+    },
+    {
+      "id": "71CL",
+      "name": "Gunnersfield Ranch Airport",
+      "lat": 39.352699279785156,
+      "lon": -122.09400177001953
+    },
+    {
+      "id": "72CA",
+      "name": "Quincy Helitack Base Heliport",
+      "lat": 39.98320007324219,
+      "lon": -120.95099639892578
+    },
+    {
+      "id": "73CA",
+      "name": "Bear Valley Airport",
+      "lat": 38.457706,
+      "lon": -120.041991
+    },
+    {
+      "id": "76CA",
+      "name": "Bald Mountain Heliport",
+      "lat": 38.139856,
+      "lon": -120.094662
+    },
+    {
+      "id": "77CA",
+      "name": "Daulton Airport",
+      "lat": 37.12080001831055,
+      "lon": -119.98799896240234
+    },
+    {
+      "id": "77CL",
+      "name": "Baker & Hall Airport",
+      "lat": 36.71770095825195,
+      "lon": -119.13700103759766
+    },
+    {
+      "id": "77NV",
+      "name": "Flying Eagle Airport",
+      "lat": 39.84355,
+      "lon": -119.6865
+    },
+    {
+      "id": "79CL",
+      "name": "Milhous Ranch Airport",
+      "lat": 39.32490158081055,
+      "lon": -121.07599639892578
+    },
+    {
+      "id": "7CA3",
+      "name": "Mercy Medical Center Heliport",
+      "lat": 40.572242,
+      "lon": -122.396637
+    },
+    {
+      "id": "7CA5",
+      "name": "Balch Camp Heliport",
+      "lat": 36.90629959106445,
+      "lon": -119.12899780273438
+    },
+    {
+      "id": "7CA9",
+      "name": "River Meadow Farm Heliport",
+      "lat": 38.46189880371094,
+      "lon": -122.41500091552734
+    },
+    {
+      "id": "7CL0",
+      "name": "Childrens Hospital Oakland Alternate Heliport",
+      "lat": 37.821525,
+      "lon": -122.295958
+    },
+    {
+      "id": "7CL1",
+      "name": "Children's Hospital Oakland Heliport",
+      "lat": 37.836169,
+      "lon": -122.266741
+    },
+    {
+      "id": "7CL2",
+      "name": "Rogers Helicopters Inc Heliport",
+      "lat": 36.82379913330078,
+      "lon": -119.66799926757812
+    },
+    {
+      "id": "7CL4",
+      "name": "Pickel Meadows Expeditionary Airfield Heliport",
+      "lat": 38.354765,
+      "lon": -119.520972
+    },
+    {
+      "id": "7CL9",
+      "name": "Perryman Airport",
+      "lat": 38.696463,
+      "lon": -120.732858
+    },
+    {
+      "id": "80CA",
+      "name": "Bacchi Valley Industries Airport",
+      "lat": 38.817133,
+      "lon": -120.922541
+    },
+    {
+      "id": "81CL",
+      "name": "Sandhill Heliport",
+      "lat": 37.92129898071289,
+      "lon": -122.19599914550781
+    },
+    {
+      "id": "82CL",
+      "name": "Fort Bragg Airport",
+      "lat": 39.472445,
+      "lon": -123.795319
+    },
+    {
+      "id": "85CA",
+      "name": "Redwood Coast Medical Services Heliport",
+      "lat": 38.770806,
+      "lon": -123.529453
+    },
+    {
+      "id": "86CN",
+      "name": "Dignity Health Hospital Mercy Medical Center Heliport",
+      "lat": 37.340779,
+      "lon": -120.46671
+    },
+    {
+      "id": "88CA",
+      "name": "Regional Medical Center San Jose H2 Heliport",
+      "lat": 37.361464,
+      "lon": -121.848503
+    },
+    {
+      "id": "88NV",
+      "name": "Black Rock City Airport",
+      "lat": 40.757303,
+      "lon": -119.212861
+    },
+    {
+      "id": "8CA2",
+      "name": "Cal Fire Auburn Heliport",
+      "lat": 38.934085,
+      "lon": -121.053779
+    },
+    {
+      "id": "8CA8",
+      "name": "Wallom Field",
+      "lat": 38.06740188598633,
+      "lon": -121.20800018310547
+    },
+    {
+      "id": "8CL2",
+      "name": "Lucchetti Ranch Airport",
+      "lat": 38.423500061035156,
+      "lon": -121.22699737548828
+    },
+    {
+      "id": "8CL4",
+      "name": "A G Spanos Companies Hq Heliport",
+      "lat": 38.047638,
+      "lon": -121.370251
+    },
+    {
+      "id": "8CL6",
+      "name": "Moller Airport",
+      "lat": 39.28850173950195,
+      "lon": -122.18900299072266
+    },
+    {
+      "id": "8CL7",
+      "name": "Adventist Health Lodi Memorial Medical Center Heliport",
+      "lat": 38.122408,
+      "lon": -121.28675
+    },
+    {
+      "id": "90CA",
+      "name": "Fowler's Airport",
+      "lat": 38.003501892089844,
+      "lon": -121.11900329589844
+    },
+    {
+      "id": "90CL",
+      "name": "Diamond M Ranch Airport",
+      "lat": 39.571225,
+      "lon": -122.607513
+    },
+    {
+      "id": "92CA",
+      "name": "Westlake Farms Airport",
+      "lat": 36.12080001831055,
+      "lon": -119.88800048828125
+    },
+    {
+      "id": "92CL",
+      "name": "Moronis Airport",
+      "lat": 39.10319900512695,
+      "lon": -121.8499984741211
+    },
+    {
+      "id": "95CA",
+      "name": "Bonel Airport",
+      "lat": 35.669256,
+      "lon": -120.547936
+    },
+    {
+      "id": "97CL",
+      "name": "Siller Bros Inc Airport",
+      "lat": 39.460201263427734,
+      "lon": -121.58100128173828
+    },
+    {
+      "id": "99CN",
+      "name": "Banner Lassen Medical Center Heliport",
+      "lat": 40.437491,
+      "lon": -120.628728
+    },
+    {
+      "id": "9CA7",
+      "name": "Harris River Ranch Airport",
+      "lat": 36.7672004699707,
+      "lon": -119.43599700927734
+    },
+    {
+      "id": "9CL0",
+      "name": "Turlock Airpark",
+      "lat": 37.47079849243164,
+      "lon": -120.84400177001953
+    },
+    {
+      "id": "9CL2",
+      "name": "Christensen Ranch Airport",
+      "lat": 36.87160110473633,
+      "lon": -121.33699798583984
+    },
+    {
+      "id": "9CL6",
+      "name": "Children's Hospital Central California Heliport",
+      "lat": 36.883262,
+      "lon": -119.80159
+    },
+    {
+      "id": "9CL7",
+      "name": "Old Aerodrome",
+      "lat": 39.320825,
+      "lon": -121.362807
+    },
+    {
+      "id": "9CL9",
+      "name": "Spezia Airport",
+      "lat": 38.21659851074219,
+      "lon": -121.53399658203125
+    },
+    {
+      "id": "9CN1",
+      "name": "Hazel Hawkins Memorial Hospital Heliport",
+      "lat": 36.834811,
+      "lon": -121.386479
+    },
+    {
+      "id": "C39",
+      "name": "Folsom Lake Seaplane Base",
+      "lat": 38.70719909667969,
+      "lon": -121.13300323486328
+    },
+    {
+      "id": "CA01",
+      "name": "Burney Sheriff's Station Heliport",
+      "lat": 40.885121,
+      "lon": -121.669368
+    },
+    {
+      "id": "CA03",
+      "name": "Flying M Airport",
+      "lat": 37.36167,
+      "lon": -120.284479
+    },
+    {
+      "id": "CA04",
+      "name": "Flying N Ranch Airport",
+      "lat": 40.34629821777344,
+      "lon": -122.33899688720703
+    },
+    {
+      "id": "CA05",
+      "name": "Machado Dusters Airport",
+      "lat": 36.16019821166992,
+      "lon": -119.81300354003906
+    },
+    {
+      "id": "CA07",
+      "name": "Scheidel Ranch Airport",
+      "lat": 38.8401985168457,
+      "lon": -121.56199645996094
+    },
+    {
+      "id": "CA13",
+      "name": "Reedley College Airport",
+      "lat": 36.606871,
+      "lon": -119.463526
+    },
+    {
+      "id": "CA15",
+      "name": "Sierra Nevada Memorial Hospital Heliport",
+      "lat": 39.227474,
+      "lon": -121.04763
+    },
+    {
+      "id": "CA16",
+      "name": "Holtsmans Airport",
+      "lat": 38.72909927368164,
+      "lon": -121.38899993896484
+    },
+    {
+      "id": "CA18",
+      "name": "Sunrise Dusters Airport",
+      "lat": 38.874987,
+      "lon": -121.710172
+    },
+    {
+      "id": "CA19",
+      "name": "Camanche Skypark Airport",
+      "lat": 38.263511,
+      "lon": -120.924006
+    },
+    {
+      "id": "CA20",
+      "name": "Eagle's Nest Airport",
+      "lat": 38.43258,
+      "lon": -121.016507
+    },
+    {
+      "id": "CA21",
+      "name": "Limberlost Ranch Airport",
+      "lat": 39.22046,
+      "lon": -121.213896
+    },
+    {
+      "id": "CA22",
+      "name": "Lauppes Strip",
+      "lat": 38.759300231933594,
+      "lon": -121.58499908447266
+    },
+    {
+      "id": "CA25",
+      "name": "Mark Twain St Joseph's Hospital Heliport",
+      "lat": 38.19071,
+      "lon": -120.669215
+    },
+    {
+      "id": "CA26",
+      "name": "Hall of Justice Heliport",
+      "lat": 37.774898529052734,
+      "lon": -122.40499877929688
+    },
+    {
+      "id": "CA27",
+      "name": "Alcatraz Heliport",
+      "lat": 37.825912,
+      "lon": -122.421448
+    },
+    {
+      "id": "CA31",
+      "name": "Sanger Heliport",
+      "lat": 36.732200622558594,
+      "lon": -119.55500030517578
+    },
+    {
+      "id": "CA32",
+      "name": "San Joaquin Airport",
+      "lat": 36.606525,
+      "lon": -120.219499
+    },
+    {
+      "id": "CA33",
+      "name": "Santa Clara Valley Medical Center Heliport",
+      "lat": 37.313264,
+      "lon": -121.934354
+    },
+    {
+      "id": "CA35",
+      "name": "San Rafael Airport",
+      "lat": 38.01689910888672,
+      "lon": -122.52100372314453
+    },
+    {
+      "id": "CA37",
+      "name": "Dominican Hospital Heliport",
+      "lat": 36.990655,
+      "lon": -121.982508
+    },
+    {
+      "id": "CA38",
+      "name": "Totem Pole Ranch Airport",
+      "lat": 39.652182,
+      "lon": -120.439873
+    },
+    {
+      "id": "CA39",
+      "name": "Belos Cavalos Airport",
+      "lat": 38.434595,
+      "lon": -122.563524
+    },
+    {
+      "id": "CA40",
+      "name": "Central Valley Aviation Inc Airport",
+      "lat": 36.52130126953125,
+      "lon": -119.66999816894531
+    },
+    {
+      "id": "CA41",
+      "name": "Quinn Airport",
+      "lat": 36.58330154418945,
+      "lon": -119.63999938964844
+    },
+    {
+      "id": "CA43",
+      "name": "Barton Memorial Hospital Heliport",
+      "lat": 38.91130065917969,
+      "lon": -119.99700164794922
+    },
+    {
+      "id": "CA49",
+      "name": "Jones Farms Airport",
+      "lat": 36.2041015625,
+      "lon": -119.84100341796875
+    },
+    {
+      "id": "CA51",
+      "name": "The Sea Ranch Airport",
+      "lat": 38.7046012878418,
+      "lon": -123.43299865722656
+    },
+    {
+      "id": "CA53",
+      "name": "Tews Field",
+      "lat": 40.67250061035156,
+      "lon": -122.34200286865234
+    },
+    {
+      "id": "CA56",
+      "name": "Correctional Training Facility Heliport",
+      "lat": 36.468216,
+      "lon": -121.380087
+    },
+    {
+      "id": "CA57",
+      "name": "Blake Sky Park Airport",
+      "lat": 38.458321,
+      "lon": -122.050046
+    },
+    {
+      "id": "CA58",
+      "name": "Emanuel Medical Center Heliport",
+      "lat": 37.51259,
+      "lon": -120.839244
+    },
+    {
+      "id": "CA59",
+      "name": "Vestal Strip",
+      "lat": 38.79159927368164,
+      "lon": -121.58399963378906
+    },
+    {
+      "id": "CA60",
+      "name": "Deer Creek Ranch Airport",
+      "lat": 39.94990158081055,
+      "lon": -121.99700164794922
+    },
+    {
+      "id": "CA62",
+      "name": "McMillan Assault Strip",
+      "lat": 35.719101,
+      "lon": -120.767998
+    },
+    {
+      "id": "CA63",
+      "name": "John Muir Walnut Creek Medical Center Heliport",
+      "lat": 37.912845,
+      "lon": -122.041449
+    },
+    {
+      "id": "CA65",
+      "name": "Alta Vista Heliport",
+      "lat": 36.97050094604492,
+      "lon": -121.86199951171875
+    },
+    {
+      "id": "CA66",
+      "name": "Monterey Bay Academy Airport",
+      "lat": 36.90610122680664,
+      "lon": -121.84300231933594
+    },
+    {
+      "id": "CA67",
+      "name": "Westley Airport",
+      "lat": 37.54800033569336,
+      "lon": -121.20500183105469
+    },
+    {
+      "id": "CA69",
+      "name": "Avenal Gliderport",
+      "lat": 36.00303,
+      "lon": -120.142194
+    },
+    {
+      "id": "CA71",
+      "name": "Horse Shoe A Ranch Airport",
+      "lat": 38.439775,
+      "lon": -120.887933
+    },
+    {
+      "id": "CA73",
+      "name": "Vanderford Ranch Company Airport",
+      "lat": 39.095699310302734,
+      "lon": -121.71600341796875
+    },
+    {
+      "id": "CA83",
+      "name": "Gilbert Aviation Heliport",
+      "lat": 36.44269943237305,
+      "lon": -119.31600189208984
+    },
+    {
+      "id": "CA88",
+      "name": "San Ardo Field",
+      "lat": 36.026074,
+      "lon": -120.908382
+    },
+    {
+      "id": "CA92",
+      "name": "Paradise Skypark Airport",
+      "lat": 39.71029,
+      "lon": -121.616528
+    },
+    {
+      "id": "CL01",
+      "name": "Eagle Field",
+      "lat": 36.899899,
+      "lon": -120.667999
+    },
+    {
+      "id": "CL04",
+      "name": "Sky Way Estates Airport",
+      "lat": 38.410701751708984,
+      "lon": -121.23500061035156
+    },
+    {
+      "id": "CL11",
+      "name": "Ferdun Ranch Airport",
+      "lat": 38.13460159301758,
+      "lon": -121.22000122070312
+    },
+    {
+      "id": "CL21",
+      "name": "Sutter Amador Hospital Heliport",
+      "lat": 38.349998474121094,
+      "lon": -120.76300048828125
+    },
+    {
+      "id": "CL23",
+      "name": "Jones/Ag-Viation Airport",
+      "lat": 39.459598541259766,
+      "lon": -121.69599914550781
+    },
+    {
+      "id": "CL24",
+      "name": "Kindsvater Ranch Airport",
+      "lat": 36.84989929199219,
+      "lon": -119.51000213623047
+    },
+    {
+      "id": "CL36",
+      "name": "Allan Ranch Flight Park Ultralightport",
+      "lat": 38.569400787354,
+      "lon": -122.80400085449
+    },
+    {
+      "id": "CL37",
+      "name": "Enloe Medical Center Heliport",
+      "lat": 39.741952,
+      "lon": -121.850191
+    },
+    {
+      "id": "CL39",
+      "name": "St. Helena Fire Department Heliport",
+      "lat": 38.548500061035156,
+      "lon": -122.51100158691406
+    },
+    {
+      "id": "CL51",
+      "name": "Santa Rosa Memorial Hospital Heliport",
+      "lat": 38.44380187988281,
+      "lon": -122.70099639892578
+    },
+    {
+      "id": "CL52",
+      "name": "San Joaquin General Hospital Heliport",
+      "lat": 37.887832,
+      "lon": -121.282716
+    },
+    {
+      "id": "CL53",
+      "name": "Redbud Community Hospital Heliport",
+      "lat": 38.93457,
+      "lon": -122.61933
+    },
+    {
+      "id": "CL56",
+      "name": "Ranchaero Airport",
+      "lat": 39.719601,
+      "lon": -121.871002
+    },
+    {
+      "id": "CL60",
+      "name": "Memorial Hospital Heliport",
+      "lat": 35.39132,
+      "lon": -119.006314
+    },
+    {
+      "id": "CL64",
+      "name": "Washington Hospital Parking Structure Heliport",
+      "lat": 37.557473,
+      "lon": -121.978139
+    },
+    {
+      "id": "CL69",
+      "name": "Sutter Lakeside Hospital Heliport",
+      "lat": 39.105098724365234,
+      "lon": -122.90699768066406
+    },
+    {
+      "id": "CL77",
+      "name": "Bonny Doon Village Airport",
+      "lat": 37.070499420166016,
+      "lon": -122.12699890136719
+    },
+    {
+      "id": "CL79",
+      "name": "SCE Tiffany Pines Heliport",
+      "lat": 37.11723,
+      "lon": -119.313374
+    },
+    {
+      "id": "CL83",
+      "name": "Joe Heidrick Heliport",
+      "lat": 38.66550064086914,
+      "lon": -121.82599639892578
+    },
+    {
+      "id": "CL84",
+      "name": "Ahlem Farms Airport",
+      "lat": 37.388301849365234,
+      "lon": -120.927001953125
+    },
+    {
+      "id": "CL85",
+      "name": "Sonoma Raceway Heliport Pad 1",
+      "lat": 38.158228,
+      "lon": -122.456344
+    },
+    {
+      "id": "CL86",
+      "name": "McCandless Towers Heliport",
+      "lat": 37.385503,
+      "lon": -121.972414
+    },
+    {
+      "id": "CL91",
+      "name": "Auberry Hydro Service Center Heliport",
+      "lat": 37.06489944458008,
+      "lon": -119.48400115966797
+    },
+    {
+      "id": "CL93",
+      "name": "SCE Shaver Summit Heliport",
+      "lat": 37.163799,
+      "lon": -119.292
+    },
+    {
+      "id": "CL94",
+      "name": "Plumas District Hospital Heliport",
+      "lat": 39.940253092499994,
+      "lon": -120.962026119
+    },
+    {
+      "id": "CL96",
+      "name": "Vaca Valley Hospital Heliport",
+      "lat": 38.3557014465332,
+      "lon": -121.95099639892578
+    },
+    {
+      "id": "CL99",
+      "name": "Watsonville Community Hospital Heliport",
+      "lat": 36.939998626708984,
+      "lon": -121.7760009765625
+    },
+    {
+      "id": "CN01",
+      "name": "Mendocino Coast District Hospital Heliport",
+      "lat": 39.431876,
+      "lon": -123.799621
+    },
+    {
+      "id": "CN02",
+      "name": "San Francisco VA Medical Center Heliport",
+      "lat": 37.783331,
+      "lon": -122.506389
+    },
+    {
+      "id": "CN06",
+      "name": "Sonoma Raceway Heliport Pad 2",
+      "lat": 38.155081,
+      "lon": -122.450692
+    },
+    {
+      "id": "CN11",
+      "name": "Uc Davis Medical Center Life Flight Base Heliport",
+      "lat": 38.55110168457031,
+      "lon": -121.45099639892578
+    },
+    {
+      "id": "CN12",
+      "name": "Williams Gliderport",
+      "lat": 39.16350173950195,
+      "lon": -122.13200378417969
+    },
+    {
+      "id": "CN13",
+      "name": "Borges - Clarksburg Airport",
+      "lat": 38.443199,
+      "lon": -121.509003
+    },
+    {
+      "id": "CN14",
+      "name": "Queen of the Valley Hospital Heliport",
+      "lat": 38.32386,
+      "lon": -122.297165
+    },
+    {
+      "id": "CN15",
+      "name": "Vineyard Oaks Farm Airport",
+      "lat": 36.36920166015625,
+      "lon": -119.78600311279297
+    },
+    {
+      "id": "CN16",
+      "name": "Mercy Hospital of Folsom Heliport",
+      "lat": 38.670861,
+      "lon": -121.142839
+    },
+    {
+      "id": "CN19",
+      "name": "Las Serpientes Airport",
+      "lat": 37.933101654052734,
+      "lon": -121.61299896240234
+    },
+    {
+      "id": "CN20",
+      "name": "Ferndale Resort Seaplane Base",
+      "lat": 39.00299835205078,
+      "lon": -122.7969970703125
+    },
+    {
+      "id": "CN26",
+      "name": "Rodgers Flat Heliport",
+      "lat": 39.96206,
+      "lon": -121.277534
+    },
+    {
+      "id": "CN28",
+      "name": "Big Creek Helistop",
+      "lat": 37.20089,
+      "lon": -119.25289
+    },
+    {
+      "id": "CN29",
+      "name": "J-B Airport",
+      "lat": 37.93519973754883,
+      "lon": -121.01499938964844
+    },
+    {
+      "id": "CN38",
+      "name": "Flying B Ranch Airport",
+      "lat": 38.34130096435547,
+      "lon": -121.43699645996094
+    },
+    {
+      "id": "CN40",
+      "name": "Roosevelt Ranch Heliport",
+      "lat": 38.812506,
+      "lon": -121.81185
+    },
+    {
+      "id": "CN42",
+      "name": "Double Creek Ranch Airport",
+      "lat": 40.445702,
+      "lon": -121.882004
+    },
+    {
+      "id": "CN44",
+      "name": "Flying Bull Airport",
+      "lat": 37.620231,
+      "lon": -121.165331
+    },
+    {
+      "id": "CN46",
+      "name": "The McConnell Foundation Heliport",
+      "lat": 40.598201751708984,
+      "lon": -122.33200073242188
+    },
+    {
+      "id": "CN48",
+      "name": "St Joseph's Medical Center Heliport",
+      "lat": 37.970197,
+      "lon": -121.28786
+    },
+    {
+      "id": "CN49",
+      "name": "Sutter Roseville Medical Center Heliport",
+      "lat": 38.766623,
+      "lon": -121.248044
+    },
+    {
+      "id": "CN51",
+      "name": "Community Regional Medical Center Heliport",
+      "lat": 36.743698,
+      "lon": -119.785004
+    },
+    {
+      "id": "CN52",
+      "name": "Oroville Hospital Heliport",
+      "lat": 39.50743,
+      "lon": -121.541572
+    },
+    {
+      "id": "CN53",
+      "name": "Kings County Houston Ave. Heliport",
+      "lat": 36.299861,
+      "lon": -119.594861
+    },
+    {
+      "id": "CN55",
+      "name": "Mercy Hospital Southwest Heliport",
+      "lat": 35.350161,
+      "lon": -119.112266
+    },
+    {
+      "id": "CN57",
+      "name": "PG&E HTA-Madera Heliport",
+      "lat": 36.856591,
+      "lon": -119.918726
+    },
+    {
+      "id": "CN62",
+      "name": "CS Ranch Heliport",
+      "lat": 39.241597,
+      "lon": -121.909516
+    },
+    {
+      "id": "CN86",
+      "name": "River Highlands Ranch Airport",
+      "lat": 39.182051,
+      "lon": -121.281526
+    },
+    {
+      "id": "CN88",
+      "name": "Kaiser Permanente Vacaville Heliport",
+      "lat": 38.3887,
+      "lon": -121.9405
+    },
+    {
+      "id": "CN93",
+      "name": "Sierra Vista Regional Medical Center Heliport",
+      "lat": 35.293729,
+      "lon": -120.665988
+    },
+    {
+      "id": "CN95",
+      "name": "Heritage Field Airport",
+      "lat": 37.9933056,
+      "lon": -121.4922903
+    },
+    {
+      "id": "CN99",
+      "name": "Del Mar Farms Airport",
+      "lat": 37.5464444,
+      "lon": -121.1585778
+    },
+    {
+      "id": "CSL",
+      "name": "O'Sullivan Army Heliport",
+      "lat": 35.3263,
+      "lon": -120.7431
+    },
+    {
+      "id": "D63",
+      "name": "Dinsmore Airport",
+      "lat": 40.492018,
+      "lon": -123.59813
+    },
+    {
+      "id": "E20",
+      "name": "Lake Berryessa Seaplane Base",
+      "lat": 38.550979,
+      "lon": -122.227682
+    },
+    {
+      "id": "E36",
+      "name": "Georgetown Airport",
+      "lat": 38.921100616455,
+      "lon": -120.86499786377
+    },
+    {
+      "id": "E55",
+      "name": "Ocean Ridge Airport",
+      "lat": 38.801602,
+      "lon": -123.530504
+    },
+    {
+      "id": "E79",
+      "name": "Sierra Sky Park Airport",
+      "lat": 36.840177,
+      "lon": -119.86943
+    },
+    {
+      "id": "F25",
+      "name": "Brownsville Airpark",
+      "lat": 39.4552,
+      "lon": -121.292
+    },
+    {
+      "id": "H47",
+      "name": "Hyampom Airport",
+      "lat": 40.627601623535156,
+      "lon": -123.47100067138672
+    },
+    {
+      "id": "H77",
+      "name": "Bridge Bay Resort Seaplane Base",
+      "lat": 40.757598876953125,
+      "lon": -122.322998046875
+    },
+    {
+      "id": "HGT",
+      "name": "Tusi (Hunter Liggett) Army Heliport",
+      "lat": 35.9935,
+      "lon": -121.237
+    },
+    {
+      "id": "JMC",
+      "name": "Commodore Center Heliport",
+      "lat": 37.87852,
+      "lon": -122.51297
+    },
+    {
+      "id": "K0Q5",
+      "name": "Shelter Cove Airport",
+      "lat": 40.028167,
+      "lon": -124.074305
+    },
+    {
+      "id": "K1O2",
+      "name": "Lampson Field",
+      "lat": 38.9906005859,
+      "lon": -122.901000977
+    },
+    {
+      "id": "K1O3",
+      "name": "Lodi Airport",
+      "lat": 38.20240021,
+      "lon": -121.2679977
+    },
+    {
+      "id": "K1Q2",
+      "name": "Spalding Airport",
+      "lat": 40.650169,
+      "lon": -120.768524
+    },
+    {
+      "id": "K1Q4",
+      "name": "New Jerusalem Airport",
+      "lat": 37.6791,
+      "lon": -121.300003
+    },
+    {
+      "id": "K2O1",
+      "name": "Gansner Field",
+      "lat": 39.943902,
+      "lon": -120.945
+    },
+    {
+      "id": "K2O3",
+      "name": "Angwin Airport-Parrett Field",
+      "lat": 38.578499,
+      "lon": -122.434998
+    },
+    {
+      "id": "K2O6",
+      "name": "Chowchilla Airport",
+      "lat": 37.11240005493164,
+      "lon": -120.24700164794922
+    },
+    {
+      "id": "K3O1",
+      "name": "Gustine Airport",
+      "lat": 37.262699127197266,
+      "lon": -120.96299743652344
+    },
+    {
+      "id": "K4SD",
+      "name": "Reno-Stead Airport",
+      "lat": 39.6674,
+      "lon": -119.875999
+    },
+    {
+      "id": "KA34",
+      "name": "Dayton Valley Airpark",
+      "lat": 39.238581,
+      "lon": -119.555023
+    },
+    {
+      "id": "KACV",
+      "name": "California Redwood Coast-Humboldt County Airport",
+      "lat": 40.978101,
+      "lon": -124.109
+    },
+    {
+      "id": "KAHC",
+      "name": "Amedee Army Air Field",
+      "lat": 40.26620102,
+      "lon": -120.1529999
+    },
+    {
+      "id": "KAPC",
+      "name": "Napa County Airport",
+      "lat": 38.2132,
+      "lon": -122.280998
+    },
+    {
+      "id": "KAUN",
+      "name": "Auburn Municipal Airport",
+      "lat": 38.95479965,
+      "lon": -121.0820007
+    },
+    {
+      "id": "KBAB",
+      "name": "Beale Air Force Base",
+      "lat": 39.136101,
+      "lon": -121.436996
+    },
+    {
+      "id": "KBFL",
+      "name": "Meadows Field",
+      "lat": 35.433601,
+      "lon": -119.056999
+    },
+    {
+      "id": "KBLU",
+      "name": "Blue Canyon Nyack Airport",
+      "lat": 39.2750015259,
+      "lon": -120.709999084
+    },
+    {
+      "id": "KC80",
+      "name": "New Coalinga Municipal Airport",
+      "lat": 36.163101,
+      "lon": -120.293999
+    },
+    {
+      "id": "KC83",
+      "name": "Byron Airport",
+      "lat": 37.82647,
+      "lon": -121.621699
+    },
+    {
+      "id": "KCCR",
+      "name": "Buchanan Field",
+      "lat": 37.9897,
+      "lon": -122.056999
+    },
+    {
+      "id": "KCIC",
+      "name": "Chico Regional Airport",
+      "lat": 39.795595,
+      "lon": -121.857716
+    },
+    {
+      "id": "KCPU",
+      "name": "Calaveras Co Maury Rasmussen Field",
+      "lat": 38.14609909057617,
+      "lon": -120.64800262451172
+    },
+    {
+      "id": "KCVH",
+      "name": "Hollister Municipal Airport",
+      "lat": 36.8932991028,
+      "lon": -121.410003662
+    },
+    {
+      "id": "KCXP",
+      "name": "Carson Airport",
+      "lat": 39.194331,
+      "lon": -119.734312
+    },
+    {
+      "id": "KD83",
+      "name": "Boonville Airport",
+      "lat": 39.012699127197,
+      "lon": -123.38300323486
+    },
+    {
+      "id": "KD86",
+      "name": "Sequoia Field",
+      "lat": 36.448600769043,
+      "lon": -119.31900024414
+    },
+    {
+      "id": "KDLO",
+      "name": "Delano Municipal Airport",
+      "lat": 35.745601654052734,
+      "lon": -119.23699951171875
+    },
+    {
+      "id": "KDVO",
+      "name": "Marin County Airport - Gnoss Field",
+      "lat": 38.143600463867,
+      "lon": -122.55599975586
+    },
+    {
+      "id": "KDWA",
+      "name": "Yolo County Davis Woodland Winters Airport",
+      "lat": 38.57910156,
+      "lon": -121.8570023
+    },
+    {
+      "id": "KE16",
+      "name": "San Martin Airport",
+      "lat": 37.08160019,
+      "lon": -121.5970001
+    },
+    {
+      "id": "KE45",
+      "name": "Pine Mountain Lake Airport",
+      "lat": 37.861528,
+      "lon": -120.178176
+    },
+    {
+      "id": "KEDU",
+      "name": "University Airport",
+      "lat": 38.531502,
+      "lon": -121.786489
+    },
+    {
+      "id": "KEKA",
+      "name": "Murray Field",
+      "lat": 40.803398,
+      "lon": -124.112999
+    },
+    {
+      "id": "KF34",
+      "name": "Firebaugh Airport",
+      "lat": 36.860000610352,
+      "lon": -120.46399688721
+    },
+    {
+      "id": "KF62",
+      "name": "Hayfork Airport",
+      "lat": 40.547100067139,
+      "lon": -123.18199920654
+    },
+    {
+      "id": "KF72",
+      "name": "Franklin Field",
+      "lat": 38.304901123047,
+      "lon": -121.43000030518
+    },
+    {
+      "id": "KFAT",
+      "name": "Fresno Yosemite International Airport",
+      "lat": 36.775767,
+      "lon": -119.718018
+    },
+    {
+      "id": "KFCH",
+      "name": "Fresno Chandler Executive Airport",
+      "lat": 36.732399,
+      "lon": -119.82
+    },
+    {
+      "id": "KFOT",
+      "name": "Rohnerville Airport",
+      "lat": 40.55390167,
+      "lon": -124.1330032
+    },
+    {
+      "id": "KGOO",
+      "name": "Nevada County Airport",
+      "lat": 39.223998,
+      "lon": -121.002997
+    },
+    {
+      "id": "KH37",
+      "name": "Herlong Airport",
+      "lat": 40.138801574707,
+      "lon": -120.17900085449
+    },
+    {
+      "id": "KHAF",
+      "name": "Half Moon Bay Airport",
+      "lat": 37.513401031499995,
+      "lon": -122.500999451
+    },
+    {
+      "id": "KHJO",
+      "name": "Hanford Municipal Airport",
+      "lat": 36.31669998,
+      "lon": -119.6279984
+    },
+    {
+      "id": "KHWD",
+      "name": "Hayward Executive Airport",
+      "lat": 37.659198761,
+      "lon": -122.122001648
+    },
+    {
+      "id": "KKIC",
+      "name": "Mesa Del Rey Airport",
+      "lat": 36.2280006409,
+      "lon": -121.122001648
+    },
+    {
+      "id": "KL17",
+      "name": "Taft Kern County Airport",
+      "lat": 35.14147,
+      "lon": -119.438624
+    },
+    {
+      "id": "KL19",
+      "name": "Wasco Kern County Airport",
+      "lat": 35.61970138549805,
+      "lon": -119.35399627685547
+    },
+    {
+      "id": "KL62",
+      "name": "Elk Hills Buttonwillow Airport",
+      "lat": 35.352699279785156,
+      "lon": -119.47899627685547
+    },
+    {
+      "id": "KL73",
+      "name": "Poso Kern County Airport",
+      "lat": 35.59659957885742,
+      "lon": -119.12799835205078
+    },
+    {
+      "id": "KLHM",
+      "name": "Lincoln Regional Karl Harder Field",
+      "lat": 38.909199,
+      "lon": -121.350998
+    },
+    {
+      "id": "KLLR",
+      "name": "Little River Airport",
+      "lat": 39.262001037597656,
+      "lon": -123.75399780273438
+    },
+    {
+      "id": "KLSN",
+      "name": "Los Banos Municipal Airport",
+      "lat": 37.06290054,
+      "lon": -120.8690033
+    },
+    {
+      "id": "KLVK",
+      "name": "Livermore Municipal Airport",
+      "lat": 37.6934013367,
+      "lon": -121.819999695
+    },
+    {
+      "id": "KM45",
+      "name": "Alpine County Airport",
+      "lat": 38.734699249268,
+      "lon": -119.76699829102
+    },
+    {
+      "id": "KM90",
+      "name": "William Robert Johnston Municipal Airport",
+      "lat": 36.7585983276,
+      "lon": -120.371002197
+    },
+    {
+      "id": "KMAE",
+      "name": "Madera Municipal Airport",
+      "lat": 36.9886016846,
+      "lon": -120.111999512
+    },
+    {
+      "id": "KMCC",
+      "name": "McClellan Airfield",
+      "lat": 38.667599,
+      "lon": -121.401001
+    },
+    {
+      "id": "KMCE",
+      "name": "Merced Regional Macready Field",
+      "lat": 37.284698,
+      "lon": -120.514
+    },
+    {
+      "id": "KMER",
+      "name": "Castle Airport",
+      "lat": 37.38050079,
+      "lon": -120.5680008
+    },
+    {
+      "id": "KMEV",
+      "name": "Minden-Tahoe Airport",
+      "lat": 39.00030136,
+      "lon": -119.7509995
+    },
+    {
+      "id": "KMHR",
+      "name": "Sacramento Mather Airport",
+      "lat": 38.554744,
+      "lon": -121.297989
+    },
+    {
+      "id": "KMIT",
+      "name": "Shafter Airport - Minter Field",
+      "lat": 35.507401,
+      "lon": -119.192002
+    },
+    {
+      "id": "KMOD",
+      "name": "Modesto City Co-Harry Sham Field",
+      "lat": 37.625801,
+      "lon": -120.954002
+    },
+    {
+      "id": "KMPI",
+      "name": "Mariposa Yosemite Airport",
+      "lat": 37.5108985901,
+      "lon": -120.040000916
+    },
+    {
+      "id": "KMRY",
+      "name": "Monterey Regional Airport",
+      "lat": 36.586777,
+      "lon": -121.844183
+    },
+    {
+      "id": "KMYV",
+      "name": "Yuba County Airport",
+      "lat": 39.09780121,
+      "lon": -121.5699997
+    },
+    {
+      "id": "KN49",
+      "name": "Rose Quartz Ranch Airport",
+      "lat": 39.34979,
+      "lon": -119.474027
+    },
+    {
+      "id": "KN58",
+      "name": "Tiger Field",
+      "lat": 39.559600830078125,
+      "lon": -119.24099731445312
+    },
+    {
+      "id": "KN59",
+      "name": "Rosaschi Air Park",
+      "lat": 38.839401,
+      "lon": -119.337997
+    },
+    {
+      "id": "KNLC",
+      "name": "Lemoore Naval Air Station (Reeves Field) Airport",
+      "lat": 36.33300018,
+      "lon": -119.9520035
+    },
+    {
+      "id": "KNUQ",
+      "name": "Moffett Federal Airfield",
+      "lat": 37.4161,
+      "lon": -122.049004
+    },
+    {
+      "id": "KO02",
+      "name": "Nervino Airport",
+      "lat": 39.818501,
+      "lon": -120.352997
+    },
+    {
+      "id": "KO05",
+      "name": "Rogers Field",
+      "lat": 40.28239822387695,
+      "lon": -121.24099731445312
+    },
+    {
+      "id": "KO08",
+      "name": "Colusa County Airport",
+      "lat": 39.17900085,
+      "lon": -121.9929962
+    },
+    {
+      "id": "KO09",
+      "name": "Round Valley Airport",
+      "lat": 39.790199,
+      "lon": -123.265999
+    },
+    {
+      "id": "KO15",
+      "name": "Turlock Municipal Airport",
+      "lat": 37.48740005493164,
+      "lon": -120.6969985961914
+    },
+    {
+      "id": "KO16",
+      "name": "Garberville Airport",
+      "lat": 40.08599853515625,
+      "lon": -123.81400299072266
+    },
+    {
+      "id": "KO20",
+      "name": "Kingdon Airpark",
+      "lat": 38.091599,
+      "lon": -121.359001
+    },
+    {
+      "id": "KO22",
+      "name": "Columbia Airport",
+      "lat": 38.030399322499996,
+      "lon": -120.415000916
+    },
+    {
+      "id": "KO24",
+      "name": "Lee Vining Airport",
+      "lat": 37.9583015442,
+      "lon": -119.107002258
+    },
+    {
+      "id": "KO27",
+      "name": "Oakdale Airport",
+      "lat": 37.75630188,
+      "lon": -120.8000031
+    },
+    {
+      "id": "KO28",
+      "name": "Ells Field Willits Municipal Airport",
+      "lat": 39.451322,
+      "lon": -123.372356
+    },
+    {
+      "id": "KO32",
+      "name": "Reedley Municipal Airport",
+      "lat": 36.66630172729492,
+      "lon": -119.44999694824219
+    },
+    {
+      "id": "KO37",
+      "name": "Haigh Field",
+      "lat": 39.72119903564453,
+      "lon": -122.14700317382812
+    },
+    {
+      "id": "KO41",
+      "name": "Watts Woodland Airport",
+      "lat": 38.673901,
+      "lon": -121.872002
+    },
+    {
+      "id": "KO42",
+      "name": "Woodlake Airport",
+      "lat": 36.398799896240234,
+      "lon": -119.10700225830078
+    },
+    {
+      "id": "KO43",
+      "name": "Yerington Municipal Airport",
+      "lat": 39.0041007996,
+      "lon": -119.157997131
+    },
+    {
+      "id": "KO52",
+      "name": "Sutter County Airport",
+      "lat": 39.12369918823242,
+      "lon": -121.6050033569336
+    },
+    {
+      "id": "KO54",
+      "name": "Lonnie Pool Field Weaverville Airport",
+      "lat": 40.74570083618164,
+      "lon": -122.9219970703125
+    },
+    {
+      "id": "KO57",
+      "name": "Bryant Field",
+      "lat": 38.26386,
+      "lon": -119.222775
+    },
+    {
+      "id": "KO60",
+      "name": "Cloverdale Municipal Airport",
+      "lat": 38.77600098,
+      "lon": -122.9929962
+    },
+    {
+      "id": "KO61",
+      "name": "Cameron Airpark",
+      "lat": 38.683998,
+      "lon": -120.987999
+    },
+    {
+      "id": "KO69",
+      "name": "Petaluma Municipal Airport",
+      "lat": 38.25780106,
+      "lon": -122.6060028
+    },
+    {
+      "id": "KO70",
+      "name": "Westover Field Amador County Airport",
+      "lat": 38.376801,
+      "lon": -120.793999
+    },
+    {
+      "id": "KO79",
+      "name": "Sierraville Dearwater Airport",
+      "lat": 39.581001,
+      "lon": -120.353996
+    },
+    {
+      "id": "KO86",
+      "name": "Trinity Center Airport",
+      "lat": 40.98320007324219,
+      "lon": -122.69400024414062
+    },
+    {
+      "id": "KO88",
+      "name": "Rio Vista Municipal Airport",
+      "lat": 38.19340133666992,
+      "lon": -121.7040023803711
+    },
+    {
+      "id": "KOAK",
+      "name": "Oakland San Francisco Bay Airport",
+      "lat": 37.720085,
+      "lon": -122.221184
+    },
+    {
+      "id": "KOAR",
+      "name": "Marina Municipal Airport",
+      "lat": 36.68190002,
+      "lon": -121.762001
+    },
+    {
+      "id": "KOVE",
+      "name": "Oroville Municipal Airport",
+      "lat": 39.487800598145,
+      "lon": -121.62200164795
+    },
+    {
+      "id": "KPAO",
+      "name": "Palo Alto Airport",
+      "lat": 37.461102,
+      "lon": -122.114998
+    },
+    {
+      "id": "KPRB",
+      "name": "Paso Robles Municipal Airport",
+      "lat": 35.67290115,
+      "lon": -120.6269989
+    },
+    {
+      "id": "KPTV",
+      "name": "Porterville Municipal Airport",
+      "lat": 36.029598236084,
+      "lon": -119.06300354004
+    },
+    {
+      "id": "KPVF",
+      "name": "Placerville Airport",
+      "lat": 38.724201202393,
+      "lon": -120.75299835205
+    },
+    {
+      "id": "KRBL",
+      "name": "Red Bluff Municipal Airport",
+      "lat": 40.1506996155,
+      "lon": -122.251998901
+    },
+    {
+      "id": "KRDD",
+      "name": "Redding Municipal Airport",
+      "lat": 40.50899887,
+      "lon": -122.2929993
+    },
+    {
+      "id": "KRHV",
+      "name": "Reid-Hillview Airport of Santa Clara County",
+      "lat": 37.332901,
+      "lon": -121.819
+    },
+    {
+      "id": "KRIU",
+      "name": "Rancho Murieta Airport",
+      "lat": 38.486755,
+      "lon": -121.102822
+    },
+    {
+      "id": "KRNO",
+      "name": "Reno Tahoe International Airport",
+      "lat": 39.4991,
+      "lon": -119.767998
+    },
+    {
+      "id": "KSAC",
+      "name": "Sacramento Executive Airport",
+      "lat": 38.5125007629,
+      "lon": -121.492996216
+    },
+    {
+      "id": "KSBP",
+      "name": "San Luis County Regional Airport",
+      "lat": 35.236801147499996,
+      "lon": -120.641998291
+    },
+    {
+      "id": "KSCK",
+      "name": "Stockton Metropolitan Airport",
+      "lat": 37.893279,
+      "lon": -121.238079
+    },
+    {
+      "id": "KSFO",
+      "name": "San Francisco International Airport",
+      "lat": 37.619806,
+      "lon": -122.374821
+    },
+    {
+      "id": "KSJC",
+      "name": "Mineta San Jose International Airport",
+      "lat": 37.362452,
+      "lon": -121.929188
+    },
+    {
+      "id": "KSMF",
+      "name": "Sacramento International Airport",
+      "lat": 38.6954,
+      "lon": -121.591003
+    },
+    {
+      "id": "KSNS",
+      "name": "Salinas Municipal Airport",
+      "lat": 36.662799835205,
+      "lon": -121.60600280762
+    },
+    {
+      "id": "KSPZ",
+      "name": "Silver Springs Airport",
+      "lat": 39.40299987792969,
+      "lon": -119.2509994506836
+    },
+    {
+      "id": "KSQL",
+      "name": "San Carlos Airport",
+      "lat": 37.51313,
+      "lon": -122.250838
+    },
+    {
+      "id": "KSTS",
+      "name": "Charles M. Schulz Sonoma County Airport",
+      "lat": 38.50899887,
+      "lon": -122.8130035
+    },
+    {
+      "id": "KSUU",
+      "name": "Travis Air Force Base",
+      "lat": 38.262699,
+      "lon": -121.927002
+    },
+    {
+      "id": "KSVE",
+      "name": "Susanville Municipal Airport",
+      "lat": 40.375702,
+      "lon": -120.572998
+    },
+    {
+      "id": "KT42",
+      "name": "Ruth Airport",
+      "lat": 40.2113,
+      "lon": -123.297997
+    },
+    {
+      "id": "KTCY",
+      "name": "Tracy Municipal Airport",
+      "lat": 37.68899917602539,
+      "lon": -121.44200134277344
+    },
+    {
+      "id": "KTLR",
+      "name": "Mefford Field",
+      "lat": 36.15629959,
+      "lon": -119.3259964
+    },
+    {
+      "id": "KTRK",
+      "name": "Truckee Tahoe Airport",
+      "lat": 39.318628,
+      "lon": -120.140562
+    },
+    {
+      "id": "KTVL",
+      "name": "Lake Tahoe Airport",
+      "lat": 38.89390182495117,
+      "lon": -119.99500274658203
+    },
+    {
+      "id": "KUKI",
+      "name": "Ukiah Municipal Airport",
+      "lat": 39.125999,
+      "lon": -123.200996
+    },
+    {
+      "id": "KVCB",
+      "name": "Nut Tree Airport",
+      "lat": 38.376801,
+      "lon": -121.961998
+    },
+    {
+      "id": "KVIS",
+      "name": "Visalia Municipal Airport",
+      "lat": 36.318699,
+      "lon": -119.392998
+    },
+    {
+      "id": "KWLW",
+      "name": "Willows Glenn County Airport",
+      "lat": 39.51639938,
+      "lon": -122.2180023
+    },
+    {
+      "id": "KWVI",
+      "name": "Watsonville Municipal Airport",
+      "lat": 36.9356994629,
+      "lon": -121.790000916
+    },
+    {
+      "id": "KZ26",
+      "name": "Camp Roberts Army Heliport",
+      "lat": 35.791389,
+      "lon": -120.742778
+    },
+    {
+      "id": "L36",
+      "name": "Rio Linda Airport",
+      "lat": 38.674999,
+      "lon": -121.445
+    },
+    {
+      "id": "L52",
+      "name": "Oceano County Airport",
+      "lat": 35.101398,
+      "lon": -120.622002
+    },
+    {
+      "id": "L53",
+      "name": "Lodi Airpark",
+      "lat": 38.08409881591797,
+      "lon": -121.31600189208984
+    },
+    {
+      "id": "LA22",
+      "name": "PG&E Livermore Training Center Heliport",
+      "lat": 37.699064,
+      "lon": -121.709742
+    },
+    {
+      "id": "N86",
+      "name": "Spanish Springs Airport",
+      "lat": 39.66659927368164,
+      "lon": -119.7229995727539
+    },
+    {
+      "id": "NV09",
+      "name": "H Bar H Airport",
+      "lat": 39.72439956665039,
+      "lon": -119.89900207519531
+    },
+    {
+      "id": "NV13",
+      "name": "Bailey Ranch Airport",
+      "lat": 39.282798767089844,
+      "lon": -119.8280029296875
+    },
+    {
+      "id": "NV15",
+      "name": "Carson-Tahoe Regional Medical Center Heliport",
+      "lat": 39.20280075073242,
+      "lon": -119.78399658203125
+    },
+    {
+      "id": "NV17",
+      "name": "Youngberg Ranch Airport",
+      "lat": 39.67319869995117,
+      "lon": -119.81300354003906
+    },
+    {
+      "id": "NV23",
+      "name": "Air Sailing Gliderport",
+      "lat": 39.86906,
+      "lon": -119.703026
+    },
+    {
+      "id": "NV33",
+      "name": "Farias Wheel Airport",
+      "lat": 38.833199,
+      "lon": -119.396004
+    },
+    {
+      "id": "NV55",
+      "name": "Pinenut Airport",
+      "lat": 38.89889907836914,
+      "lon": -119.64900207519531
+    },
+    {
+      "id": "NV57",
+      "name": "Renown Regional Medical Center Heliport",
+      "lat": 39.525248,
+      "lon": -119.795741
+    },
+    {
+      "id": "NV58",
+      "name": "St Mary's Regional Medical Center Heliport",
+      "lat": 39.53295,
+      "lon": -119.818379
+    },
+    {
+      "id": "NV60",
+      "name": "Carson-Tahoe Hospital Heliport",
+      "lat": 39.17129898071289,
+      "lon": -119.77200317382812
+    },
+    {
+      "id": "NV69",
+      "name": "Northern Nevada Medical Center Heliport",
+      "lat": 39.54035,
+      "lon": -119.69826
+    },
+    {
+      "id": "NV72",
+      "name": "Sweetwater (USMC) Airport",
+      "lat": 38.509799957300004,
+      "lon": -119.217002869
+    },
+    {
+      "id": "NV78",
+      "name": "Remsa/Care Flight Heliport",
+      "lat": 39.500999450683594,
+      "lon": -119.75199890136719
+    },
+    {
+      "id": "NV96",
+      "name": "Rolling Thunder Airport",
+      "lat": 39.823563,
+      "lon": -119.658331
+    },
+    {
+      "id": "NV97",
+      "name": "Desert Creek Airport",
+      "lat": 38.684200286865234,
+      "lon": -119.3219985961914
+    },
+    {
+      "id": "O06",
+      "name": "Lake Oroville Landing Area Seaplane Base",
+      "lat": 39.56660079956055,
+      "lon": -121.46800231933594
+    },
+    {
+      "id": "O19",
+      "name": "Kneeland Airport",
+      "lat": 40.718639,
+      "lon": -123.927298
+    },
+    {
+      "id": "O31",
+      "name": "Healdsburg Municipal Airport",
+      "lat": 38.6534996033,
+      "lon": -122.899002075
+    },
+    {
+      "id": "O33",
+      "name": "Samoa Field Airport",
+      "lat": 40.780998,
+      "lon": -124.211998
+    },
+    {
+      "id": "O39",
+      "name": "Ravendale Airport",
+      "lat": 40.803593,
+      "lon": -120.366193
+    },
+    {
+      "id": "O63",
+      "name": "Exeter Airport",
+      "lat": 36.243,
+      "lon": -119.150002
+    },
+    {
+      "id": "O85",
+      "name": "Benton Field",
+      "lat": 40.5749015808,
+      "lon": -122.407997131
+    },
+    {
+      "id": "P27",
+      "name": "Pixley Airport",
+      "lat": 35.960499,
+      "lon": -119.307999
+    },
+    {
+      "id": "S74",
+      "name": "Lost Isle Seaplane Base",
+      "lat": 38.00410079956055,
+      "lon": -121.45700073242188
+    },
+    {
+      "id": "SYL",
+      "name": "Roberts Army Heliport",
+      "lat": 35.814999,
+      "lon": -120.744003
+    },
+    {
+      "id": "US-0001",
+      "name": "Flying M Ranch Airport",
+      "lat": 38.61127,
+      "lon": -119.001718
+    },
+    {
+      "id": "US-0188",
+      "name": "Coast Guard Air Station San Francisco",
+      "lat": 37.632056,
+      "lon": -122.389694
+    },
+    {
+      "id": "US-0223",
+      "name": "Sutter Health Memorial Medical Center Heliport",
+      "lat": 37.669127,
+      "lon": -120.972088
+    },
+    {
+      "id": "US-0225",
+      "name": "Treasure Island Helipad",
+      "lat": 37.819896,
+      "lon": -122.364774
+    },
+    {
+      "id": "US-0248",
+      "name": "Santa Margarita Ranch Airport",
+      "lat": 35.3996501011,
+      "lon": -120.616037
+    },
+    {
+      "id": "US-0249",
+      "name": "Hearst San Simeon Airstrip",
+      "lat": 35.663764,
+      "lon": -121.198944
+    },
+    {
+      "id": "US-0264",
+      "name": "Adventist Medical Center Hanford Heliport",
+      "lat": 36.3233,
+      "lon": -119.6672
+    },
+    {
+      "id": "US-0290",
+      "name": "Clovis Community Medical Center Heliport",
+      "lat": 36.8386,
+      "lon": -119.6591
+    },
+    {
+      "id": "US-0291",
+      "name": "Doctors Medical Center Heliport",
+      "lat": 37.6654,
+      "lon": -120.9975
+    },
+    {
+      "id": "US-0292",
+      "name": "Good Samaritan Hospital Heliport",
+      "lat": 37.253217,
+      "lon": -121.947479
+    },
+    {
+      "id": "US-0294",
+      "name": "John C. Fremont Hospital Heliport",
+      "lat": 37.499753,
+      "lon": -119.977789
+    },
+    {
+      "id": "US-0295",
+      "name": "John Muir Mt. Diablo Medical Center Heliport",
+      "lat": 37.9241,
+      "lon": -121.7337
+    },
+    {
+      "id": "US-0296",
+      "name": "Kaiser Permanente Manteca Heliport",
+      "lat": 37.7979,
+      "lon": -121.2471
+    },
+    {
+      "id": "US-0297",
+      "name": "Kaiser Permanente Medical Center Santa Clara Heliport",
+      "lat": 37.334947,
+      "lon": -121.999816
+    },
+    {
+      "id": "US-0298",
+      "name": "Kaiser Permanente Modesto Heliport",
+      "lat": 37.708008,
+      "lon": -121.052821
+    },
+    {
+      "id": "US-0299",
+      "name": "Kaweah Delta District Heliport (A-lll)",
+      "lat": 36.3281,
+      "lon": -119.2939
+    },
+    {
+      "id": "US-0301",
+      "name": "Mad River Community Hospital Heliport",
+      "lat": 40.895308,
+      "lon": -124.090957
+    },
+    {
+      "id": "US-0337",
+      "name": "Behring Ranch Heliport",
+      "lat": 39.3413112,
+      "lon": -121.9509333
+    },
+    {
+      "id": "US-0387",
+      "name": "Adventist Health Howard Memorial Heliport",
+      "lat": 39.389097,
+      "lon": -123.339297
+    },
+    {
+      "id": "US-0462",
+      "name": "Mercey Hot Springs Airport",
+      "lat": 36.706512,
+      "lon": -120.860132
+    },
+    {
+      "id": "US-0556",
+      "name": "Flying Gluepie Ranch Airport",
+      "lat": 38.467604,
+      "lon": -120.803483
+    },
+    {
+      "id": "US-0731",
+      "name": "Pom Wonderful Airstrip",
+      "lat": 36.652744,
+      "lon": -119.587113
+    },
+    {
+      "id": "US-0915",
+      "name": "Memorial Hospital Los Banos Heliport",
+      "lat": 37.064535,
+      "lon": -120.858965
+    },
+    {
+      "id": "US-0916",
+      "name": "Zamora Airport",
+      "lat": 38.79925,
+      "lon": -121.830694
+    },
+    {
+      "id": "US-0986",
+      "name": "Dead Cow Lakebed Airstrip",
+      "lat": 40.147755,
+      "lon": -119.907335
+    },
+    {
+      "id": "US-1060",
+      "name": "David Grant USAF Medical Center Heliport",
+      "lat": 38.270296,
+      "lon": -121.970902
+    },
+    {
+      "id": "US-1118",
+      "name": "Freedom Helipad",
+      "lat": 39.552087,
+      "lon": -119.835939
+    },
+    {
+      "id": "US-1167",
+      "name": "Trinkle Agricultural Flying Airport",
+      "lat": 36.47794,
+      "lon": -119.51948
+    },
+    {
+      "id": "US-1185",
+      "name": "Ala Doble Airport",
+      "lat": 38.653343,
+      "lon": -122.028258
+    },
+    {
+      "id": "US-1186",
+      "name": "Saint Agnes Medical Center Heliport",
+      "lat": 36.835911,
+      "lon": -119.764797
+    },
+    {
+      "id": "US-1188",
+      "name": "Adventist Health Sonora Heliport",
+      "lat": 37.977058,
+      "lon": -120.371939
+    },
+    {
+      "id": "US-1206",
+      "name": "Stanford Health Care-Valleycare Heliport",
+      "lat": 37.694414,
+      "lon": -121.880897
+    },
+    {
+      "id": "US-12648",
+      "name": "Corcoran Airport",
+      "lat": 36.102661,
+      "lon": -119.594815
+    },
+    {
+      "id": "US-12704",
+      "name": "Cecil Ranch Airport",
+      "lat": 39.085166,
+      "lon": -121.912295
+    },
+    {
+      "id": "US-12886",
+      "name": "Crane Flat Lookout",
+      "lat": 37.76004,
+      "lon": -119.82018
+    },
+    {
+      "id": "US-12888",
+      "name": "Bodad",
+      "lat": 39.99721,
+      "lon": -120.21685
+    },
+    {
+      "id": "US-12889",
+      "name": "Balsdon",
+      "lat": 39.04785,
+      "lon": -121.95038
+    },
+    {
+      "id": "US-12891",
+      "name": "Hale Aviation Airstrip",
+      "lat": 36.101577,
+      "lon": -120.164989
+    },
+    {
+      "id": "US-1538",
+      "name": "Quinns Mesa Airstrip",
+      "lat": 39.129844,
+      "lon": -119.367453
+    },
+    {
+      "id": "US-1540",
+      "name": "Indian Ranch Airport",
+      "lat": 39.271683,
+      "lon": -122.483203
+    },
+    {
+      "id": "US-1567",
+      "name": "Eden Valley Ranch / Albert Seeno Jr Airstrip",
+      "lat": 39.627639,
+      "lon": -123.185449
+    },
+    {
+      "id": "US-1625",
+      "name": "Schoonover Airstrip",
+      "lat": 35.9658,
+      "lon": -121.19755
+    },
+    {
+      "id": "US-1628",
+      "name": "Halter Ranch Airport",
+      "lat": 35.64427,
+      "lon": -120.85055
+    },
+    {
+      "id": "US-1713",
+      "name": "Paulson Ranch Airstrip",
+      "lat": 38.22114,
+      "lon": -119.21496
+    },
+    {
+      "id": "US-1795",
+      "name": "Solitude Backcountry Airstrip",
+      "lat": 38.21736,
+      "lon": -119.15894
+    },
+    {
+      "id": "US-1796",
+      "name": "North Mono Landout",
+      "lat": 38.1002,
+      "lon": -119.05277
+    },
+    {
+      "id": "US-1852",
+      "name": "Ski Pond Floatplane Strip",
+      "lat": 39.41836,
+      "lon": -119.09629
+    },
+    {
+      "id": "US-1853",
+      "name": "Fernley Airfield",
+      "lat": 39.5798,
+      "lon": -119.20263
+    },
+    {
+      "id": "US-1854",
+      "name": "Tire Shop / Orange Lane Airstrip",
+      "lat": 39.44066,
+      "lon": -119.20135
+    },
+    {
+      "id": "US-2024",
+      "name": "Broken Bottles Airstrip",
+      "lat": 39.02276,
+      "lon": -119.65931
+    },
+    {
+      "id": "US-2069",
+      "name": "Seth's Freedom Field",
+      "lat": 40.176299,
+      "lon": -122.334682
+    },
+    {
+      "id": "US-2245",
+      "name": "Dry Lake (Short Bread) Landing Strip",
+      "lat": 38.56848,
+      "lon": -119.28114
+    },
+    {
+      "id": "US-2246",
+      "name": "Antelope Landing Strip",
+      "lat": 38.57152,
+      "lon": -119.29613
+    },
+    {
+      "id": "US-2247",
+      "name": "Topaz Overlook Airstrip",
+      "lat": 38.70642,
+      "lon": -119.5219
+    },
+    {
+      "id": "US-2248",
+      "name": "Bald Mountain (High Boy) Airstrip",
+      "lat": 38.81114,
+      "lon": -119.53289
+    },
+    {
+      "id": "US-2249",
+      "name": "Tailwheel Ridge Airstrip",
+      "lat": 38.86897,
+      "lon": -119.49612
+    },
+    {
+      "id": "US-2250",
+      "name": "Washoe Ranches Airstrip",
+      "lat": 38.743289,
+      "lon": -119.47332
+    },
+    {
+      "id": "US-2319",
+      "name": "Farallon Islands AWRS Helipad",
+      "lat": 37.697508,
+      "lon": -123.002504
+    },
+    {
+      "id": "US-2347",
+      "name": "Pianetta Winery Airstrip",
+      "lat": 35.82386,
+      "lon": -120.70189
+    },
+    {
+      "id": "US-2409",
+      "name": "Strain Ranch Airport",
+      "lat": 39.053056,
+      "lon": -122.095556
+    },
+    {
+      "id": "US-2410",
+      "name": "Pacific Valley Aviation Airport",
+      "lat": 39.07541,
+      "lon": -122.08247
+    },
+    {
+      "id": "US-2761",
+      "name": "Diablo Canyon Power Plant Heliport",
+      "lat": 35.20611,
+      "lon": -120.85269
+    },
+    {
+      "id": "US-2762",
+      "name": "California Valley Airport",
+      "lat": 35.31455,
+      "lon": -120.00185
+    },
+    {
+      "id": "US-2768",
+      "name": "Presidio of Monterey Helipad",
+      "lat": 36.6069,
+      "lon": -121.89832
+    },
+    {
+      "id": "US-2771",
+      "name": "Pillar Point Air Force Station Helipad",
+      "lat": 37.49699,
+      "lon": -122.49875
+    },
+    {
+      "id": "US-2772",
+      "name": "UCSF Medical Center at Mission Bay Helipad",
+      "lat": 37.766614,
+      "lon": -122.390361
+    },
+    {
+      "id": "US-2776",
+      "name": "Stanford Health Care West Heliport",
+      "lat": 37.4346,
+      "lon": -122.17755
+    },
+    {
+      "id": "US-2783",
+      "name": "US Coast Guard Base Alameda Helipad",
+      "lat": 37.78522,
+      "lon": -122.25319
+    },
+    {
+      "id": "US-2811",
+      "name": "United States Coast Guard Pacific Strike Team Helipad",
+      "lat": 38.05551,
+      "lon": -122.51156
+    },
+    {
+      "id": "US-2817",
+      "name": "US Coast Guard Station Bodega Bay Helipad",
+      "lat": 38.3118,
+      "lon": -123.05222
+    },
+    {
+      "id": "US-2818",
+      "name": "Hay Ranch Airport",
+      "lat": 38.87787,
+      "lon": -123.6622
+    },
+    {
+      "id": "US-2819",
+      "name": "US Coast Guard Point Arena Heliport",
+      "lat": 38.95295,
+      "lon": -123.73728
+    },
+    {
+      "id": "US-2820",
+      "name": "Big Flat Airport",
+      "lat": 40.13271,
+      "lon": -124.18395
+    },
+    {
+      "id": "US-3065",
+      "name": "South Lake Farms Airport",
+      "lat": 35.9316,
+      "lon": -119.6478
+    },
+    {
+      "id": "US-3103",
+      "name": "Cal Fire Vina Helitack Base",
+      "lat": 39.928331,
+      "lon": -122.027269
+    },
+    {
+      "id": "US-3104",
+      "name": "Cal Fire Alma Helitack Base",
+      "lat": 37.18357,
+      "lon": -121.99059
+    },
+    {
+      "id": "US-3106",
+      "name": "Cal Fire Kneeland Helitack Base",
+      "lat": 40.71923,
+      "lon": -123.92865
+    },
+    {
+      "id": "US-3108",
+      "name": "Cal Fire Howard Forest Helitack Base",
+      "lat": 39.34594,
+      "lon": -123.31635
+    },
+    {
+      "id": "US-3109",
+      "name": "Cal Fire Boggs Mountain Helitack Base",
+      "lat": 38.83352,
+      "lon": -122.71835
+    },
+    {
+      "id": "US-3111",
+      "name": "Cal Fire Bear Valley Helitack Base",
+      "lat": 36.57165,
+      "lon": -121.18473
+    },
+    {
+      "id": "US-3113",
+      "name": "Bar B Ranch",
+      "lat": 36.359985,
+      "lon": -120.786329
+    },
+    {
+      "id": "US-3155",
+      "name": "Cal Fire Academy Heliport",
+      "lat": 38.36698,
+      "lon": -120.94271
+    },
+    {
+      "id": "US-3230",
+      "name": "Freedomfox Strip",
+      "lat": 39.77156,
+      "lon": -119.89541
+    },
+    {
+      "id": "US-3253",
+      "name": "Alkali Lake Landing Area",
+      "lat": 38.94085,
+      "lon": -119.35925
+    },
+    {
+      "id": "US-3254",
+      "name": "One Time Airstrip",
+      "lat": 38.99715,
+      "lon": -119.4427
+    },
+    {
+      "id": "US-3395",
+      "name": "Boneyard Airstrip",
+      "lat": 37.66337,
+      "lon": -122.02126
+    },
+    {
+      "id": "US-3577",
+      "name": "Topham Ranch-Auberry Private Airport",
+      "lat": 37.093342,
+      "lon": -119.510854
+    },
+    {
+      "id": "US-3578",
+      "name": "Hewitson Airport",
+      "lat": 35.90928,
+      "lon": -120.06358
+    },
+    {
+      "id": "US-3579",
+      "name": "Reef Station Airport",
+      "lat": 35.9119,
+      "lon": -120.0601
+    },
+    {
+      "id": "US-3634",
+      "name": "Bumpy Airstrip",
+      "lat": 39.14763,
+      "lon": -119.48718
+    },
+    {
+      "id": "US-3637",
+      "name": "Calpine Airport",
+      "lat": 39.66152,
+      "lon": -120.41848
+    },
+    {
+      "id": "US-3710",
+      "name": "Wide Load Airstrip",
+      "lat": 39.11422,
+      "lon": -119.11104
+    },
+    {
+      "id": "US-3851",
+      "name": "Interstate Ag Airport",
+      "lat": 35.43212,
+      "lon": -119.48608
+    },
+    {
+      "id": "US-3852",
+      "name": "Buttonwillow Land & Cattle Airport",
+      "lat": 35.45123,
+      "lon": -119.43662
+    },
+    {
+      "id": "US-3904",
+      "name": "Sutter Medical Center Heliport",
+      "lat": 38.5705,
+      "lon": -121.46965
+    },
+    {
+      "id": "US-3915",
+      "name": "Freedom Field Ultralight Park",
+      "lat": 38.75359,
+      "lon": -121.46282
+    },
+    {
+      "id": "US-3925",
+      "name": "Camatta Ranch Airstrip",
+      "lat": 35.47585,
+      "lon": -120.30864
+    },
+    {
+      "id": "US-3930",
+      "name": "Fellows Taft Airport",
+      "lat": 35.21078,
+      "lon": -119.42475
+    },
+    {
+      "id": "US-3979",
+      "name": "Canal View Airport",
+      "lat": 39.982457,
+      "lon": -122.299815
+    },
+    {
+      "id": "US-3980",
+      "name": "Carter Creek Airstrip",
+      "lat": 40.169015,
+      "lon": -123.562262
+    },
+    {
+      "id": "US-3982",
+      "name": "Sky Valley Ranch Airport",
+      "lat": 37.992044,
+      "lon": -120.672705
+    },
+    {
+      "id": "US-3986",
+      "name": "Belfast Airstrip",
+      "lat": 40.44897,
+      "lon": -120.45313
+    },
+    {
+      "id": "US-3995",
+      "name": "Tremont Airport",
+      "lat": 38.47747,
+      "lon": -121.69693
+    },
+    {
+      "id": "US-4006",
+      "name": "Tucker Gulch Airport",
+      "lat": 36.37915,
+      "lon": -120.79599
+    },
+    {
+      "id": "US-4007",
+      "name": "Rathburn Mine Airport",
+      "lat": 39.069893,
+      "lon": -122.444422
+    },
+    {
+      "id": "US-4008",
+      "name": "Isabel Valley Airport",
+      "lat": 37.323542,
+      "lon": -121.538959
+    },
+    {
+      "id": "US-4010",
+      "name": "Paramount Farming Company Airport",
+      "lat": 35.87048,
+      "lon": -119.89446
+    },
+    {
+      "id": "US-4014",
+      "name": "Old Canyon Airport",
+      "lat": 35.35926,
+      "lon": -120.14002
+    },
+    {
+      "id": "US-4015",
+      "name": "Michael Ranch Airport",
+      "lat": 39.677577,
+      "lon": -122.314202
+    },
+    {
+      "id": "US-4016",
+      "name": "Mann Ranch Airport",
+      "lat": 40.254804,
+      "lon": -124.042969
+    },
+    {
+      "id": "US-4018",
+      "name": "Red Hills Airstrip",
+      "lat": 37.865086,
+      "lon": -120.487694
+    },
+    {
+      "id": "US-4021",
+      "name": "Miller Flat Airport",
+      "lat": 40.126223,
+      "lon": -124.169917
+    },
+    {
+      "id": "US-4098",
+      "name": "Three Shotgun Shells Airfield",
+      "lat": 39.14796,
+      "lon": -119.28873
+    },
+    {
+      "id": "US-4099",
+      "name": "Too Short Airstrip",
+      "lat": 39.14952,
+      "lon": -119.29388
+    },
+    {
+      "id": "US-4100",
+      "name": "Hop Skip and Jump / Julian Lane Airstrip",
+      "lat": 39.1432,
+      "lon": -119.30001
+    },
+    {
+      "id": "US-4106",
+      "name": "Easy Street Airstrip",
+      "lat": 39.06709,
+      "lon": -119.32247
+    },
+    {
+      "id": "US-4107",
+      "name": "Gold Mine Airstrip",
+      "lat": 39.0739,
+      "lon": -119.33564
+    },
+    {
+      "id": "US-4108",
+      "name": "Gold Mine Number 2 Airstrip",
+      "lat": 39.07119,
+      "lon": -119.33769
+    },
+    {
+      "id": "US-4109",
+      "name": "Too Many Horses Airstrip",
+      "lat": 39.19454,
+      "lon": -119.40979
+    },
+    {
+      "id": "US-4110",
+      "name": "MTB Airstrip",
+      "lat": 39.1232,
+      "lon": -119.40588
+    },
+    {
+      "id": "US-4135",
+      "name": "Lower Helipad",
+      "lat": 37.0895,
+      "lon": -121.89086
+    },
+    {
+      "id": "US-4137",
+      "name": "Upper Helipad",
+      "lat": 37.07779,
+      "lon": -121.88369
+    },
+    {
+      "id": "US-4138",
+      "name": "Kaiser Permanente Antioch Medical Center Helport",
+      "lat": 37.95192,
+      "lon": -121.77434
+    },
+    {
+      "id": "US-4141",
+      "name": "Flying Apple Ranch Airport",
+      "lat": 35.92571,
+      "lon": -121.07256
+    },
+    {
+      "id": "US-4252",
+      "name": "Short Road Airstrip",
+      "lat": 39.18857,
+      "lon": -119.31662
+    },
+    {
+      "id": "US-4254",
+      "name": "Big Meadow Airstrip",
+      "lat": 39.17177,
+      "lon": -119.44333
+    },
+    {
+      "id": "US-4265",
+      "name": "Sail Park Airstrip",
+      "lat": 39.33959,
+      "lon": -119.39216
+    },
+    {
+      "id": "US-4269",
+      "name": "Good For All Airstrip",
+      "lat": 39.29383,
+      "lon": -119.17876
+    },
+    {
+      "id": "US-4270",
+      "name": "Railroad Crossing Airstrip",
+      "lat": 39.27018,
+      "lon": -119.27709
+    },
+    {
+      "id": "US-4271",
+      "name": "Lookout Airstrip",
+      "lat": 39.24729,
+      "lon": -119.19186
+    },
+    {
+      "id": "US-4402",
+      "name": "Church of Scientology Creston Base Heliport",
+      "lat": 35.45286,
+      "lon": -120.50436
+    },
+    {
+      "id": "US-4405",
+      "name": "Church of Scientology Petrolia Base Heliport",
+      "lat": 40.36984,
+      "lon": -124.33114
+    },
+    {
+      "id": "US-4486",
+      "name": "Adventist Health Delano Regional Medical Center Heliport",
+      "lat": 35.76186,
+      "lon": -119.23738
+    },
+    {
+      "id": "US-4502",
+      "name": "Markleeville Heliport",
+      "lat": 38.6909,
+      "lon": -119.77513
+    },
+    {
+      "id": "US-4503",
+      "name": "Carson Valley Medical Center Gardnerville Heliport",
+      "lat": 38.92048,
+      "lon": -119.71892
+    },
+    {
+      "id": "US-4520",
+      "name": "West Catlett Airstrip",
+      "lat": 38.83281,
+      "lon": -121.58041
+    },
+    {
+      "id": "US-4599",
+      "name": "Dymesich Airport",
+      "lat": 40.40435,
+      "lon": -122.21366
+    },
+    {
+      "id": "US-4769",
+      "name": "Skydive California Airport",
+      "lat": 37.731326,
+      "lon": -121.335589
+    },
+    {
+      "id": "US-4978",
+      "name": "Sutter Medical Center Castro Valley Heliport",
+      "lat": 37.698958,
+      "lon": -122.089262
+    },
+    {
+      "id": "US-5145",
+      "name": "Spring Creek Airport",
+      "lat": 37.6777,
+      "lon": -120.27409
+    },
+    {
+      "id": "US-5146",
+      "name": "Granite Dell Airport",
+      "lat": 37.70834,
+      "lon": -120.31877
+    },
+    {
+      "id": "US-5250",
+      "name": "Sierra National Forest Huntington Heliport",
+      "lat": 37.2427,
+      "lon": -119.16603
+    },
+    {
+      "id": "US-5251",
+      "name": "White Bark Helipad at Kaiser Pass",
+      "lat": 37.29333,
+      "lon": -119.08992
+    },
+    {
+      "id": "US-5403",
+      "name": "Nefas Airport",
+      "lat": 39.83173,
+      "lon": -119.69416
+    },
+    {
+      "id": "US-5404",
+      "name": "Williams Airport",
+      "lat": 39.82237,
+      "lon": -119.69334
+    },
+    {
+      "id": "US-5492",
+      "name": "Nixon Airport",
+      "lat": 39.83582,
+      "lon": -119.34948
+    },
+    {
+      "id": "US-5607",
+      "name": "Calpine South Airport",
+      "lat": 39.63915,
+      "lon": -120.42927
+    },
+    {
+      "id": "US-5608",
+      "name": "Maddalena Airport",
+      "lat": 39.82365,
+      "lon": -120.28408
+    },
+    {
+      "id": "US-5609",
+      "name": "Winnemucca Ranch Airport",
+      "lat": 39.94808,
+      "lon": -119.80228
+    },
+    {
+      "id": "US-5740",
+      "name": "St Elizabeth Community Hospital Heliport",
+      "lat": 40.148644,
+      "lon": -122.220555
+    },
+    {
+      "id": "US-5741",
+      "name": "Twin Cities Community Hospital Heliport",
+      "lat": 35.55605,
+      "lon": -120.71903
+    },
+    {
+      "id": "US-5742",
+      "name": "Rideout Regional Medical Center Heliport",
+      "lat": 39.13828,
+      "lon": -121.59269
+    },
+    {
+      "id": "US-5744",
+      "name": "Theil Air Care Airport",
+      "lat": 36.80654,
+      "lon": -120.6164
+    },
+    {
+      "id": "US-5745",
+      "name": "Moe's Crop Dusting Airport",
+      "lat": 38.91093,
+      "lon": -121.49484
+    },
+    {
+      "id": "US-5747",
+      "name": "Martins Dusters Airport",
+      "lat": 39.25746,
+      "lon": -122.06951
+    },
+    {
+      "id": "US-5748",
+      "name": "Porter Flying Services Airport",
+      "lat": 39.61668,
+      "lon": -121.84831
+    },
+    {
+      "id": "US-5749",
+      "name": "Giffen Cantua Ranch Airport",
+      "lat": 36.48307,
+      "lon": -120.38482
+    },
+    {
+      "id": "US-5750",
+      "name": "Cat Ag Air Airport",
+      "lat": 37.33698,
+      "lon": -121.02807
+    },
+    {
+      "id": "US-5751",
+      "name": "PJ Helicopters Heliport",
+      "lat": 40.14532,
+      "lon": -122.24249
+    },
+    {
+      "id": "US-5752",
+      "name": "NorthBay Medical Center Heliport",
+      "lat": 38.26128,
+      "lon": -122.04829
+    },
+    {
+      "id": "US-5753",
+      "name": "California Highway Patrol Academy Heliport",
+      "lat": 38.59769,
+      "lon": -121.56262
+    },
+    {
+      "id": "US-5755",
+      "name": "Delicato Vineyards Airport",
+      "lat": 36.14802,
+      "lon": -121.08664
+    },
+    {
+      "id": "US-5756",
+      "name": "Western Ag Aviation Airport",
+      "lat": 36.64116,
+      "lon": -120.23306
+    },
+    {
+      "id": "US-5757",
+      "name": "Azcal Airport",
+      "lat": 36.18644,
+      "lon": -119.95838
+    },
+    {
+      "id": "US-5758",
+      "name": "Mid Cal Ag Aviation Airport",
+      "lat": 36.72123,
+      "lon": -120.24715
+    },
+    {
+      "id": "US-5760",
+      "name": "Yribarren Airport",
+      "lat": 36.7401,
+      "lon": -120.01278
+    },
+    {
+      "id": "US-5761",
+      "name": "Blair Airport",
+      "lat": 36.22065,
+      "lon": -119.79901
+    },
+    {
+      "id": "US-5764",
+      "name": "3H Cattle Company Airport",
+      "lat": 36.18478,
+      "lon": -119.57312
+    },
+    {
+      "id": "US-5765",
+      "name": "Helm Airport",
+      "lat": 36.52585,
+      "lon": -120.09958
+    },
+    {
+      "id": "US-5766",
+      "name": "Hughes Ag Airport",
+      "lat": 36.43886,
+      "lon": -119.9001
+    },
+    {
+      "id": "US-5767",
+      "name": "Coit Ranch Airport",
+      "lat": 36.68997,
+      "lon": -120.47319
+    },
+    {
+      "id": "US-5768",
+      "name": "Organic Pastures Airport",
+      "lat": 36.6296,
+      "lon": -119.99478
+    },
+    {
+      "id": "US-5771",
+      "name": "Star Pump Airport",
+      "lat": 36.81383,
+      "lon": -120.25874
+    },
+    {
+      "id": "US-5772",
+      "name": "Haley Flying Service Airport",
+      "lat": 37.81668,
+      "lon": -121.4545
+    },
+    {
+      "id": "US-5773",
+      "name": "Kenny's Cropdusting Airport",
+      "lat": 36.5416,
+      "lon": -119.76411
+    },
+    {
+      "id": "US-5774",
+      "name": "Sweetser Dusters Airport",
+      "lat": 38.88396,
+      "lon": -121.71373
+    },
+    {
+      "id": "US-5775",
+      "name": "Hawke Ag Aviation Airport",
+      "lat": 37.73585,
+      "lon": -120.70723
+    },
+    {
+      "id": "US-5776",
+      "name": "Merced County Mosquito Abatement District Airport",
+      "lat": 37.07956,
+      "lon": -120.72101
+    },
+    {
+      "id": "US-5778",
+      "name": "Colusa Medical Center Heliport",
+      "lat": 39.20586,
+      "lon": -121.99982
+    },
+    {
+      "id": "US-5779",
+      "name": "Miller Airport",
+      "lat": 39.26326,
+      "lon": -122.01693
+    },
+    {
+      "id": "US-5780",
+      "name": "Carter Airport",
+      "lat": 39.29623,
+      "lon": -122.00925
+    },
+    {
+      "id": "US-5781",
+      "name": "Formanos Dusters Airport",
+      "lat": 39.38862,
+      "lon": -122.0357
+    },
+    {
+      "id": "US-5790",
+      "name": "American West Aviation Airport",
+      "lat": 36.44813,
+      "lon": -120.01345
+    },
+    {
+      "id": "US-5796",
+      "name": "Ag Air Airport",
+      "lat": 37.9387,
+      "lon": -121.13013
+    },
+    {
+      "id": "US-5797",
+      "name": "Kelcor Airport",
+      "lat": 36.9253,
+      "lon": -121.34465
+    },
+    {
+      "id": "US-5798",
+      "name": "Kracker Jack Aviation Airport",
+      "lat": 39.68054,
+      "lon": -122.0004
+    },
+    {
+      "id": "US-5802",
+      "name": "Harding Flying Services Airport",
+      "lat": 38.40514,
+      "lon": -121.61308
+    },
+    {
+      "id": "US-5821",
+      "name": "Nish Ag Air Airport",
+      "lat": 39.03227,
+      "lon": -119.17657
+    },
+    {
+      "id": "US-5847",
+      "name": "Vallecito Conservation Camp 1 Heliport",
+      "lat": 38.10667,
+      "lon": -120.49207
+    },
+    {
+      "id": "US-5871",
+      "name": "Agriland Airport",
+      "lat": 37.10534,
+      "lon": -120.10171
+    },
+    {
+      "id": "US-5872",
+      "name": "O'Flanagan Airport",
+      "lat": 37.01784,
+      "lon": -120.41533
+    },
+    {
+      "id": "US-5873",
+      "name": "Kearney Airport",
+      "lat": 36.59831,
+      "lon": -119.50463
+    },
+    {
+      "id": "US-6025",
+      "name": "Glenn Medical Center Heliport",
+      "lat": 39.52202,
+      "lon": -122.20848
+    },
+    {
+      "id": "US-6062",
+      "name": "Skydive San Joaquin Valley Airport",
+      "lat": 35.097819,
+      "lon": -119.070961
+    },
+    {
+      "id": "US-6155",
+      "name": "Five Points Airport",
+      "lat": 36.42548,
+      "lon": -120.1034
+    },
+    {
+      "id": "US-6186",
+      "name": "Sutter Delta Medical Center Heliport",
+      "lat": 37.98361,
+      "lon": -121.80152
+    },
+    {
+      "id": "US-6250",
+      "name": "Alder Springs Forest Service Heliport",
+      "lat": 39.65092,
+      "lon": -122.72652
+    },
+    {
+      "id": "US-6251",
+      "name": "Elk Creek Airport",
+      "lat": 39.59483,
+      "lon": -122.56487
+    },
+    {
+      "id": "US-6252",
+      "name": "Butler Airport",
+      "lat": 39.5857,
+      "lon": -122.58237
+    },
+    {
+      "id": "US-6254",
+      "name": "Stonyford Airport",
+      "lat": 39.36099,
+      "lon": -122.57941
+    },
+    {
+      "id": "US-6255",
+      "name": "Montgomery Creek Airport",
+      "lat": 39.40638,
+      "lon": -122.50112
+    },
+    {
+      "id": "US-6304",
+      "name": "Rancho Escondido Heliport",
+      "lat": 37.62386,
+      "lon": -121.6992
+    },
+    {
+      "id": "US-6615",
+      "name": "Belcher Airport",
+      "lat": 38.76993,
+      "lon": -122.5559
+    },
+    {
+      "id": "US-6619",
+      "name": "Smoke Creek Airport",
+      "lat": 40.58461,
+      "lon": -119.9678
+    },
+    {
+      "id": "US-6693",
+      "name": "South Coles Levee Oilfield Airport",
+      "lat": 35.262,
+      "lon": -119.26404
+    },
+    {
+      "id": "US-6697",
+      "name": "Hewitson-McGlishaw Ranch Airport",
+      "lat": 35.84088,
+      "lon": -119.98173
+    },
+    {
+      "id": "US-6699",
+      "name": "Stamoules Airport",
+      "lat": 36.72905,
+      "lon": -120.47083
+    },
+    {
+      "id": "US-6701",
+      "name": "Goldenrod Airport",
+      "lat": 36.81334,
+      "lon": -120.04077
+    },
+    {
+      "id": "US-6896",
+      "name": "San Clemente Rancho Airport",
+      "lat": 36.4097,
+      "lon": -121.72911
+    },
+    {
+      "id": "US-6972",
+      "name": "Porter Ranch Airport",
+      "lat": 35.13192,
+      "lon": -120.35665
+    },
+    {
+      "id": "US-6973",
+      "name": "Pozo Airport",
+      "lat": 35.30181,
+      "lon": -120.36211
+    },
+    {
+      "id": "US-6974",
+      "name": "Leffler Ag Services Airport",
+      "lat": 35.29903,
+      "lon": -120.42266
+    },
+    {
+      "id": "US-6975",
+      "name": "Bean Canyon Airport",
+      "lat": 35.31172,
+      "lon": -120.33956
+    },
+    {
+      "id": "US-6976",
+      "name": "Wilson Creek Airport",
+      "lat": 35.39428,
+      "lon": -120.416
+    },
+    {
+      "id": "US-6977",
+      "name": "Katacreek Airport",
+      "lat": 35.4529,
+      "lon": -120.476
+    },
+    {
+      "id": "US-6978",
+      "name": "Double L Ranch Airport",
+      "lat": 35.28597,
+      "lon": -120.31308
+    },
+    {
+      "id": "US-6979",
+      "name": "Italian Bar Airport",
+      "lat": 37.16506,
+      "lon": -119.4569
+    },
+    {
+      "id": "US-7012",
+      "name": "Pomona Farming Heliport",
+      "lat": 35.04953,
+      "lon": -119.07389
+    },
+    {
+      "id": "US-7013",
+      "name": "Jeffrey Brown Airport",
+      "lat": 37.64926,
+      "lon": -121.37479
+    },
+    {
+      "id": "US-7021",
+      "name": "Buena Vista Pumping Plant Helipad",
+      "lat": 35.160179,
+      "lon": -119.346848
+    },
+    {
+      "id": "US-7022",
+      "name": "Pilibos Ranch Airport",
+      "lat": 36.67868,
+      "lon": -120.50965
+    },
+    {
+      "id": "US-7099",
+      "name": "Laguna Seca Raceway Heliport",
+      "lat": 36.586191,
+      "lon": -121.75979
+    },
+    {
+      "id": "US-7117",
+      "name": "Clark Ranch Airport",
+      "lat": 39.6692,
+      "lon": -123.47953
+    },
+    {
+      "id": "US-7118",
+      "name": "Cal Fire Laytonville Fire Station Heliport",
+      "lat": 39.70267,
+      "lon": -123.48628
+    },
+    {
+      "id": "US-7119",
+      "name": "Capell Valley Airport",
+      "lat": 38.46194,
+      "lon": -122.19456
+    },
+    {
+      "id": "US-7165",
+      "name": "VA Medical Center Livermore Heliport",
+      "lat": 37.6271,
+      "lon": -121.75961
+    },
+    {
+      "id": "US-7173",
+      "name": "Butte Meadows Heliport",
+      "lat": 40.08107,
+      "lon": -121.55278
+    },
+    {
+      "id": "US-7174",
+      "name": "Feather River Hospital Heliport",
+      "lat": 39.75836,
+      "lon": -121.57007
+    },
+    {
+      "id": "US-7179",
+      "name": "Round Mountain Substation Heliport",
+      "lat": 40.80885,
+      "lon": -121.93626
+    },
+    {
+      "id": "US-7180",
+      "name": "Cal Fire Manton Heliport",
+      "lat": 40.43347,
+      "lon": -121.8747
+    },
+    {
+      "id": "US-7181",
+      "name": "Anselmo Heliport",
+      "lat": 40.51487,
+      "lon": -121.9981
+    },
+    {
+      "id": "US-7186",
+      "name": "Old Station Helibase",
+      "lat": 40.66875,
+      "lon": -121.41966
+    },
+    {
+      "id": "US-7187",
+      "name": "Shasta County Fire Department Company 12 Heliport",
+      "lat": 40.67636,
+      "lon": -121.42791
+    },
+    {
+      "id": "US-7247",
+      "name": "Iveson Ranch Airport",
+      "lat": 40.94619,
+      "lon": -119.37343
+    },
+    {
+      "id": "US-7248",
+      "name": "Iveson Ranch West Airport",
+      "lat": 40.95245,
+      "lon": -119.38581
+    },
+    {
+      "id": "US-7269",
+      "name": "Skyline Helipad",
+      "lat": 37.84417,
+      "lon": -122.19627
+    },
+    {
+      "id": "US-7270",
+      "name": "Oak Valley Hospital Heliport",
+      "lat": 37.75695,
+      "lon": -120.86216
+    },
+    {
+      "id": "US-7271",
+      "name": "Hites Cove Emergency Helicopter Landing Area",
+      "lat": 37.59509,
+      "lon": -119.8462
+    },
+    {
+      "id": "US-7272",
+      "name": "Russel K. Ryan Heliport",
+      "lat": 36.00546,
+      "lon": -121.237
+    },
+    {
+      "id": "US-7273",
+      "name": "Balderson Station Heliport",
+      "lat": 38.93388,
+      "lon": -120.75828
+    },
+    {
+      "id": "US-7274",
+      "name": "Sand Bar Flat Heliport",
+      "lat": 38.186033,
+      "lon": -120.150588
+    },
+    {
+      "id": "US-7275",
+      "name": "Strawberry Dam Emergency Helicopter Landing Area",
+      "lat": 38.20023,
+      "lon": -119.98894
+    },
+    {
+      "id": "US-7522",
+      "name": "South Lyon County Hospital Heliport",
+      "lat": 38.984481,
+      "lon": -119.167838
+    },
+    {
+      "id": "US-7523",
+      "name": "Northern Nevada Sierra Medical Center Heliport",
+      "lat": 39.465673,
+      "lon": -119.769658
+    },
+    {
+      "id": "US-7542",
+      "name": "Chukchansi Gold Resort & Casino Heliport",
+      "lat": 37.21369,
+      "lon": -119.7035
+    },
+    {
+      "id": "US-7543",
+      "name": "Frank A Tracy Generating Station Heliport",
+      "lat": 39.56161,
+      "lon": -119.52191
+    },
+    {
+      "id": "US-8534",
+      "name": "Ramirez Airstrip",
+      "lat": 39.29332,
+      "lon": -121.53176
+    },
+    {
+      "id": "US-8585",
+      "name": "Jones Aviation Airport",
+      "lat": 39.14886,
+      "lon": -122.17076
+    },
+    {
+      "id": "US-8587",
+      "name": "Coalinga Regional Medical Center Heliport",
+      "lat": 36.15281,
+      "lon": -120.33981
+    },
+    {
+      "id": "US-8689",
+      "name": "Mills Peninsula Medical Center Helipad",
+      "lat": 37.591796,
+      "lon": -122.383818
+    },
+    {
+      "id": "US-8690",
+      "name": "Sutter Davis Hospital EMS Landing Site",
+      "lat": 38.561547,
+      "lon": -121.770806
+    },
+    {
+      "id": "US-8975",
+      "name": "Old Canal Helipad",
+      "lat": 40.490915,
+      "lon": -122.639315
+    },
+    {
+      "id": "US-9140",
+      "name": "Hidden Valley Lake Airport",
+      "lat": 38.80757,
+      "lon": -122.5901
+    },
+    {
+      "id": "US-9145",
+      "name": "Jerseydale Fire Station Heliport",
+      "lat": 37.54761,
+      "lon": -119.8341
+    },
+    {
+      "id": "US-9146",
+      "name": "Usona Forest Fire Station Heliport",
+      "lat": 37.46237,
+      "lon": -119.78562
+    },
+    {
+      "id": "US-9158",
+      "name": "Hustace Airport",
+      "lat": 38.77246,
+      "lon": -119.28018
+    },
+    {
+      "id": "US-9159",
+      "name": "Renner Airport",
+      "lat": 38.76367,
+      "lon": -119.29639
+    },
+    {
+      "id": "US-9160",
+      "name": "Anderson Airport",
+      "lat": 38.72477,
+      "lon": -119.33397
+    },
+    {
+      "id": "US-9220",
+      "name": "Balm Ridge Heliport",
+      "lat": 35.20621,
+      "lon": -120.67627
+    },
+    {
+      "id": "US-9267",
+      "name": "USFS Day Ranch Heliport",
+      "lat": 38.27246,
+      "lon": -119.2881
+    },
+    {
+      "id": "US-9268",
+      "name": "Holbrook Junction EMS Helipad",
+      "lat": 38.72781,
+      "lon": -119.55478
+    },
+    {
+      "id": "US-9272",
+      "name": "Lamascus Airport",
+      "lat": 36.01455,
+      "lon": -121.15942
+    },
+    {
+      "id": "US-9302",
+      "name": "Millerton Fire Station Heliport",
+      "lat": 36.99227,
+      "lon": -119.70889
+    },
+    {
+      "id": "US-9303",
+      "name": "Steele Airport",
+      "lat": 39.91457,
+      "lon": -122.02347
+    },
+    {
+      "id": "US-9304",
+      "name": "Buckeye Heliport",
+      "lat": 37.05248,
+      "lon": -119.39205
+    },
+    {
+      "id": "US-9306",
+      "name": "Trinity Helibase Helitack 506",
+      "lat": 40.78711,
+      "lon": -122.80441
+    },
+    {
+      "id": "US-9307",
+      "name": "Beaver Glade Station Heliport",
+      "lat": 39.93347,
+      "lon": -122.99445
+    }
+  ]
+}

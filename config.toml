@@ -1,0 +1,31 @@
+[opensky]
+# Bay Area: latitude 37–39 N, longitude 123–121 W.
+lamin = 37.0
+lamax = 39.0
+lomin = -123.0
+lomax = -121.0
+poll_interval = 15.0
+timeout = 20.0
+backoff_initial = 15.0
+backoff_max = 300.0
+
+[tracks]
+gap_after = 60.0
+lost_after = 300.0
+expire_after = 1800.0
+history_size = 120
+tick_interval = 1.0
+
+[recording]
+# Relative to the directory from which Sentinel is launched.
+raw_log_path = "data/raw.jsonl"
+alert_log_path = "data/alerts.jsonl"
+
+[alerts]
+gap_seconds = 60.0
+source_stale_seconds = 45.0
+airport_radius_km = 8.0
+recent_limit = 200
+dedup_retention_seconds = 1800.0
+# Empty uses the bundled regional airport reference.
+airport_file = ""
