@@ -1,0 +1,92 @@
+{
+  "alerts": [
+    {
+      "details": {
+        "airport_distance_km": 141.94,
+        "last_position_at": 100.0,
+        "message": "Position updates missing while source is healthy; cause unknown",
+        "nearest_airport": "TEST",
+        "silence_seconds": 11.0,
+        "threshold_seconds": 10
+      },
+      "id": "fixture-scenario:1",
+      "lat": 38.0,
+      "lon": -123.0,
+      "object_id": "abc123",
+      "session": "fixture-scenario",
+      "source": "opensky",
+      "timestamp": 111.0,
+      "type": "signal_gap",
+      "version": 1
+    },
+    {
+      "details": {
+        "meaning": "General emergency code",
+        "message": "Observed squawk 7700: General emergency code",
+        "observed_at": 112.0,
+        "position_timestamp": 112.0,
+        "squawk": "7700"
+      },
+      "id": "fixture-scenario:2",
+      "lat": 38.1,
+      "lon": -123.0,
+      "object_id": "abc123",
+      "session": "fixture-scenario",
+      "source": "opensky",
+      "timestamp": 112.0,
+      "type": "emergency_squawk",
+      "version": 1
+    },
+    {
+      "details": {
+        "airport_distance_km": 159.89,
+        "last_position_at": 113.0,
+        "message": "Position updates missing while source is healthy; cause unknown",
+        "nearest_airport": "TEST",
+        "silence_seconds": 33.0,
+        "threshold_seconds": 10
+      },
+      "id": "fixture-scenario:3",
+      "lat": 38.2,
+      "lon": -123.0,
+      "object_id": "abc123",
+      "session": "fixture-scenario",
+      "source": "opensky",
+      "timestamp": 146.0,
+      "type": "signal_gap",
+      "version": 1
+    },
+    {
+      "details": {
+        "meaning": "Radio communication failure code",
+        "message": "Observed squawk 7600: Radio communication failure code",
+        "observed_at": 148.0,
+        "position_timestamp": 148.0,
+        "squawk": "7600"
+      },
+      "id": "fixture-scenario:4",
+      "lat": 38.4,
+      "lon": -123.0,
+      "object_id": "abc123",
+      "session": "fixture-scenario",
+      "source": "opensky",
+      "timestamp": 148.0,
+      "type": "emergency_squawk",
+      "version": 1
+    }
+  ],
+  "counts": {
+    "active": 0,
+    "gap": 0,
+    "lost": 0
+  },
+  "records": 18,
+  "session": "fixture-scenario",
+  "source": {
+    "last_success": 148.0,
+    "message": "Malformed OpenSky state response; retry in 15s",
+    "state": "retrying"
+  },
+  "timestamp": 249.0,
+  "tracks": []
+}

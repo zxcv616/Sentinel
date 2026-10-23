@@ -1,0 +1,13 @@
+{
+  "name": "sentinel-cloudflare",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:assets": "node scripts/assets.mjs",
+    "dev": "npm run build:assets && wrangler dev",
+    "test": "node --test test/*.test.mjs",
+    "check": "npm test && npm run build:assets && wrangler deploy --dry-run",
+    "deploy": "npm run build:assets && wrangler deploy"
+  },
+  "devDependencies": {"wrangler": "^4.0.0"}
+}

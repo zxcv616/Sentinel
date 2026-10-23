@@ -4,6 +4,8 @@
   with an injected clock. The stable session ID is `fixture-scenario`. A synthetic
   airport and intentionally unavailable airport-file path exercise embedded
   reference replay. Expected events are asserted independently in `test_replay.py`.
+- `scenario.expected.json`: frozen Python output for exact cross-runtime alert
+  comparison, including IDs, timestamps, and distance details.
 - `opensky-live.jsonl`: a prefix of the local live M3 recording captured October 23,
   2026, containing its session header, two real Bay Area OpenSky responses, and
   intervening clock ticks. The original response bodies are preserved in base64;

@@ -108,7 +108,9 @@ function connection(text, connected=false) { el('connection').textContent = text
 function connect() {
   socket = new WebSocket(`${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}/ws/tracks`);
   socket.onmessage = event => {
-    snapshot = JSON.parse(event.data); lastMessage = Date.now(); retry = 1000;
+    lastMessage = Date.now();
+    if (event.data === 'pong') { connection('Map connected',true); return; }
+    snapshot = JSON.parse(event.data); retry = 1000;
     connection('Map connected',true);
     const b = snapshot.bounds; bounds = [[b.lamin,b.lomin],[b.lamax,b.lomax]];
     el('coverage-label').textContent = `${b.lamin.toFixed(1)}° to ${b.lamax.toFixed(1)}° / ${b.lomin.toFixed(1)}° to ${b.lomax.toFixed(1)}°`;
@@ -131,9 +133,12 @@ el('fit').onclick = fit;
 el('search').oninput = render;
 el('trails').onchange = render;
 setInterval(() => {
-  if (lastMessage && Date.now() - lastMessage > 5000) {
+  if (lastMessage && Date.now() - lastMessage > 45000) {
     connection('Map updates interrupted · positions may be stale');
     if (socket && socket.readyState === WebSocket.OPEN) socket.close();
   }
 },1000);
 connect();
+
+// Hibernating Cloudflare sockets auto-answer these without waking the tracker.
+setInterval(() => { if (socket?.readyState === WebSocket.OPEN) socket.send('ping'); }, 20000);

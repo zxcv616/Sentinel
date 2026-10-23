@@ -12,3 +12,8 @@ data/
 !.env.example
 build/
 dist/
+node_modules/
+.wrangler/
+.dev.vars
+.dev.vars.*
+cloudflare/public/

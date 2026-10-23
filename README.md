@@ -269,3 +269,12 @@ expiry. `opensky-live.jsonl` contains two real captured OpenSky responses and th
 intervening ticks, with a checked-in expected result: 180 tracks and 333 history
 points. Tests also compare freshly recorded live-pipeline output to replay,
 including exact alert IDs and timestamps, and verify repeatable offline results.
+
+## Cloudflare deployment
+
+The optional [Cloudflare deployment](cloudflare/README.md) runs the same map with
+a JavaScript tracking core, SQLite-backed Durable Object persistence, alarm-driven
+polling, and hibernating WebSockets. Its tests verify parity against the Python
+recorded fixtures. The free-tier-oriented defaults use a four-minute anonymous
+poll interval and bounded recording retention; authenticated polling can be faster.
+The Python service and offline replay remain available unchanged.
