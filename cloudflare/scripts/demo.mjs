@@ -34,5 +34,5 @@ async function trackingRecording(){
       frames.push(frame);
     }
   }
-  return {label:'Recorded tracking + Kalman estimates (5 s simulation steps)',frames};
+  return {label:'Recorded tracking + Kalman estimates',frames};
 }

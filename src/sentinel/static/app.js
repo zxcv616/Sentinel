@@ -175,7 +175,7 @@ async function startDemo() {
       snapshot = current.frames[frame];
       const b = snapshot.bounds; bounds = [[b.lamin,b.lomin],[b.lamax,b.lomax]];
       el('coverage-label').textContent = current.label;
-      el('demo-progress').textContent = `Frame ${frame+1} / ${current.frames.length} · ${paused ? 'Paused' : '2 seconds per recorded event'}`;
+      el('demo-progress').textContent = `Frame ${frame+1} / ${current.frames.length} · ${paused ? 'Paused' : '2 seconds per frame'}`;
       if (first) { fit(); first = false; }
       render();
     }
