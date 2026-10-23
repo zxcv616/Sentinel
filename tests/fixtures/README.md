@@ -17,3 +17,12 @@
 
 The embedded airport reference is from OurAirports public-domain data, as described
 in the project README. Fixtures are test inputs, not current aircraft information.
+
+`opensky-tracking.jsonl`: the first 40 successful responses from local session
+5461f15f-dd07-4721-9e46-1d9e7a3ebb69 on October 23, 2026, spanning 585 seconds.
+Bodies are retained unchanged; only successful response records and the session
+header are included. Original one-second tick events are omitted. The copied header
+adds the explicit M5 estimation defaults. This fixture supports rolling-origin
+holdouts and the hosted M5 demo, which advances a simulated clock between responses.
+It contains 248 aircraft and 6,423 distinct object/timestamp observations. It was not
+selected by prediction-error outcome. No credentials are included.

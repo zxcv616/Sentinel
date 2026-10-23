@@ -60,8 +60,17 @@ class TrackConfig:
     expire_after: float = 1800
     history_size: int = 120
     tick_interval: float = 1
+    position_sigma_m: float = 100
+    velocity_sigma_mps: float = 50
+    acceleration_sigma_mps2: float = 2
+    prediction_seconds: float = 60
+    filter_reset_seconds: float = 120
 
     def __post_init__(self):
+        for value in (self.position_sigma_m, self.velocity_sigma_mps, self.acceleration_sigma_mps2,
+                      self.prediction_seconds, self.filter_reset_seconds):
+            if number(value, 0) <= 0:
+                raise ValueError("Estimation parameters must be positive")
         for value in (self.gap_after, self.lost_after, self.expire_after, self.tick_interval):
             number(value, 0)
         if not 0 < self.gap_after < self.lost_after < self.expire_after or self.tick_interval <= 0:

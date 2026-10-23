@@ -6,6 +6,7 @@ let snapshot = null, selected = null, map = null, bounds = null, first = true;
 let lastMessage = 0, socket = null, retry = 1000;
 const layers = new Map();
 const alertLayers = new Map();
+const estimateLayers = new Map();
 const keyOf = track => `${track.source}:${track.object_id}`;
 function fit() { if (map && bounds) map.fitBounds(bounds, {padding: [30, 30]}); }
 function icon(track) {
@@ -27,6 +28,12 @@ function details(track) {
   const fields = {State: track.state, Altitude: fmt(p.altitude, 'm'), Speed: fmt(p.speed, 'm/s'), Heading: fmt(p.heading, '°'),
     Squawk: p.squawk ?? 'Unknown', Status: p.status ?? 'Unknown', Position: `${p.lat.toFixed(4)}, ${p.lon.toFixed(4)}`,
     'Last position': new Date(track.last_seen * 1000).toLocaleTimeString(), 'Trail points': track.history.length};
+  if (track.estimate) {
+    const estimate = track.estimate, predicted = estimate.prediction;
+    fields['Estimate'] = predicted ? `Predicted +${predicted.horizon_seconds.toFixed(1)} s` : 'Smoothed at last observation';
+    fields['Model uncertainty'] = `${Math.round((predicted || estimate.filtered).uncertainty_radius_m)} m radius (not calibrated)`;
+    fields['Prediction limit'] = `${estimate.max_horizon_seconds} s`;
+  }
   el('detail-fields').replaceChildren();
   for (const [label,value] of Object.entries(fields)) {
     const dt = document.createElement('dt'), dd = document.createElement('dd');
@@ -78,6 +85,22 @@ function render() {
   const visible = new Set(tracks.map(keyOf));
   for (const [key,layer] of layers) {
     if (!visible.has(key)) { map.removeLayer(layer.marker); map.removeLayer(layer.trail); layers.delete(key); }
+  }
+  // Keep raw markers/trails; render estimates as separate blue circles.
+  for (const group of estimateLayers.values()) if (map) map.removeLayer(group);
+  estimateLayers.clear();
+  if (map && el('estimates').checked) for (const track of tracks) {
+    if (!track.estimate) continue;
+    const estimate = track.estimate, p = estimate.prediction || estimate.filtered;
+    const point = [p.lat,p.lon];
+    const group = L.featureGroup([
+      L.circle(point, {radius:p.uncertainty_radius_m,color:'#79bfe8',weight:1,fillOpacity:.035,dashArray:'3 5'}),
+      L.circleMarker(point, {radius:5,color:'#79bfe8',weight:1.5,fillOpacity:.1}),
+      L.polyline([[track.position.lat,track.position.lon],point],{color:'#79bfe8',weight:1,dashArray:'3 5'})
+    ]).addTo(map);
+    const label = document.createElement('span');
+    label.textContent = `${track.object_id.toUpperCase()} · ${estimate.prediction ? 'Predicted' : 'Smoothed'} · model uncertainty ${Math.round(p.uncertainty_radius_m)} m (not calibrated)`;
+    group.bindTooltip(label); group.on('click', () => select(track)); estimateLayers.set(keyOf(track),group);
   }
   el('aircraft').replaceChildren();
   for (const track of tracks) {
@@ -133,6 +156,7 @@ if (typeof L !== 'undefined') {
 el('fit').onclick = fit;
 el('search').oninput = render;
 el('trails').onchange = render;
+el('estimates').onchange = render;
 setInterval(() => {
   if (lastMessage && Date.now() - lastMessage > 45000) {
     connection('Map updates interrupted · positions may be stale');
@@ -145,7 +169,7 @@ async function startDemo() {
     const response = await fetch('/static/demo.json');
     if (!response.ok) throw new Error('Recording unavailable');
     const data = await response.json();
-    let recording = 0, frame = 0, paused = false;
+    let recording = Number(el('demo-recording').value), frame = 0, paused = false;
     function show() {
       const current = data.recordings[recording];
       snapshot = current.frames[frame];

@@ -13,6 +13,7 @@ from fastapi.staticfiles import StaticFiles
 import httpx
 
 from .config import Config
+from .estimation import estimate
 from .opensky import OpenSkyClient, run_poller
 from .pipeline import Pipeline
 
@@ -26,6 +27,7 @@ def snapshot(pipeline, config):
         tracks.append({"source": key[0], "object_id": key[1], "state": track.state,
                        "first_seen": track.first_seen, "last_seen": track.last_seen,
                        "position": asdict(track.history[-1]),
+                       "estimate": estimate(track.history, pipeline.manager.now, config.tracks),
                        "history": [{"lat": o.lat, "lon": o.lon, "timestamp": o.timestamp}
                                    for o in track.history]})
     return {"type": "snapshot", "timestamp": time.time(), "bounds": config.bounds,

@@ -141,3 +141,11 @@ To restore live mode after resolving feed access, set `DEMO_MODE` to `"false"`
 and run `npm run deploy`. This rebuilds the live page and re-enables the existing
 backend; the first live API request schedules collection. Historical state is
 retained. Generated demo assets are not committed.
+
+### M5 replay estimates
+
+The default demo is now the longer “Recorded tracking + Kalman estimates” recording.
+Estimation runs at asset-build time using the same equations as the local Python
+service. Browser playback adds no live collection or paid resources. The blue
+marker/circle overlay is separate from observed aircraft; prediction stops after
+60 simulated seconds. See the root README for the evaluation and limitations.

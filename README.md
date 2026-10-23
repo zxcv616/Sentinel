@@ -1,10 +1,10 @@
 # Sentinel
 
-A real-time airspace and maritime awareness tool. **M0–M4 implemented:** an async
+A real-time airspace and maritime awareness tool. **M0–M5 implemented:** an async
 OpenSky poller with normalized observations, in-memory tracks, bounded history,
 stale-track aging, append-only raw recording, and a live Leaflet map served by
 FastAPI, signal-gap and emergency-squawk alerts, and deterministic offline replay.
-PostgreSQL, Kalman filtering, additional anomaly rules, and ships are later milestones.
+PostgreSQL, additional anomaly rules, and ships are later milestones. M5 adds horizontal Kalman smoothing and bounded prediction.
 
 ## Run
 
@@ -278,3 +278,66 @@ polling, and hibernating WebSockets. Its tests verify parity against the Python
 recorded fixtures. The free-tier-oriented defaults use a four-minute anonymous
 poll interval and bounded recording retention; authenticated polling can be faster.
 The Python service and offline replay remain available unchanged.
+
+## M5: horizontal Kalman tracking
+
+Observed markers and trails remain unchanged. Blue outlined markers show a
+smoothed estimate at the last observation, or a short-term prediction while the
+observation is missing. Dashed blue circles show model-based uncertainty; these
+are **not calibrated confidence or accuracy guarantees**. Use “Estimated positions”
+to toggle the overlay. Track details show prediction age and the 60-second limit.
+No altitude estimation, sensor fusion, or threat classification is performed.
+
+The Python service and Cloudflare snapshot generator implement the same horizontal
+constant-velocity Kalman filter in local east/north coordinates, with independent
+position/velocity covariance per axis. Observation timestamps drive filtering;
+received timestamps never replace measurement time. Raw observations alone drive
+alerts. Each estimate is rebuilt from the bounded track history, making it a
+windowed filter that survives replay and checkpoint restoration without hidden state.
+Reported speed/heading initialize velocity; subsequent updates use positions.
+
+Configuration lives in `[tracks]`: `position_sigma_m`, `velocity_sigma_mps`,
+`acceleration_sigma_mps2`, `prediction_seconds`, and `filter_reset_seconds`.
+Long gaps and ground/air transitions reset the filter. Ground tracks are not
+extrapolated; duplicate/out-of-order observations are ignored. Longitude differences
+wrap across the dateline; near-polar tracks disable estimation because this local
+projection is unsuitable there. Parameters are initial assumptions, not tuned values.
+
+The hosted recorded demo defaults to a 12-aircraft tracking walkthrough drawn from
+40 recorded responses spanning 585 seconds. Five-second simulated steps are played
+at two wall-clock seconds per frame. No invented intermediate observations are
+inserted; estimates between observations are explicitly marked. A final 65-second
+pause in recorded input demonstrates the prediction timeout, then playback loops.
+The existing real-data and synthetic alert recordings remain selectable.
+
+### Reproducible evaluation
+
+```sh
+.venv/bin/python scripts/evaluate_tracking.py tests/fixtures/opensky-tracking.jsonl
+.venv/bin/pytest -q
+npm --prefix cloudflare test
+```
+
+The test suite includes Python/JavaScript estimation parity (requires Node.js),
+constant-velocity trajectories, seeded-noise smoothing, uncertainty growth,
+timeout, resets, ground handling, dateline crossing, and replay demo validation.
+
+See [evaluation results](docs/m5-evaluation.json). The fixture contains 248 aircraft
+and 6,423 unique observations. Rolling-origin evaluation uses at least four prior
+positions and withholds all future positions from each estimate. Actual evaluation
+horizons fall within five seconds of the bucket, capped at 60 seconds. Cases overlap
+and are not independent. Withheld ADS-B observations are reference data, not ground truth.
+
+| Horizon | Cases | Kalman RMSE | Reported-velocity baseline RMSE |
+| --- | ---: | ---: | ---: |
+| 15 s | 3,735 | 248.91 m | 149.46 m |
+| 30 s | 3,205 | 657.83 m | 493.55 m |
+| 60 s | 1,569 | 1,642.12 m | 1,411.88 m |
+
+**The reported-speed/heading constant-velocity baseline performs better on this
+recording.** The position-only update model lags maneuvers; longer prediction horizons
+increase error. This milestone demonstrates the algorithm and evaluation pipeline,
+not improved real-world prediction accuracy. Future work should use separate tuning
+and evaluation recordings, incorporate velocity measurements, and calibrate uncertainty.
+The measured mean window-rebuild time was 0.0224 ms on the development machine;
+this is not a hosted throughput benchmark.

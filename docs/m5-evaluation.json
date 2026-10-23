@@ -1,0 +1,61 @@
+{
+  "fixture": "tests/fixtures/opensky-tracking.jsonl",
+  "aircraft": 248,
+  "observations": 6423,
+  "config": {
+    "gap_after": 60.0,
+    "lost_after": 300.0,
+    "expire_after": 1800.0,
+    "history_size": 120,
+    "tick_interval": 1.0,
+    "position_sigma_m": 100,
+    "velocity_sigma_mps": 50,
+    "acceleration_sigma_mps2": 2,
+    "prediction_seconds": 60,
+    "filter_reset_seconds": 120
+  },
+  "method": "Rolling-origin holdout; >=4 prior positions, actual horizon within 5 s of bucket; overlapping cases are not independent.",
+  "limitations": "ADS-B withheld positions are reference observations, not surveyed ground truth. One regional recording; untuned model. Timing is machine-dependent window rebuild cost.",
+  "horizons": {
+    "15": {
+      "samples": 3735,
+      "kalman": {
+        "rmse_m": 248.91,
+        "median_m": 70.4,
+        "p95_m": 596.9
+      },
+      "constant_velocity": {
+        "rmse_m": 149.46,
+        "median_m": 38.64,
+        "p95_m": 347.14
+      }
+    },
+    "30": {
+      "samples": 3205,
+      "kalman": {
+        "rmse_m": 657.83,
+        "median_m": 165.82,
+        "p95_m": 1614.31
+      },
+      "constant_velocity": {
+        "rmse_m": 493.55,
+        "median_m": 95.39,
+        "p95_m": 1215.1
+      }
+    },
+    "60": {
+      "samples": 1569,
+      "kalman": {
+        "rmse_m": 1642.12,
+        "median_m": 451.77,
+        "p95_m": 3705.61
+      },
+      "constant_velocity": {
+        "rmse_m": 1411.88,
+        "median_m": 325.57,
+        "p95_m": 3263.47
+      }
+    }
+  },
+  "mean_estimate_ms": 0.0224
+}

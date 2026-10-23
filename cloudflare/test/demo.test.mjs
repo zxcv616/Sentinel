@@ -13,3 +13,14 @@ test('demo separates observed aircraft from synthetic alerts and preserves repla
   assert.ok(live.frames.every(f=>f.timestamp>1000000000));
   assert.ok(scenario.frames.every(f=>f.timestamp<1000));
 });
+test('tracking demo includes finite predictions, an expiry, and preserved raw positions',async()=>{
+  const recording=(await demoData()).recordings[2];
+  assert.ok(recording.frames.length>100);
+  assert.ok(recording.frames.some(f=>f.tracks.some(t=>t.estimate?.prediction)));
+  assert.ok(recording.frames.at(-1).tracks.every(t=>t.estimate?.prediction===null));
+  for(const f of recording.frames)for(const t of f.tracks){
+    const p=t.estimate?.prediction;
+    if(p){assert.ok(Number.isFinite(p.lat));assert.ok(p.horizon_seconds<=60);assert.ok(p.uncertainty_radius_m>0);}
+    assert.equal(t.position.timestamp,t.last_seen);
+  }
+});

@@ -15,6 +15,12 @@ lost_after = 300.0
 expire_after = 1800.0
 history_size = 120
 tick_interval = 1.0
+# Horizontal Kalman model; uncertainty is model-based, not calibrated accuracy.
+position_sigma_m = 100.0
+velocity_sigma_mps = 50.0
+acceleration_sigma_mps2 = 2.0
+prediction_seconds = 60.0
+filter_reset_seconds = 120.0
 
 [recording]
 # Relative to the directory from which Sentinel is launched.
