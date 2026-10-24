@@ -94,7 +94,7 @@ class AnomalyEngine:
             self.eligible.add(key)
             self.gaps.discard(key)
 
-    def squawks(self, data, now, tracks):
+    def squawks(self, data, now, tracks, *, source="opensky"):
         for row in data["states"] or []:
             try:
                 if not isinstance(row, list) or len(row) < 17 or not isinstance(row[0], str) or not re.fullmatch(r"[0-9a-fA-F]{6}", row[0]):
@@ -103,7 +103,7 @@ class AnomalyEngine:
                 code = row[14]
                 if code is None or not isinstance(code, str) or not re.fullmatch(r"[0-7]{4}", code):
                     continue
-                key = ("opensky", row[0].lower())
+                key = (source, row[0].lower())
                 previous = self.signals.get(key)
                 if previous and stamp <= previous[0]:
                     continue

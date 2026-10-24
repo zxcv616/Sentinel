@@ -110,7 +110,13 @@ def create_hosted_app():
     config=replace(config,poll_interval=300,
                    tracks=replace(config.tracks,gap_after=330,lost_after=900),
                    alerts=replace(config.alerts,gap_seconds=600,source_stale_seconds=330))
-    app=create_app(config)
+    source=os.getenv("SENTINEL_AIRCRAFT_SOURCE", "opensky")
+    if source == "opensky":
+        app=create_app(config)
+    elif source == "adsbfi":
+        app=create_app(config, aircraft_source=source)
+    else:
+        raise ValueError("Unsupported SENTINEL_AIRCRAFT_SOURCE")
 
     @app.get('/healthz')
     async def health():return {'status':'ok','mode':'live'}

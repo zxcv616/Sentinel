@@ -79,7 +79,9 @@ function domainMatches(track) { const domain=el('domain').value; return domain==
 function render() {
   if (!snapshot) return;
   for (const state of ['active','gap','lost']) el(state).textContent = snapshot.tracks.filter(t => domainMatches(t) && t.state === state).length;
-  el('source').textContent = demoMode ? 'Recorded playback — not a current observation' : snapshot.source.message;
+  el('source-label').textContent = snapshot.aircraft_provider === 'adsbfi' ? 'SOURCE / ADSB.FI' : 'SOURCE / OPENSKY';
+  el('source-attribution').hidden = snapshot.aircraft_provider !== 'adsbfi';
+  el('source').textContent = demoMode ? 'Recorded playback — not a current observation' : `${snapshot.source.message}${snapshot.poll_interval ? ` · updates every ${snapshot.poll_interval / 60} min` : ''}`;
   el('updated').textContent = snapshot.source.last_success ? `${demoMode ? 'Recorded' : 'Last poll'} ${new Date(snapshot.source.last_success * 1000).toLocaleString()}` : 'No successful poll yet';
   el('maritime-source').textContent = demoMode ? 'Vessels in the mixed-domain recording are synthetic.' : snapshot.maritime_source?.message || 'AIS disabled';
   const query = el('search').value.trim().toLowerCase();

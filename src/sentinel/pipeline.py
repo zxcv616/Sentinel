@@ -16,10 +16,10 @@ from .tracks import TrackConfig, TrackManager, normalize_opensky
 
 
 class Pipeline:
-    def __init__(self, path, track_config, *, clock=time.time, alert_config=None, alert_log_path=""):
+    def __init__(self, path, track_config, *, clock=time.time, alert_config=None, alert_log_path="", aircraft_source="opensky"):
         alert_config = alert_config or AlertConfig()
         reference = load_airports(alert_config)
-        self.initialize(track_config, alert_config, reference, clock, str(uuid.uuid4()))
+        self.initialize(track_config, alert_config, reference, clock, str(uuid.uuid4()), aircraft_source)
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)
         alert_path = Path(alert_log_path) if alert_log_path else path.with_name("alerts.jsonl")
@@ -30,12 +30,16 @@ class Pipeline:
         self.stream = path.open("a", encoding="utf-8")
         try:
             self.alert_stream = alert_path.open("a", encoding="utf-8")
-            self.write("session", self.clock(), tracks=asdict(track_config), alerts=asdict(alert_config), airport_reference=reference)
+            self.write("session", self.clock(), tracks=asdict(track_config), alerts=asdict(alert_config), airport_reference=reference, aircraft_source=aircraft_source)
         except Exception:
             self.close()
             raise
 
-    def initialize(self, track_config, alert_config, reference, clock, session):
+    def initialize(self, track_config, alert_config, reference, clock, session, aircraft_source="opensky"):
+        if aircraft_source not in ("opensky", "adsbfi"):
+            raise ValueError("Unsupported aircraft source")
+        self.aircraft_source = aircraft_source
+        self.source_name = "OpenSky" if aircraft_source == "opensky" else "adsb.fi"
         self.recording = True
         self.clock = clock
         self.session = session
@@ -43,7 +47,7 @@ class Pipeline:
         self.alerts = deque(maxlen=alert_config.recent_limit)
         self.alert_sequence = 0
         self.received_at = None
-        self.source_status = {"state": "starting", "message": "Waiting for OpenSky", "last_success": None}
+        self.source_status = {"state": "starting", "message": f"Waiting for {self.source_name}", "last_success": None}
         self.ais_status = {"state":"disabled","message":"AIS disabled; set AISSTREAM_API_KEY on server","last_success":None}
         self.loitering = Loitering(alert_config, self.emit_alert)
         self.engine = AnomalyEngine(alert_config, reference, self.emit_alert)
@@ -53,7 +57,7 @@ class Pipeline:
         """Use the same processing methods without opening any files or network clients."""
         pipeline = cls.__new__(cls)
         pipeline.initialize(TrackConfig(**session["tracks"]), AlertConfig(**session["alerts"]),
-                            session["airport_reference"], clock, session["session"])
+                            session["airport_reference"], clock, session["session"], session.get("aircraft_source", "opensky"))
         pipeline.recording = False
         pipeline.stream = io.StringIO()
         pipeline.alert_stream = io.StringIO()
@@ -68,7 +72,7 @@ class Pipeline:
 
     def record_response(self, response):
         self.received_at = self.clock()
-        self.write("response", self.received_at, source="opensky", status=response.status_code,
+        self.write("response", self.received_at, source=self.aircraft_source, status=response.status_code,
             body_base64=base64.b64encode(response.content).decode("ascii"),
             headers={key: response.headers[key] for key in
                 ("content-type", "retry-after", "x-rate-limit-retry-after-seconds") if key in response.headers})
@@ -92,8 +96,8 @@ class Pipeline:
         self.source_status.update(state="stopped", message=message)
 
     def accept(self, data):
-        self.source_status.update(state="live", message="Receiving OpenSky positions", last_success=self.received_at)
-        observations, rejected = normalize_opensky(data, self.received_at)
+        self.source_status.update(state="live", message=f"Receiving {self.source_name} positions", last_success=self.received_at)
+        observations, rejected = normalize_opensky(data, self.received_at, source=self.aircraft_source)
         self.manager.advance(self.received_at)
         if (rejected and not observations) or not 0 <= self.received_at - data["time"] <= self.engine.config.source_stale_seconds:
             self.failed("Source response has unusable or stale positions")
@@ -104,7 +108,7 @@ class Pipeline:
             if self.manager.update(observation):
                 accepted += 1
                 self.engine.observe(observation, self.received_at)
-        self.engine.squawks(data, self.received_at, self.manager.tracks)
+        self.engine.squawks(data, self.received_at, self.manager.tracks, source=self.aircraft_source)
         self.engine.advance(self.received_at, self.manager.tracks)
         return accepted, rejected
 

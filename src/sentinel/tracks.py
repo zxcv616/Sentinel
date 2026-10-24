@@ -26,7 +26,7 @@ def number(value, low=-math.inf, high=math.inf):
     return float(value)
 
 
-def normalize_opensky(data, received_at):
+def normalize_opensky(data, received_at, *, source="opensky"):
     """Skip unusable rows independently. Units: UTC epoch seconds, meters, m/s, degrees."""
     observations = []
     rejected = 0
@@ -46,7 +46,7 @@ def normalize_opensky(data, received_at):
                 raise ValueError
             if type(row[8]) is not bool:
                 raise ValueError
-            observations.append(Observation("opensky", row[0].lower(), stamp, received_at,
+            observations.append(Observation(source, row[0].lower(), stamp, received_at,
                 lat, lon, altitude, speed, heading, squawk, "ground" if row[8] else "airborne"))
         except (ValueError, TypeError, IndexError):
             rejected += 1

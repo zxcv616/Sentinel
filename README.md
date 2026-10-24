@@ -409,6 +409,10 @@ Refreshing these endpoints does not fetch OpenSky again. `/healthz` checks proce
 readiness, not upstream connectivity; inspect `state: success` in `/api/probe` before
 claiming the feed works. A successful empty result means connectivity works, not
 that aircraft are currently visible. Errors and provider bodies are not exposed.
+If OpenSky fails, the probe also makes one bounded request to adsb.fi's documented
+regional public endpoint and reports it under `alternative`. Neither result is
+retried by refreshing the page. Safe failure phase names distinguish connection,
+TLS, response-header and body failures without exposing transport details.
 
 Deployment steps:
 1. Sign in to Render and connect the private GitHub repository `zxcv616/Sentinel`.
@@ -432,6 +436,19 @@ the mode in Render's Environment settings only after connectivity succeeds;
 editing the Blueprint alone does not update its environment. No paid resources
 or payment information were added. Local probe tests use simulated responses
 and do not establish provider availability from Render.
+
+Follow-up verification: OpenSky timed out in the connection phase, before TLS or
+an HTTP response. The adsb.fi check succeeded from Render with HTTP 200 and 193
+aircraft in a fresh regional response. The optional live adapter is enabled by
+setting `SENTINEL_AIRCRAFT_SOURCE=adsbfi` alongside `SENTINEL_MODE=live` in Render's
+Environment settings. The default remains OpenSky. adsb.fi uses a circular query
+covering the configured bounds (maximum radius 250 NM), so aircraft just outside
+the map's initial bounding box may appear. Native provider JSON is recorded before
+normalization and replays offline; tracks and alerts retain `adsbfi` source IDs.
+Feet and knots are converted to meters and m/s, and position ages are subtracted
+from the provider timestamp. The map links to adsb.fi for attribution and states
+the polling interval. This feed is for personal, noncommercial use under
+[adsb.fi's API terms](https://github.com/adsbfi/opendata).
 
 Live-mode track and source-gap thresholds are adjusted to the five-minute cadence;
 short-term estimates still stop after 60 seconds. AIS remains disabled unless a

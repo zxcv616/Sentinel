@@ -7,6 +7,7 @@ from pathlib import Path
 
 import httpx
 
+from .adsbfi import parse_adsbfi
 from .alerts import validate_airports
 from .opensky import RetryableError, parse_states
 from .pipeline import Pipeline
@@ -92,7 +93,7 @@ def replay(path, *, session_id=None, on_frame=None):
                         raise ValueError("invalid failure reason")
                     pipeline.failed(record["reason"])
                 elif kind == "response":
-                    if record["source"] != "opensky":
+                    if record["source"] != pipeline.aircraft_source:
                         raise ValueError("unsupported response source")
                     status = record["status"]
                     if type(status) is not int or not 100 <= status <= 599:
@@ -104,7 +105,7 @@ def replay(path, *, session_id=None, on_frame=None):
                     # carries live retry/auth behavior; replay must not invent retry delays.
                     if 200 <= status < 300:
                         try:
-                            data = parse_states(response)
+                            data = (parse_adsbfi if pipeline.aircraft_source == "adsbfi" else parse_states)(response)
                         except RetryableError:
                             pass
                         else:

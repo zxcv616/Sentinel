@@ -12,6 +12,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 import httpx
 
+from .adsbfi import AdsbFiClient
 from .ais import run_ais
 from .config import Config
 from .estimation import estimate
@@ -32,24 +33,26 @@ def snapshot(pipeline, config):
                        "history": [{"lat": o.lat, "lon": o.lon, "timestamp": o.timestamp}
                                    for o in track.history]})
     return {"type": "snapshot", "timestamp": time.time(), "bounds": config.bounds,
+            "aircraft_provider": pipeline.aircraft_source, "poll_interval": config.poll_interval,
             "source": dict(pipeline.source_status), "maritime_source": dict(pipeline.ais_status), "counts": pipeline.manager.counts(), "tracks": tracks,
             "alerts": list(reversed(pipeline.alerts))}
 
 
-def create_app(config: Config | None = None, *, transport=None):
+def create_app(config: Config | None = None, *, transport=None, aircraft_source="opensky"):
     config = config or Config()
 
     @asynccontextmanager
     async def lifespan(app):
-        pipeline = Pipeline(config.raw_log_path, config.tracks, alert_config=config.alerts, alert_log_path=config.alert_log_path)
+        pipeline = Pipeline(config.raw_log_path, config.tracks, alert_config=config.alerts, alert_log_path=config.alert_log_path, aircraft_source=aircraft_source)
         app.state.pipeline = pipeline
 
         async def ingest():
             try:
                 async with httpx.AsyncClient(timeout=config.timeout, transport=transport,
                         headers={"User-Agent": "Sentinel/0.1"}) as http:
-                    client = OpenSkyClient(http, config, os.getenv("OPENSKY_CLIENT_ID"),
-                        os.getenv("OPENSKY_CLIENT_SECRET"), record_response=pipeline.record_response)
+                    client = (AdsbFiClient(http, config, pipeline.record_response) if aircraft_source == "adsbfi" else
+                        OpenSkyClient(http, config, os.getenv("OPENSKY_CLIENT_ID"),
+                        os.getenv("OPENSKY_CLIENT_SECRET"), record_response=pipeline.record_response))
                     async with asyncio.TaskGroup() as tasks:
                         tasks.create_task(pipeline.age_tracks())
                         if os.getenv("AISSTREAM_API_KEY"):
