@@ -1,468 +1,139 @@
 # Sentinel
 
-A real-time airspace and maritime awareness tool. **M0–M6 implemented:** an async
-OpenSky poller with normalized observations, in-memory tracks, bounded history,
-stale-track aging, append-only raw recording, and a live Leaflet map served by
-FastAPI, signal-gap and emergency-squawk alerts, and deterministic offline replay.
-PostgreSQL and further anomaly rules remain future work. M6 adds optional AIS vessels and loitering detection. M5 adds horizontal Kalman smoothing and bounded prediction.
+### Live aircraft tracking, maritime replay, and anomaly detection
 
-## Run
+[![Tests](https://github.com/zxcv616/Sentinel/actions/workflows/tests.yml/badge.svg)](https://github.com/zxcv616/Sentinel/actions/workflows/tests.yml)
+![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/API-FastAPI-009688?logo=fastapi&logoColor=white)
 
-Requires Python 3.11+ (tested locally with Python 3.14).
+**[Open live map →](https://sentinel-live-2nt0.onrender.com/)** · **[Explore recorded scenarios →](https://sentinel-airspace.mwieckin.workers.dev/)** · [Architecture](docs/architecture.md) · [Run locally](docs/development.md)
+
+Sentinel turns ADS-B aircraft reports and AIS vessel messages into a common
+operating picture: tracked objects, recent trails, position estimates, and an
+event log. It combines resilient asynchronous ingestion with deterministic replay
+so tracking and alert behavior can be reproduced from the original inputs.
+
+![Sentinel live map showing Bay Area aircraft, track states, source status, and domain controls](docs/images/live-airspace.png)
+*Live deployment captured October 23, 2026. Aircraft counts vary; this is a screenshot, not a capacity benchmark.*
+
+> **Try it in a minute:** Open the live map, select an aircraft, and inspect its
+> trail and position details. For a repeatable alert demonstration, open the
+> recorded demo and use the synthetic air & sea scenario. Render may need about
+> a minute to wake after inactivity.
+
+## What it does
+
+| Capability | Implementation |
+| --- | --- |
+| Resilient ingestion | Async HTTP polling and AIS WebSockets; retry backoff, rate-limit handling, validation, and source-health reporting. |
+| Track management | Source-qualified ICAO24/MMSI identities, bounded histories, duplicate/out-of-order rejection, and active → gap → lost aging. |
+| Anomaly detection | Aircraft signal gaps and emergency squawks; vessel loitering. Source-health checks, airport filtering, and deduplication reduce misleading alerts. |
+| Position estimation | Horizontal constant-velocity Kalman filter with a 60-second prediction limit; observed and estimated positions remain visually distinct. |
+| Reproducible processing | Original provider payloads, configuration, airport references, and clock events recorded to JSONL and replayed offline. |
+| Live interface | FastAPI REST endpoints and shared WebSocket snapshots feeding a Leaflet map with search, trails, domain filters, and alert details. |
+
+## Engineering evidence
+
+- **110 Python tests + 11 JavaScript tests** at the documented validation snapshot, covering ingestion, alerts, tracking, replay, and cross-runtime parity. [Test workflow](.github/workflows/tests.yml)
+- **248 aircraft and 6,423 observations** in the recorded tracking evaluation dataset—not a load-test result. [Method and results](docs/validation.md)
+- **Exact replay comparisons** include track histories and alert IDs/timestamps; synthetic scenarios exercise outages, recovery, deduplication, and loitering. [Fixture provenance](tests/fixtures/README.md)
+- **One shared collector** serves all viewers. Opening additional browser connections does not create additional aircraft polls. [Server implementation](src/sentinel/web.py)
+
+The Kalman model is evaluated against a reported-velocity baseline. The baseline
+performed better on the recorded dataset; the project documents that result
+instead of claiming an unmeasured accuracy improvement.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    A["Aircraft: adsb.fi / OpenSky"] --> I["Async ingest & validation"]
+    S["Vessels: AIS Stream"] --> I
+    I --> R["Raw JSONL recording"]
+    I --> T["Track manager"]
+    T --> E["Anomaly engine"]
+    T --> K["Kalman estimates"]
+    T --> API["FastAPI + WebSocket"]
+    E --> API
+    K --> API
+    API --> UI["Leaflet map"]
+    R --> P["Offline replay"]
+    P --> T
+```
+
+Track state is currently in memory. Raw inputs and alerts are local JSONL files;
+PostgreSQL is planned, not implemented. The Cloudflare replay site serves
+precomputed frames and does not collect live data. [Read the design decisions →](docs/architecture.md)
+
+## Deployment status
+
+| | Live site · Render | Recorded demo · Cloudflare |
+| --- | --- | --- |
+| Aircraft | Live adsb.fi data covering the Bay Area | Captured OpenSky reports and labeled synthetic scenarios |
+| Vessels | Adapter implemented; public feed not enabled | Synthetic vessel tracks and loitering walkthrough |
+| Updates | One shared aircraft poll every **5 minutes** | Browser playback with pause, restart, and scenario selection |
+| Storage | Temporary tracks/logs; reset on restart | Bundled replay fixtures |
+
+Live AIS requires a server-side key and has not been verified against the provider.
+The five-minute aircraft cadence is a hosting tradeoff: short-term predictions
+stop after 60 seconds and do not fill the entire polling interval. This is a
+portfolio demonstration, not a navigation or operational decision system.
+
+## Run and test
+
+Python 3.11+ and Node.js 22+ are needed for the full test suite. From the repository root:
 
 ```sh
 python3 -m venv .venv
-.venv/bin/python -m pip install -e '.[dev]'
-.venv/bin/sentinel --config config.toml
-```
+source .venv/bin/activate
+python -m pip install -e '.[dev]'
 
-Stop with Ctrl-C or SIGTERM. To make a single request with no retry waits:
+# Reproduce alerts offline—no API credentials or network requests.
+sentinel --replay tests/fixtures/scenario.jsonl
 
-```sh
-.venv/bin/sentinel --config config.toml --once
-```
-
-`python -m sentinel` also works in the installed environment. Without `--config`,
-the same Bay Area defaults are built in. Edit `config.toml` to change the bounds,
-15-second interval, request timeout, and backoff limits. Bounds use decimal degrees.
-
-Each successful poll prints UTC receipt time, OpenSky's source timestamp, and
-`aircraft_count`. The count includes all returned state vectors, including ground
-traffic; it is not an airborne-only count. Empty or null states prints zero.
-Errors go to stderr and never print a misleading zero count. One-shot failures
-and persistent authorization/configuration errors exit with status 1.
-
-## Authentication and quotas
-
-Anonymous access works without credentials. For authenticated access, create an
-API client in your OpenSky account and set **both** `OPENSKY_CLIENT_ID` and
-`OPENSKY_CLIENT_SECRET` in your shell environment. Password/basic authentication
-is not supported. Sentinel obtains and refreshes OAuth bearer tokens automatically.
-Do not commit credentials. `.env` is ignored by Git but is not automatically loaded.
-
-According to the [OpenSky REST documentation](https://openskynetwork.github.io/opensky-api/rest.html)
-(checked October 23, 2026), anonymous users receive 400 credits/day, standard
-users 4,000, and active feeders 8,000. This 4-square-degree bounding box costs one
-credit per request. Polling every 15 seconds consumes about 5,760 credits/day;
-anonymous access lasts roughly 100 minutes and standard access roughly 16.7 hours
-if no other requests consume the quota. A 30-second interval uses about 2,880/day.
-
-Network errors, invalid responses, HTTP 408/425/429, and server errors trigger
-exponential backoff with jitter, capped at the configured maximum. Server-provided
-`Retry-After` (seconds or HTTP date) and `X-Rate-Limit-Retry-After-Seconds` are
-honored even when they exceed that cap. Successful polls reset backoff. A bearer
-401 refreshes the token once; persistent authorization errors stop with a message.
-Polling is sequential, targets 15 seconds between successful request starts, and
-never runs concurrent requests or attempts to catch up on missed intervals.
-
-## Tests
-
-```sh
-.venv/bin/python -m pytest -q
-```
-
-Tests use mocked HTTP responses and injected waits, requiring neither credentials
-nor network access. They cover count output, bounds, empty results, validation,
-timeouts, malformed data, retry recovery, quota delays, and OAuth refresh.
-M0 tests use synthetic HTTP responses; M4 adds recorded synthetic scenarios and a live OpenSky capture.
-
-## Observations and tracks (M1)
-
-Each usable position becomes an immutable `Observation`. It retains both the
-source position timestamp (`time_position`) and UTC receipt time as epoch seconds.
-Altitude is barometric meters, speed is meters/second, and heading is degrees
-clockwise from north. Missing optional values remain null. Invalid rows or missing
-positions are counted as rejected without discarding other aircraft in the response.
-
-Tracks are keyed by `(source, object_id)`; ICAO24 identifiers are lowercased.
-`first_seen` and `last_seen` refer to accepted position timestamps. Only strictly
-newer positions enter history. Duplicate timestamps and out-of-order updates are
-ignored by the position history. M3 independently examines squawk changes using
-the source last-contact timestamp. Polling an
-old position repeatedly does not keep its track alive. This is position freshness,
-not proof of a transponder outage; M3 alerts apply additional source-health and airport checks.
-
-The `[tracks]` settings control a 120-observation history limit and aging:
-
-- Active until silence exceeds 60 seconds.
-- Gap after 60 seconds, lost after 300 seconds.
-- Removed after 1,800 seconds; a later fresh observation starts a new track.
-
-A separate timer checks aging every second, including during pending network
-requests and long retry waits. Newer positions can reactivate a track; old input
-cannot recreate an already expired track. The manager never moves its clock
-backward. Each successful poll prints added observations, rejected rows, and
-active/gap/lost counts. Track state is in memory and starts empty on each launch.
-
-## Raw recording
-
-`[recording].raw_log_path` defaults to `data/raw.jsonl`, relative to the launch
-working directory. Sentinel appends one JSON object per line and flushes each
-record before processing. A recording error stops the pipeline. Flush does not
-guarantee survival of a power failure; there is no per-record disk `fsync`.
-
-Records carry schema `version: 1`, a session ID, a UTC epoch `timestamp`, and `kind`:
-
-- `session`: track settings for the new, initially empty manager.
-- `response`: source, HTTP status, exact decoded HTTP body bytes in `body_base64`,
-  and an allowlist of content-type and retry headers. Written before validation,
-  including malformed and error responses. HTTP compression is decoded by httpx.
-- `tick`: an explicit clock advance, allowing future replay to reproduce silence.
-
-OAuth token responses, credentials, and request authorization headers are not
-recorded. A network failure has no response body to record; timer ticks continue.
-Files append across launches, with session IDs separating runs. Use one process
-per log file. Logs are excluded from Git and currently have no rotation or size
-limit. M4 replays these recorded inputs and clock events offline; see Replay below.
-
-## Live map (M2)
-
-```sh
-.venv/bin/python -m pip install -e '.[dev]'
-.venv/bin/sentinel --config config.toml --serve
-```
-
-Open http://127.0.0.1:8000. Use `--port 8001` if needed. The server binds only to
-localhost and starts one poller and aging timer; do not run a separate poller or
-multiple server workers against the same raw log. Stop with Ctrl-C. Closing the
-browser does not stop the server or its API usage.
-
-The map shows heading arrows (a circle for unknown heading), recent position
-trails, and active/gap/lost colors. Select an aircraft marker or list row for
-position, altitude, speed, heading, and squawk. Search by ICAO24, toggle trails,
-and use Fit coverage to return to the configured bounding box. Trails accumulate
-while this process runs and are limited by `history_size`. Predictions are not implemented yet.
-
-The browser receives a full snapshot every second over `/ws/tracks`, reconnects
-with backoff, and removes expired tracks from the map. These snapshots do not
-increase the OpenSky polling rate. The header reports the browser connection;
-the Data source panel separately reports successful polling, retrying, or stopped
-ingestion. Data can remain visible during an interruption and should be treated
-as stale. A stopped ingestion task leaves the map available for inspection.
-
-- `GET /api/tracks`: snapshot with source status, counts, latest positions, and trails.
-- `GET /api/health`: source status and the last successful receipt timestamp.
-- `WS /ws/tracks`: full snapshots, including empty states and track removals.
-- `GET /docs`: generated API documentation.
-
-Leaflet 1.9.4 loads from unpkg with integrity checks; map tiles load from
-OpenStreetMap with attribution. Internet access is required for both. A visible
-message explains map-resource failures; the aircraft list still works if the map
-library cannot load. This is a local development service without user accounts.
-
-M2 tests exercise static pages, REST snapshots, WebSocket connections and
-reconnections, source failures, and pipeline shutdown with mocked HTTP data.
-
-## Alerts (M3)
-
-The pipeline emits `signal_gap` and `emergency_squawk` events. The map's Recent
-alert events panel and colored rings show event locations, including events whose
-tracks have since expired. Select an event to open its map popup. Red rings mark
-emergency-code events; amber rings mark gaps. These are historical events, not
-an assertion that an emergency is still active. Events without a usable position
-appear in the list only. Search filters aircraft and alerts by ICAO24.
-
-`GET /api/alerts` and WebSocket snapshots return the most recent 200 events from
-the current session, newest first. All emitted events append to
-`[recording].alert_log_path` (`data/alerts.jsonl` in the sample configuration).
-When omitted, this file is `alerts.jsonl` beside the raw log. Each event includes
-an ID, session, type, source, object ID, detection timestamp, last known coordinates
-(or null), and rule details. Raw and alert files must be different. Events are
-flushed before appearing in the UI; a logging failure stops ingestion. Logs have
-no rotation and the UI does not reload historical sessions on restart.
-
-### Signal gaps
-
-`[alerts].gap_seconds` defaults to 60 seconds. An aircraft must first have had a
-fresh accepted position during this session. The rule emits once per silent
-episode, only while successful source responses remain recent. Fresh positions
-rearm the rule. Ground positions, positions within `airport_radius_km` (8 km) of
-an airport reference point, and positions outside reference coverage are suppressed.
-Track coloring still uses the separate `[tracks]` thresholds.
-
-Failed requests, entirely unusable position batches, stale source snapshots, or
-more than `source_stale_seconds` (45) without a healthy response suppress gap
-alerts. After recovery, a full `gap_seconds` grace period precedes any gap alert.
-Thus source outages do not immediately produce a backlog of aircraft alerts.
-Choose source_stale_seconds above your polling interval if changing that interval.
-A gap means missing position data, not proof of a disabled transponder: reception
-loss, coverage boundaries, and unlisted landing sites can still cause gaps.
-
-The bundled airport reference includes 718 non-closed airports, heliports, and
-other facilities from [OurAirports public-domain data](https://ourairports.com/data/),
-retrieved October 23, 2026. Alert coverage is 36–40 N, 124–120 W, with facilities
-collected one degree beyond that boundary. This community-maintained dataset is
-not guaranteed complete. Outside this region, provide `airport_file` as a JSON
-file containing `coverage` (lamin/lamax/lomin/lomax) and a nonempty `airports` list
-with `id`, `lat`, and `lon`. Include a buffer around your coverage region at least
-as wide as the configured suppression radius. The complete reference and rule
-settings are recorded in the raw session entry for future replay.
-
-### Emergency squawks
-
-Observed 7500, 7600, and 7700 codes generate events for unlawful interference,
-radio communication failure, and general emergency respectively, consistent with
-the [FAA transponder guidance](https://www.faa.gov/Air_Traffic/publications/atpubs/atc_html/chap5_section_2.html).
-They report a received code, not a confirmed incident.
-
-Squawk evaluation is independent of position acceptance. A newer last-contact
-message can trigger an alert even without a new or usable position; the last known
-position is used when available and its timestamp is recorded. Stale contact data
-and out-of-order/duplicate contact timestamps are ignored. Repeated emergency
-codes emit once until a different observed code appears; missing codes do not
-clear the episode. Deduplication expires after `dedup_retention_seconds` (1800),
-so a long-unseen aircraft may produce a new event on return.
-
-Raw logs also record `source_failure` and `source_stopped` events for replay.
-A stopped event cannot be persisted if the raw log itself is no longer writable.
-Tests cover rule boundaries, deduplication, recovery, source outages, startup
-staleness, airport/ground suppression, missing coordinates, log failures, and
-alert delivery through REST/WebSocket snapshots.
-
-## Replay (M4)
-
-Replay a controlled scenario without OpenSky credentials or network access:
-
-```sh
-.venv/bin/sentinel --replay tests/fixtures/scenario.jsonl
-```
-
-This fixture produces four events: a gap, squawk 7700, a second gap after recovery,
-and squawk 7600. Its final tick expires the aircraft. The JSON report contains all
-emitted alerts (including IDs and timestamps), final track states with full bounded
-histories, source status, processed record count, and the final recorded time.
-
-```sh
-.venv/bin/sentinel --replay data/raw.jsonl --list-sessions
-.venv/bin/sentinel --replay data/raw.jsonl --session SESSION_ID
-.venv/bin/sentinel --replay tests/fixtures/opensky-live.jsonl --output replay-result.json
-```
-
-The default selects the last session header in an append-only log. Each session
-starts with empty state; select an explicit ID to reproduce an older run. Output
-files must not already exist, protecting inputs and previous reports. The input
-log is never modified. Replay runs as fast as possible, with no sleeps, server,
-network calls, credential reads, or writes to production raw/alert logs. `--serve`,
-`--once`, and `--config` cannot be combined with `--replay`. This milestone provides
-CLI replay and a Python frame callback for demos/tests, not timed map playback.
-
-Live and replay share the observation normalization, track manager, response
-validation, and anomaly engine. Replay uses the session's embedded thresholds and
-airport reference; it does not load the current config or airport file. File order
-is authoritative, even if timestamps move backward. Recorded ticks advance aging,
-and source failures control alert suppression; replay never invents retries or
-extra end-of-file time. `source_stopped` records preserve fatal ingestion status.
-
-A recording must have complete JSONL records and an M3-or-newer session header
-with alert settings and airport reference. Unsupported versions, malformed log
-records, unknown event kinds, and truncated lines fail with a line number. Invalid
-HTTP bodies are valid raw evidence and are handled just as in live mode. Legacy
-sessions remain listable but cannot promise reproducibility and are rejected.
-Use a finished recording or stable copy: replay is not a tailing service. As with
-any write-before-process log, a crash after a response was flushed but before it
-was processed may leave an unapplied final event; replay applies the complete
-recorded response. Exact parity assumes the live run processed its recorded events.
-
-`tests/fixtures/scenario.jsonl` exercises duplicates, out-of-order positions, gaps,
-emergency episodes, malformed responses, outages, recovery, bounded history, and
-expiry. `opensky-live.jsonl` contains two real captured OpenSky responses and their
-intervening ticks, with a checked-in expected result: 180 tracks and 333 history
-points. Tests also compare freshly recorded live-pipeline output to replay,
-including exact alert IDs and timestamps, and verify repeatable offline results.
-
-## Cloudflare deployment
-
-The optional [Cloudflare deployment](cloudflare/README.md) runs the same map with
-a JavaScript tracking core, SQLite-backed Durable Object persistence, alarm-driven
-polling, and hibernating WebSockets. Its tests verify parity against the Python
-recorded fixtures. The free-tier-oriented defaults use a four-minute anonymous
-poll interval and bounded recording retention; authenticated polling can be faster.
-The Python service and offline replay remain available unchanged.
-
-## M5: horizontal Kalman tracking
-
-Observed markers and trails remain unchanged. Blue outlined markers show a
-smoothed estimate at the last observation, or a short-term prediction while the
-observation is missing. Dashed blue circles show model-based uncertainty; these
-are **not calibrated confidence or accuracy guarantees**. Use “Estimated positions”
-to toggle the overlay. Track details show prediction age and the 60-second limit.
-No altitude estimation, sensor fusion, or threat classification is performed.
-
-The Python service and Cloudflare snapshot generator implement the same horizontal
-constant-velocity Kalman filter in local east/north coordinates, with independent
-position/velocity covariance per axis. Observation timestamps drive filtering;
-received timestamps never replace measurement time. Raw observations alone drive
-alerts. Each estimate is rebuilt from the bounded track history, making it a
-windowed filter that survives replay and checkpoint restoration without hidden state.
-Reported speed/heading initialize velocity; subsequent updates use positions.
-
-Configuration lives in `[tracks]`: `position_sigma_m`, `velocity_sigma_mps`,
-`acceleration_sigma_mps2`, `prediction_seconds`, and `filter_reset_seconds`.
-Long gaps and ground/air transitions reset the filter. Ground tracks are not
-extrapolated; duplicate/out-of-order observations are ignored. Longitude differences
-wrap across the dateline; near-polar tracks disable estimation because this local
-projection is unsuitable there. Parameters are initial assumptions, not tuned values.
-
-The hosted recorded demo defaults to a 12-aircraft tracking walkthrough drawn from
-40 recorded responses spanning 585 seconds. Five-second simulated steps are played
-at two wall-clock seconds per frame. No invented intermediate observations are
-inserted; estimates between observations are explicitly marked. A final 65-second
-pause in recorded input demonstrates the prediction timeout, then playback loops.
-The existing real-data and synthetic alert recordings remain selectable.
-
-### Reproducible evaluation
-
-```sh
-.venv/bin/python scripts/evaluate_tracking.py tests/fixtures/opensky-tracking.jsonl
-.venv/bin/pytest -q
+# Run Python tests and JavaScript parity/replay tests.
+python -m pytest -q
+npm --prefix cloudflare ci
 npm --prefix cloudflare test
 ```
 
-The test suite includes Python/JavaScript estimation parity (requires Node.js),
-constant-velocity trajectories, seeded-noise smoothing, uncertainty growth,
-timeout, resets, ground handling, dateline crossing, and replay demo validation.
-
-See [evaluation results](docs/m5-evaluation.json). The fixture contains 248 aircraft
-and 6,423 unique observations. Rolling-origin evaluation uses at least four prior
-positions and withholds all future positions from each estimate. Actual evaluation
-horizons fall within five seconds of the bucket, capped at 60 seconds. Cases overlap
-and are not independent. Withheld ADS-B observations are reference data, not ground truth.
-
-| Horizon | Cases | Kalman RMSE | Reported-velocity baseline RMSE |
-| --- | ---: | ---: | ---: |
-| 15 s | 3,735 | 248.91 m | 149.46 m |
-| 30 s | 3,205 | 657.83 m | 493.55 m |
-| 60 s | 1,569 | 1,642.12 m | 1,411.88 m |
-
-**The reported-speed/heading constant-velocity baseline performs better on this
-recording.** The position-only update model lags maneuvers; longer prediction horizons
-increase error. This milestone demonstrates the algorithm and evaluation pipeline,
-not improved real-world prediction accuracy. Future work should use separate tuning
-and evaluation recordings, incorporate velocity measurements, and calibrate uncertainty.
-The measured mean window-rebuild time was 0.0224 ms on the development machine;
-this is not a hosted throughput benchmark.
-
-## M6: maritime tracking and loitering
-
-The local service can ingest AIS Stream position messages alongside OpenSky aircraft.
-Set `AISSTREAM_API_KEY` in the server environment, then run the existing `--serve`
-command (or the continuous CLI). With no key, AIS is disabled and aircraft ingestion
-continues. `--once` remains an aircraft-only poll. Keys are never sent to the browser
-or included in recordings. Do not commit keys or pass them in URLs.
-
-The client follows [AIS Stream's server-side subscription protocol](https://aisstream.io/documentation):
-compressed WebSocket transport, immediate bounding-box subscription, bounded messages,
-heartbeat/idle timeouts, and exponential reconnect backoff with jitter. Subscription
-errors stop the AIS client with a generic status; network interruptions retry. Raw
-position frames are recorded before normalization as `ais_message` events. Recording
-failures stop the ingestion task group rather than silently discarding data. Actual
-provider connectivity has **not** been tested: no AIS key was supplied.
-
-Supported reports: PositionReport, StandardClassBPositionReport, and
-ExtendedClassBPositionReport. Vessel tracks use MMSI and source-qualified identities.
-Speed is converted from knots to m/s; unavailable speed/course/heading and invalid
-positions are handled explicitly. Metadata reception time is used when present,
-otherwise the recorded receive time is used. AIS seconds-within-minute is not an epoch
-and is never treated as one. Ship names and voyage/static data are not yet ingested.
-
-The map provides Air & sea / Aircraft / Vessels filters, vessel silhouettes, MMSI
-search, status and movement details, trails, estimates, and loitering alert markers.
-Anchored and moored vessels are not extrapolated. Aircraft signal-gap and squawk rules
-remain separate; ship signal-gap/port-proximity detection is not implemented.
-
-Loitering requires all of the following, configured under `[alerts]`:
-- Movement within `loiter_radius_m` of an episode's initial position (default 500 m).
-- At least `loiter_seconds` of continuous qualifying observations (300 s).
-- Reported speed at least `loiter_min_speed_mps` (1 m/s) and accumulated observed
-  displacement at least `loiter_min_distance_m` (100 m).
-- No observation gap longer than `loiter_max_gap_seconds` (90 s).
-
-An episode emits one alert. Leaving the radius, missing updates, or stopping resets
-it. Anchored/moored statuses suppress the rule. Per-vessel episode memory is constant
-and stale episodes expire. Loitering is a movement pattern, **not evidence of hostile
-intent**; harbor maneuvering, positional noise, and legitimate operations can still
-trigger it. Thresholds are not operationally validated. The rule currently applies
-to vessels only.
-
-The hosted default is **Synthetic air & sea / loitering**: one aircraft, a circling
-vessel, a transiting vessel, and a moored vessel. Its 29 frames span seven simulated
-minutes and produce exactly one loitering alert; the synthetic identifiers and motion
-are not real vessel observations. Earlier recorded-aircraft demos remain available.
-Cloudflare still serves static replay; no live AIS connection or billing is added.
+To run the same aircraft source and cadence as the hosted site:
 
 ```sh
-.venv/bin/python scripts/generate_maritime_fixture.py
-.venv/bin/sentinel --replay tests/fixtures/maritime-synthetic.jsonl
+SENTINEL_MODE=live SENTINEL_AIRCRAFT_SOURCE=adsbfi \
+  python -m uvicorn sentinel.hosting:create_hosted_app --factory \
+  --host 127.0.0.1 --port 8000 --workers 1
 ```
 
-Tests cover normalization, units/sentinels, metadata timestamps, both Class B reports,
-reconnect behavior, credential exclusion, suppression/reset/deduplication, and full
-Python/JavaScript replay parity for the mixed-domain fixture.
+Open [localhost:8000](http://127.0.0.1:8000). Provider access is subject to its terms
+and availability. [Configuration, OpenSky, AIS, and replay commands →](docs/development.md)
 
-## Render Free: connectivity check before live deployment
+## Explore the code
 
-`render.yaml` defines one Python web service on the explicit `free` plan, with no
-paid database, disk, worker, or scheduled job. `.python-version` selects Python 3.14.
-The initial `SENTINEL_MODE=probe` deployment makes exactly one anonymous OpenSky
-request per process start, then serves the cached result at `/` and `/api/probe`.
-Refreshing these endpoints does not fetch OpenSky again. `/healthz` checks process
-readiness, not upstream connectivity; inspect `state: success` in `/api/probe` before
-claiming the feed works. A successful empty result means connectivity works, not
-that aircraft are currently visible. Errors and provider bodies are not exposed.
-If OpenSky fails, the probe also makes one bounded request to adsb.fi's documented
-regional public endpoint and reports it under `alternative`. Neither result is
-retried by refreshing the page. Safe failure phase names distinguish connection,
-TLS, response-header and body failures without exposing transport details.
+| Area | Start here |
+| --- | --- |
+| Providers and resilience | [adsbfi.py](src/sentinel/adsbfi.py), [opensky.py](src/sentinel/opensky.py), [ais.py](src/sentinel/ais.py) |
+| Tracking and estimation | [tracks.py](src/sentinel/tracks.py), [estimation.py](src/sentinel/estimation.py) |
+| Detection rules | [alerts.py](src/sentinel/alerts.py), [maritime.py](src/sentinel/maritime.py) |
+| Recording and replay | [pipeline.py](src/sentinel/pipeline.py), [replay.py](src/sentinel/replay.py) |
+| API and map | [web.py](src/sentinel/web.py), [frontend](src/sentinel/static/) |
+| Tests and evidence | [tests](tests/), [JavaScript tests](cloudflare/test/), [evaluation](docs/validation.md) |
 
-Deployment steps:
-1. Sign in to Render and connect the private GitHub repository `zxcv616/Sentinel`.
-2. Create a Blueprint from `render.yaml`. Confirm the service plan is **Free** and
-   leave payment information unset. If Render requires payment verification, stop
-   rather than enabling billing as a workaround.
-3. Open the resulting service URL and verify `/api/probe` reports success.
-4. Once verified, change `SENTINEL_MODE` to `live` in the Blueprint and redeploy.
-   The same factory starts FastAPI and one shared collector, polling every 300 s.
-   Viewer traffic never creates additional collectors. `--workers 1` is deliberate.
-   The concurrency limit bounds active requests/connections, not total bandwidth.
+**Stack:** Python · asyncio · httpx · FastAPI · WebSockets · JavaScript · Leaflet · pytest · JSONL · Render · Cloudflare Workers
 
-Deployment verification (2026-10-23): `sentinel-live` was created manually on
-Render's Free plan using the settings in `render.yaml`, at
-https://sentinel-live-2nt0.onrender.com. The application deployed successfully, but
-both the initial OpenSky probe and a restart retry failed after approximately
-25 seconds (25.493 s and 25.399 s). Neither returned an upstream HTTP status;
-the probe does not establish the precise network failure. The service was initially left
-in `SENTINEL_MODE=probe` pending a working provider. For this manually created service, change
-the mode in Render's Environment settings only after connectivity succeeds;
-editing the Blueprint alone does not update its environment. No paid resources
-or payment information were added. Local probe tests use simulated responses
-and do not establish provider availability from Render.
+## Documentation and next steps
 
-Live deployment: https://sentinel-live-2nt0.onrender.com now runs with
-`SENTINEL_MODE=live` and `SENTINEL_AIRCRAFT_SOURCE=adsbfi`. The public API and
-browser WebSocket showed 163 live aircraft during verification. Ships remain
-disabled until an AIS key is configured. The Cloudflare URL still serves replay.
+[Development guide](docs/development.md) · [Deployment guide](docs/deployment.md) · [Pipeline reference](docs/reference.md) · [Validation](docs/validation.md) · [Contributing](CONTRIBUTING.md)
 
-Follow-up verification: OpenSky timed out in the connection phase, before TLS or
-an HTTP response. The adsb.fi check succeeded from Render with HTTP 200 and 193
-aircraft in a fresh regional response. The optional live adapter is enabled by
-setting `SENTINEL_AIRCRAFT_SOURCE=adsbfi` alongside `SENTINEL_MODE=live` in Render's
-Environment settings. The default remains OpenSky. adsb.fi uses a circular query
-covering the configured bounds (maximum radius 250 NM), so aircraft just outside
-the map's initial bounding box may appear. Native provider JSON is recorded before
-normalization and replays offline; tracks and alerts retain `adsbfi` source IDs.
-Feet and knots are converted to meters and m/s, and position ages are subtracted
-from the provider timestamp. The map links to adsb.fi for attribution and states
-the polling interval. This feed is for personal, noncommercial use under
-[adsb.fi's API terms](https://github.com/adsbfi/opendata).
+Next priorities are live AIS validation, durable storage and log retention,
+separate tuning/evaluation recordings for the estimator, and speed/altitude-jump
+detection. Multi-source correlation is future work.
 
-Live-mode track and source-gap thresholds are adjusted to the five-minute cadence;
-short-term estimates still stop after 60 seconds. AIS remains disabled unless a
-server-side `AISSTREAM_API_KEY` is configured. Never put secrets in the Blueprint.
-Render sleeps free services after inactivity; waking may take about a minute. Raw
-logs, track state, and alerts are temporary and reset on restarts/redeploys/sleep.
-This is a live-on-visit demonstration, not continuous monitoring or durable recording.
-The separate Cloudflare replay site remains the fallback and is not modified by
-this deployment. Do not add keepalive services merely to prevent Render sleeping.
+## Data attribution
 
-Sources: [Render free limits](https://render.com/docs/free),
-[Blueprint configuration](https://render.com/docs/blueprint-spec).
+Aircraft: [adsb.fi](https://adsb.fi/) and [OpenSky Network](https://opensky-network.org/).
+Vessel integration: [AIS Stream](https://aisstream.io/).
+Airport reference: [OurAirports](https://ourairports.com/data/).
+Map data: [OpenStreetMap contributors](https://www.openstreetmap.org/copyright).
+Recorded fixture provenance is documented [here](tests/fixtures/README.md).
+Provider data remains subject to its respective terms; synthetic scenarios are explicitly labeled.

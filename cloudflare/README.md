@@ -1,11 +1,15 @@
 # Sentinel on Cloudflare Workers
 
-Deployment: https://sentinel-airspace.mwieckin.workers.dev
+**[Recorded demo](https://sentinel-airspace.mwieckin.workers.dev/)** · [Project overview](../README.md) · [Live Render site](https://sentinel-live-2nt0.onrender.com/)
 
-The Cloudflare deployment keeps the existing map and runs the tracking/alert core
-in JavaScript inside one SQLite-backed Durable Object. The Python service and its
-replay tooling remain the behavioral reference. No Python server or paid Container
-is required.
+**The public Worker serves recorded playback, not live data.** With the checked-in
+`DEMO_MODE: "true"`, frames are generated from fixtures and played in the browser.
+No live aircraft/AIS collection runs on the public Cloudflare site.
+
+The codebase also contains an optional JavaScript tracking/alert backend in a
+SQLite-backed Durable Object. The live-backend sections below describe that
+implementation when demo mode is disabled, not the current public deployment.
+Python remains the behavioral reference for supported replay fixtures.
 
 ## Commands
 
@@ -19,13 +23,14 @@ npm run check
 npm run deploy
 ```
 
-`dev` serves the map at localhost:8787 using local Durable Object storage; it can
-make real OpenSky requests. `check` runs tests and bundles a deployment dry run.
+`dev` serves recorded playback at localhost:8787 with the checked-in configuration.
+With demo mode disabled it uses local Durable Object storage and can make real
+OpenSky requests. `check` runs tests and bundles a deployment dry run.
 `deploy` requires an authenticated Wrangler session (`npx wrangler login`). It
 publishes the map on the account's workers.dev subdomain. No custom domain needed.
 Generated assets are copied from the Python frontend and are not committed.
 
-## Runtime and free-tier budget
+## Optional live backend (not enabled publicly)
 
 - One shared `bay-area-v1` object owns the feed, regardless of viewer count.
 - Polling begins when an API/WebSocket client first accesses the service and
@@ -120,7 +125,8 @@ unavailable. HTTP 522 was observed when testing the production Worker on October
 connectivity failure, not evidence that credentials alone will resolve it.
 `/api/health` exposes the current retry status and `last_success`; do not treat
 an empty map during an outage as zero aircraft. Retries continue with backoff.
-The local Python deployment remains available during investigation.
+The public live Python service uses adsb.fi on Render; see the
+[deployment guide](../docs/deployment.md).
 
 ## Recorded demo deployment
 
@@ -142,17 +148,17 @@ and run `npm run deploy`. This rebuilds the live page and re-enables the existin
 backend; the first live API request schedules collection. Historical state is
 retained. Generated demo assets are not committed.
 
-### M5 replay estimates
+### Aircraft tracking replay
 
-The default demo is now the longer “Recorded tracking + Kalman estimates” recording.
+The selectable “Recorded tracking + Kalman estimates” scenario uses a longer aircraft recording.
 Estimation runs at asset-build time using the same equations as the local Python
 service. Browser playback adds no live collection or paid resources. The blue
 marker/circle overlay is separate from observed aircraft; prediction stops after
-60 simulated seconds. See the root README for the evaluation and limitations.
+60 simulated seconds. See [validation](../docs/validation.md) for the evaluation and limitations.
 
-### M6 mixed-domain demo
+### Mixed-domain demo
 
-The default recording is now the explicitly synthetic air/sea loitering scenario.
+The default recording is the explicitly synthetic air/sea loitering scenario.
 It includes three vessel tracks and one aircraft, domain filters, ship symbols, and
 one deterministic loitering alert. The Node replay core supports `ais_message` records
 and matches Python replay output. Live AIS remains an optional Python server feature

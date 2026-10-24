@@ -5,9 +5,15 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "sentinel-awareness"
 version = "0.1.0"
-description = "Airspace and maritime awareness — OpenSky poller"
+description = "Aircraft and vessel tracking, anomaly detection, and deterministic replay"
+readme = "README.md"
 requires-python = ">=3.11"
 dependencies = ["httpx>=0.27,<1", "fastapi>=0.115,<1", "uvicorn>=0.30,<1", "websockets>=13,<17"]
+
+[project.urls]
+Homepage = "https://sentinel-live-2nt0.onrender.com/"
+Repository = "https://github.com/zxcv616/Sentinel"
+Documentation = "https://github.com/zxcv616/Sentinel#readme"
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<10"]
