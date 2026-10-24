@@ -46,7 +46,7 @@ instead of claiming an unmeasured accuracy improvement.
 ## Architecture
 
 ```mermaid
-flowchart LR
+flowchart TB
     A["Aircraft: adsb.fi / OpenSky"] --> I["Async ingest & validation"]
     S["Vessels: AIS Stream"] --> I
     I --> R["Raw JSONL recording"]
