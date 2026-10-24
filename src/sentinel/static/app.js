@@ -83,7 +83,7 @@ function render() {
   el('source-attribution').hidden = snapshot.aircraft_provider !== 'adsbfi';
   el('source').textContent = demoMode ? 'Recorded playback — not a current observation' : `${snapshot.source.message}${snapshot.poll_interval ? ` · updates every ${snapshot.poll_interval / 60} min` : ''}`;
   el('updated').textContent = snapshot.source.last_success ? `${demoMode ? 'Recorded' : 'Last poll'} ${new Date(snapshot.source.last_success * 1000).toLocaleString()}` : 'No successful poll yet';
-  el('maritime-source').textContent = demoMode ? 'Vessels in the mixed-domain recording are synthetic.' : snapshot.maritime_source?.message || 'AIS disabled';
+  el('maritime-source').textContent = demoMode ? 'Vessels in the mixed-domain recording are synthetic.' : snapshot.maritime_source?.state === 'disabled' ? 'Live vessel feed is not configured.' : snapshot.maritime_source?.message || 'Vessel feed unavailable';
   const query = el('search').value.trim().toLowerCase();
   renderAlerts(query);
   const tracks = snapshot.tracks.filter(t => t.object_id.includes(query) && domainMatches(t));

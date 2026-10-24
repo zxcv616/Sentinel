@@ -8,3 +8,5 @@
 
 #domain {width:100%;padding:8px;margin:6px 0 12px;background:#121c21;color:#e3e9e6;border:1px solid #56615b;}
 .alert-row.loitering {border-left:2px solid #dfb06c;}
+
+#source-attribution:not([hidden]){display:block;margin-top:8px;font:11px var(--mono);color:var(--accent);text-underline-offset:3px}

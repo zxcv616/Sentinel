@@ -430,12 +430,17 @@ Render's Free plan using the settings in `render.yaml`, at
 https://sentinel-live-2nt0.onrender.com. The application deployed successfully, but
 both the initial OpenSky probe and a restart retry failed after approximately
 25 seconds (25.493 s and 25.399 s). Neither returned an upstream HTTP status;
-the probe does not establish the precise network failure. The service remains
-in `SENTINEL_MODE=probe`, not live mode. For this manually created service, change
+the probe does not establish the precise network failure. The service was initially left
+in `SENTINEL_MODE=probe` pending a working provider. For this manually created service, change
 the mode in Render's Environment settings only after connectivity succeeds;
 editing the Blueprint alone does not update its environment. No paid resources
 or payment information were added. Local probe tests use simulated responses
 and do not establish provider availability from Render.
+
+Live deployment: https://sentinel-live-2nt0.onrender.com now runs with
+`SENTINEL_MODE=live` and `SENTINEL_AIRCRAFT_SOURCE=adsbfi`. The public API and
+browser WebSocket showed 163 live aircraft during verification. Ships remain
+disabled until an AIS key is configured. The Cloudflare URL still serves replay.
 
 Follow-up verification: OpenSky timed out in the connection phase, before TLS or
 an HTTP response. The adsb.fi check succeeded from Render with HTTP 200 and 193
