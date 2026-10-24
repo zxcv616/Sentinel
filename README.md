@@ -398,3 +398,38 @@ Cloudflare still serves static replay; no live AIS connection or billing is adde
 Tests cover normalization, units/sentinels, metadata timestamps, both Class B reports,
 reconnect behavior, credential exclusion, suppression/reset/deduplication, and full
 Python/JavaScript replay parity for the mixed-domain fixture.
+
+## Render Free: connectivity check before live deployment
+
+`render.yaml` defines one Python web service on the explicit `free` plan, with no
+paid database, disk, worker, or scheduled job. `.python-version` selects Python 3.14.
+The initial `SENTINEL_MODE=probe` deployment makes exactly one anonymous OpenSky
+request per process start, then serves the cached result at `/` and `/api/probe`.
+Refreshing these endpoints does not fetch OpenSky again. `/healthz` checks process
+readiness, not upstream connectivity; inspect `state: success` in `/api/probe` before
+claiming the feed works. A successful empty result means connectivity works, not
+that aircraft are currently visible. Errors and provider bodies are not exposed.
+
+Deployment steps:
+1. Sign in to Render and connect the private GitHub repository `zxcv616/Sentinel`.
+2. Create a Blueprint from `render.yaml`. Confirm the service plan is **Free** and
+   leave payment information unset. If Render requires payment verification, stop
+   rather than enabling billing as a workaround.
+3. Open the resulting service URL and verify `/api/probe` reports success. This check
+   has not yet been run on Render; the checked-in tests use simulated HTTP responses.
+4. Once verified, change `SENTINEL_MODE` to `live` in the Blueprint and redeploy.
+   The same factory starts FastAPI and one shared collector, polling every 300 s.
+   Viewer traffic never creates additional collectors. `--workers 1` is deliberate.
+   The concurrency limit bounds active requests/connections, not total bandwidth.
+
+Live-mode track and source-gap thresholds are adjusted to the five-minute cadence;
+short-term estimates still stop after 60 seconds. AIS remains disabled unless a
+server-side `AISSTREAM_API_KEY` is configured. Never put secrets in the Blueprint.
+Render sleeps free services after inactivity; waking may take about a minute. Raw
+logs, track state, and alerts are temporary and reset on restarts/redeploys/sleep.
+This is a live-on-visit demonstration, not continuous monitoring or durable recording.
+The separate Cloudflare replay site remains the fallback and is not modified by
+this deployment. Do not add keepalive services merely to prevent Render sleeping.
+
+Sources: [Render free limits](https://render.com/docs/free),
+[Blueprint configuration](https://render.com/docs/blueprint-spec).
