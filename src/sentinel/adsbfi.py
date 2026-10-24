@@ -54,7 +54,10 @@ class AdsbFiClient:
                 body.extend(chunk)
                 if len(body) > 2 * 1024 * 1024:
                     raise RetryableError('Oversized adsb.fi response')
-            recorded = httpx.Response(response.status_code, content=bytes(body), headers=response.headers)
+            # aiter_bytes() already decompresses; don't decode the body twice.
+            headers = {k: v for k, v in response.headers.items()
+                       if k not in ('content-encoding', 'content-length')}
+            recorded = httpx.Response(response.status_code, content=bytes(body), headers=headers)
         self.record_response(recorded)
         if response.status_code in (408, 425, 429) or response.status_code >= 500:
             raise RetryableError(f'adsb.fi HTTP {response.status_code}', retry_delay(response.headers))

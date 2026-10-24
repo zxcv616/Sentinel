@@ -1,6 +1,7 @@
 import asyncio
 import base64
 import json
+import gzip
 from dataclasses import asdict
 import time
 
@@ -35,6 +36,19 @@ def test_units_timestamps_ground_and_invalid_ids():
     assert p.source=='adsbfi' and p.timestamp==998
     assert p.altitude==3048 and p.speed==pytest.approx(102.8888)
     assert observations[1].status=='ground'
+
+
+def test_compressed_provider_response_is_decoded_once():
+    records=[]
+    async def run():
+        async with httpx.AsyncClient(transport=httpx.MockTransport(lambda r:httpx.Response(
+            200, content=gzip.compress(json.dumps(payload(1000)).encode()),
+            headers={'content-encoding':'gzip', 'content-type':'application/json'}
+        ))) as http:
+            return await AdsbFiClient(http,Config(),records.append).poll()
+    result=asyncio.run(run())
+    assert result['time']==1000
+    assert records[0].json()==payload(1000)
 
 
 @pytest.mark.parametrize(('status','error'),[(429,RetryableError),(503,RetryableError),(403,FatalError)])
