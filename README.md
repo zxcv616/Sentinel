@@ -415,12 +415,23 @@ Deployment steps:
 2. Create a Blueprint from `render.yaml`. Confirm the service plan is **Free** and
    leave payment information unset. If Render requires payment verification, stop
    rather than enabling billing as a workaround.
-3. Open the resulting service URL and verify `/api/probe` reports success. This check
-   has not yet been run on Render; the checked-in tests use simulated HTTP responses.
+3. Open the resulting service URL and verify `/api/probe` reports success.
 4. Once verified, change `SENTINEL_MODE` to `live` in the Blueprint and redeploy.
    The same factory starts FastAPI and one shared collector, polling every 300 s.
    Viewer traffic never creates additional collectors. `--workers 1` is deliberate.
    The concurrency limit bounds active requests/connections, not total bandwidth.
+
+Deployment verification (2026-10-23): `sentinel-live` was created manually on
+Render's Free plan using the settings in `render.yaml`, at
+https://sentinel-live-2nt0.onrender.com. The application deployed successfully, but
+both the initial OpenSky probe and a restart retry failed after approximately
+25 seconds (25.493 s and 25.399 s). Neither returned an upstream HTTP status;
+the probe does not establish the precise network failure. The service remains
+in `SENTINEL_MODE=probe`, not live mode. For this manually created service, change
+the mode in Render's Environment settings only after connectivity succeeds;
+editing the Blueprint alone does not update its environment. No paid resources
+or payment information were added. Local probe tests use simulated responses
+and do not establish provider availability from Render.
 
 Live-mode track and source-gap thresholds are adjusted to the five-minute cadence;
 short-term estimates still stop after 60 seconds. AIS remains disabled unless a

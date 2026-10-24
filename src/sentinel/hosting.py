@@ -17,21 +17,37 @@ def probe_app(*, transport=None):
 
     async def probe():
         started = time.monotonic()
+        phase = 'connecting'
+
+        async def trace(event, info):
+            # Publish only fixed phase names, never transport arguments or secrets.
+            nonlocal phase
+            if event == 'connection.connect_tcp.complete':
+                phase = 'tls_handshake'
+            elif event == 'connection.start_tls.complete':
+                phase = 'sending_request'
+            elif event.endswith('receive_response_headers.started'):
+                phase = 'waiting_for_headers'
+
         try:
             async with httpx.AsyncClient(timeout=25,transport=transport,headers={'User-Agent':'Sentinel/0.1','Accept':'application/json'}) as client:
-                async with client.stream('GET','https://opensky-network.org/api/states/all',params=Config().bounds) as response:
+                async with client.stream('GET','https://opensky-network.org/api/states/all',params=Config().bounds,extensions={'trace': trace}) as response:
+                    result['upstream_status']=response.status_code
+                    phase = 'reading_body'
                     body=bytearray()
                     async for chunk in response.aiter_bytes():
                         body.extend(chunk)
                         if len(body)>2*1024*1024:raise ValueError('Oversized response')
-                    result['upstream_status']=response.status_code
                     if response.status_code!=200:
                         result.update(state='failed',message='OpenSky returned an unsuccessful HTTP response')
                         return
+                    phase = 'validating_payload'
                     payload=parse_states(httpx.Response(response.status_code,content=bytes(body)))
                     result.update(state='success',message='OpenSky reachable; live deployment not enabled yet',aircraft_count=len(payload['states'] or []),source_timestamp=payload['time'])
-        except (httpx.HTTPError,ValueError,RetryableError):
-            result.update(state='failed',message='OpenSky request timed out, failed, or returned invalid data')
+        except (httpx.HTTPError,ValueError,RetryableError) as exc:
+            result.update(state='failed',message='OpenSky request timed out, failed, or returned invalid data',failure_phase=phase,
+                          failure_kind=('timeout' if isinstance(exc,httpx.TimeoutException) else
+                                        'transport' if isinstance(exc,httpx.HTTPError) else 'invalid_payload'))
         finally:
             result['elapsed_seconds']=round(time.monotonic()-started,3)
 

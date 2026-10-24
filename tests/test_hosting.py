@@ -1,7 +1,45 @@
 import time
 import httpx
+import pytest
 from fastapi.testclient import TestClient
 from sentinel.hosting import probe_app,create_hosted_app
+
+
+@pytest.mark.parametrize(('events','phase'), [
+    ([], 'connecting'),
+    (['connection.connect_tcp.complete'], 'tls_handshake'),
+    (['connection.connect_tcp.complete', 'connection.start_tls.complete',
+      'http11.receive_response_headers.started'], 'waiting_for_headers'),
+])
+def test_probe_reports_safe_failure_phase(events, phase):
+    async def handler(request):
+        for event in events:
+            await request.extensions['trace'](event, {'secret': 'must-not-leak'})
+        raise httpx.ConnectTimeout('private transport detail must-not-leak')
+    with TestClient(probe_app(transport=httpx.MockTransport(handler))) as client:
+        for _ in range(100):
+            result=client.get('/api/probe').json()
+            if result['state']!='starting':break
+        assert result['state']=='failed'
+        assert result['failure_kind']=='timeout'
+        assert result['failure_phase']==phase
+        assert 'must-not-leak' not in str(result)
+
+
+def test_probe_retains_http_status_when_body_times_out():
+    class BrokenBody(httpx.AsyncByteStream):
+        async def __aiter__(self):
+            yield b'{'
+            raise httpx.ReadTimeout('private transport detail')
+    with TestClient(probe_app(transport=httpx.MockTransport(
+        lambda request:httpx.Response(200, stream=BrokenBody())
+    ))) as client:
+        for _ in range(100):
+            result=client.get('/api/probe').json()
+            if result['state']!='starting':break
+        assert result['upstream_status']==200
+        assert result['failure_phase']=='reading_body'
+        assert result['failure_kind']=='timeout'
 
 
 def test_probe_is_one_upstream_request_per_process():
