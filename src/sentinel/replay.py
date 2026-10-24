@@ -81,6 +81,8 @@ def replay(path, *, session_id=None, on_frame=None):
                     pipeline = Pipeline.for_replay(record, lambda: clock[0])
                 elif pipeline is None:
                     raise ValueError("event appears before its session header")
+                elif kind == "ais_message":
+                    pipeline.accept_ais(base64.b64decode(record["body_base64"], validate=True), clock[0])
                 elif kind == "tick":
                     pipeline.tick()
                 elif kind == "source_stopped":

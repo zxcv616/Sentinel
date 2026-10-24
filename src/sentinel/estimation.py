@@ -40,7 +40,7 @@ def estimate(history, timestamp, config):
             scale = math.cos(math.radians(lat0))
             if abs(scale) < .01:
                 return None  # Local projection is unsuitable close to the poles.
-            speed = o.speed if o.speed is not None and o.heading is not None and o.status != 'ground' else 0
+            speed = o.speed if o.speed is not None and o.heading is not None and o.status not in ('ground','anchored','moored') else 0
             heading = math.radians(o.heading or 0)
             east = [0, speed*math.sin(heading), config.position_sigma_m**2, 0, config.velocity_sigma_mps**2]
             north = [0, speed*math.cos(heading), config.position_sigma_m**2, 0, config.velocity_sigma_mps**2]
@@ -60,7 +60,7 @@ def estimate(history, timestamp, config):
 
     age = timestamp-previous.timestamp
     prediction = None
-    if previous.status != 'ground' and 0 < age <= config.prediction_seconds:
+    if previous.status not in ('ground','anchored','moored') and 0 < age <= config.prediction_seconds:
         prediction = {**position(axis_predict(east, age, config.acceleration_sigma_mps2),
                                   axis_predict(north, age, config.acceleration_sigma_mps2)),
                       'timestamp': timestamp, 'horizon_seconds': age}

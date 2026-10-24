@@ -35,3 +35,10 @@ recent_limit = 200
 dedup_retention_seconds = 1800.0
 # Empty uses the bundled regional airport reference.
 airport_file = ""
+
+# Vessel loitering is behavioral evidence, not an inference of intent.
+loiter_radius_m = 500.0
+loiter_seconds = 300.0
+loiter_min_speed_mps = 1.0
+loiter_min_distance_m = 100.0
+loiter_max_gap_seconds = 90.0

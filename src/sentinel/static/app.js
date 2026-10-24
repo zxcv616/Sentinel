@@ -11,7 +11,7 @@ const keyOf = track => `${track.source}:${track.object_id}`;
 function fit() { if (map && bounds) map.fitBounds(bounds, {padding: [30, 30]}); }
 function icon(track) {
   const heading = track.position.heading;
-  const shape = heading === null ? '<circle cx="14" cy="14" r="6"/>' : '<path d="M14 4 L20 23 L14 18 L8 23 Z"/>';
+  const shape = track.source === 'aisstream' ? '<path d="M14 3 L21 12 L19 24 H9 L7 12 Z"/>' : heading === null ? '<circle cx="14" cy="14" r="6"/>' : '<path d="M14 4 L20 23 L14 18 L8 23 Z"/>';
   return L.divIcon({className: 'aircraft-icon', iconSize: [23,23], iconAnchor: [11.5,11.5],
     html: `<svg width="23" height="23" viewBox="0 0 28 28" style="transform:rotate(${heading ?? 0}deg)" fill="${colors[track.state]}" stroke="#121c21" stroke-width="1">${shape}</svg>`});
 }
@@ -25,9 +25,10 @@ function details(track) {
   if (!track) return;
   el('detail-title').textContent = track.object_id.toUpperCase();
   const p = track.position, fmt = (v, unit) => v === null ? 'Unknown' : `${Math.round(v).toLocaleString()} ${unit}`;
-  const fields = {State: track.state, Altitude: fmt(p.altitude, 'm'), Speed: fmt(p.speed, 'm/s'), Heading: fmt(p.heading, '°'),
+  const fields = {Domain: track.source === 'aisstream' ? 'Vessel / MMSI' : 'Aircraft / ICAO24', State: track.state, Altitude: fmt(p.altitude, 'm'), Speed: fmt(p.speed, 'm/s'), Heading: fmt(p.heading, '°'),
     Squawk: p.squawk ?? 'Unknown', Status: p.status ?? 'Unknown', Position: `${p.lat.toFixed(4)}, ${p.lon.toFixed(4)}`,
     'Last position': new Date(track.last_seen * 1000).toLocaleTimeString(), 'Trail points': track.history.length};
+  if (track.source === 'aisstream') { delete fields.Altitude; delete fields.Squawk; fields.Speed = fmt(p.speed === null ? null : p.speed / 0.514444, 'kn'); }
   if (track.estimate) {
     const estimate = track.estimate, predicted = estimate.prediction;
     fields['Estimate'] = predicted ? `Predicted +${predicted.horizon_seconds.toFixed(1)} s` : 'Smoothed at last observation';
@@ -41,8 +42,8 @@ function details(track) {
   }
 }
 function renderAlerts(query) {
-  const alerts = (snapshot.alerts || []).filter(a => a.object_id.includes(query));
-  el('alert-count').textContent = (snapshot.alerts || []).length;
+  const alerts = (snapshot.alerts || []).filter(a => a.object_id.includes(query) && domainMatches(a));
+  el('alert-count').textContent = alerts.length;
   el('alerts-empty').hidden = alerts.length > 0;
   el('alerts-empty').textContent = query ? 'No matching alert events.' : 'No alerts in this session.';
   el('alerts').replaceChildren();
@@ -51,7 +52,7 @@ function renderAlerts(query) {
     if (!ids.has(id)) { map.removeLayer(layer); alertLayers.delete(id); }
   }
   for (const alert of alerts) {
-    const title = alert.type === 'emergency_squawk' ? `Squawk ${alert.details.squawk}` : 'Signal gap';
+    const title = alert.type === 'emergency_squawk' ? `Squawk ${alert.details.squawk}` : alert.type === 'loitering' ? 'Loitering' : 'Signal gap';
     const stamp = new Date(alert.timestamp * 1000).toLocaleTimeString();
     const label = `${title} · ${alert.object_id.toUpperCase()}`;
     let layer = alertLayers.get(alert.id);
@@ -74,14 +75,16 @@ function renderAlerts(query) {
     el('alerts').append(button);
   }
 }
+function domainMatches(track) { const domain=el('domain').value; return domain==='all'||(domain==='sea')===(track.source==='aisstream'); }
 function render() {
   if (!snapshot) return;
-  for (const state of ['active','gap','lost']) el(state).textContent = snapshot.counts[state];
+  for (const state of ['active','gap','lost']) el(state).textContent = snapshot.tracks.filter(t => domainMatches(t) && t.state === state).length;
   el('source').textContent = demoMode ? 'Recorded playback — not a current observation' : snapshot.source.message;
   el('updated').textContent = snapshot.source.last_success ? `${demoMode ? 'Recorded' : 'Last poll'} ${new Date(snapshot.source.last_success * 1000).toLocaleString()}` : 'No successful poll yet';
+  el('maritime-source').textContent = demoMode ? 'Vessels in the mixed-domain recording are synthetic.' : snapshot.maritime_source?.message || 'AIS disabled';
   const query = el('search').value.trim().toLowerCase();
   renderAlerts(query);
-  const tracks = snapshot.tracks.filter(t => t.object_id.includes(query));
+  const tracks = snapshot.tracks.filter(t => t.object_id.includes(query) && domainMatches(t));
   const visible = new Set(tracks.map(keyOf));
   for (const [key,layer] of layers) {
     if (!visible.has(key)) { map.removeLayer(layer.marker); map.removeLayer(layer.trail); layers.delete(key); }
@@ -119,11 +122,11 @@ function render() {
     }
     const button = document.createElement('button'); button.className = `aircraft-row${selected === key ? ' selected' : ''}`;
     const id = document.createElement('strong'), state = document.createElement('span');
-    id.textContent = track.object_id.toUpperCase(); state.textContent = track.state;
+    id.textContent = track.object_id.toUpperCase(); state.textContent = `${track.source === 'aisstream' ? 'vessel · ' : ''}${track.state}`;
     button.append(id,state); button.onclick = () => select(track); el('aircraft').append(button);
   }
   el('empty').hidden = tracks.length > 0;
-  el('empty').textContent = query ? 'No matching aircraft.' : 'No aircraft positions available yet.';
+  el('empty').textContent = query ? 'No matching tracks.' : 'No track positions available yet.';
   const chosen = snapshot.tracks.find(t => keyOf(t) === selected);
   if (!chosen) selected = null;
   details(chosen);
@@ -155,6 +158,7 @@ if (typeof L !== 'undefined') {
 }
 el('fit').onclick = fit;
 el('search').oninput = render;
+el('domain').onchange = render;
 el('trails').onchange = render;
 el('estimates').onchange = render;
 setInterval(() => {

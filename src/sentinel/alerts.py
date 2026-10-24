@@ -18,8 +18,16 @@ class AlertConfig:
     dedup_retention_seconds: float = 1800
     recent_limit: int = 200
     airport_file: str = ""
+    loiter_radius_m: float = 500
+    loiter_seconds: float = 300
+    loiter_min_speed_mps: float = 1
+    loiter_min_distance_m: float = 100
+    loiter_max_gap_seconds: float = 90
 
     def __post_init__(self):
+        for value in (self.loiter_radius_m, self.loiter_seconds, self.loiter_min_speed_mps,
+                      self.loiter_min_distance_m, self.loiter_max_gap_seconds):
+            if number(value, 0) <= 0: raise ValueError("Loitering thresholds must be positive")
         for value in (self.gap_seconds, self.source_stale_seconds, self.airport_radius_km, self.dedup_retention_seconds):
             if number(value, 0) <= 0:
                 raise ValueError("Alert thresholds must be positive")

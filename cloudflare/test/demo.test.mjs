@@ -24,3 +24,10 @@ test('tracking demo includes finite predictions, an expiry, and preserved raw po
     assert.equal(t.position.timestamp,t.last_seen);
   }
 });
+test('mixed-domain demo groups timestamps and shows one vessel loitering episode',async()=>{
+  const recording=(await demoData()).recordings[3];
+  assert.equal(recording.frames.length,29);
+  assert.equal(recording.frames[0].tracks.length,4);
+  assert.deepEqual(recording.frames.at(-1).alerts.map(a=>[a.type,a.object_id]),[['loitering','999000001']]);
+  assert.equal(recording.frames.at(-1).tracks.filter(t=>t.source==='aisstream').length,3);
+});

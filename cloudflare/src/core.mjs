@@ -1,7 +1,8 @@
+import {normalizeAIS,observeLoiter,ageLoiter,loiterDefaults} from './maritime.mjs';
 import {estimate,estimationDefaults} from './estimation.mjs';
 // Deterministic port of the Python M0–M4 domain logic. No network, storage, or wall clock.
 export const trackDefaults={...estimationDefaults,gap_after:60,lost_after:300,expire_after:1800,history_size:120,tick_interval:1};
-export const alertDefaults={gap_seconds:60,source_stale_seconds:45,airport_radius_km:8,dedup_retention_seconds:1800,recent_limit:200,airport_file:''};
+export const alertDefaults={...loiterDefaults,gap_seconds:60,source_stale_seconds:45,airport_radius_km:8,dedup_retention_seconds:1800,recent_limit:200,airport_file:''};
 const emergencies={'7500':'Unlawful interference code','7600':'Radio communication failure code','7700':'General emergency code'};
 const keyOf=o=>`${o.source}:${o.object_id}`;
 const numeric=(v,lo=-Infinity,hi=Infinity)=>typeof v==='number'&&Number.isFinite(v)&&v>=lo&&v<=hi;
@@ -35,7 +36,7 @@ export class Core{
   dump(){return structuredClone({...this});}
   emit(alert){this.sequence++;const event={version:1,session:this.session,id:`${this.session}:${this.sequence}`,...alert};this.alerts.push(event);return event;}
   age(t){
-    this.now=Math.max(this.now,t);
+    this.now=Math.max(this.now,t);ageLoiter(this,t);
     for(const [key,track] of Object.entries(this.tracks)){
       const age=this.now-track.last_seen;
       if(age>this.trackConfig.expire_after) delete this.tracks[key];
@@ -99,7 +100,13 @@ export class Core{
   }
   apply(record){
     const t=record.timestamp;
-    if(record.kind==='tick'){this.age(t);this.advance(t);}
+    if(record.kind==='ais_message'){
+      let data;try{data=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(record.body_base64),c=>c.charCodeAt(0))));}catch{return;}
+      const o=normalizeAIS(data,t);if(!o)return;
+      this.age(t);if(this.update(o))observeLoiter(this,o,distanceKm);
+      this.maritimeSource={state:'live',message:'Receiving AIS vessel positions',last_success:t};
+    }
+    else if(record.kind==='tick'){this.age(t);this.advance(t);}
     else if(record.kind==='source_failure')this.failed(record.reason);
     else if(record.kind==='source_stopped')this.stopped();
     else if(record.kind==='response'){
@@ -111,7 +118,7 @@ export class Core{
     }else if(record.kind!=='session')throw new Error('Unknown replay event');
   }
   result(){const tracks=Object.keys(this.tracks).sort().map(k=>this.tracks[k]);return {counts:Object.fromEntries(['active','gap','lost'].map(s=>[s,tracks.filter(t=>t.state===s).length])),tracks:structuredClone(tracks),source:{...this.source},alerts:structuredClone(this.alerts)};}
-  snapshot(bounds,t){const result=this.result();return {type:'snapshot',timestamp:t,bounds,...result,
+  snapshot(bounds,t){const result=this.result();return {type:'snapshot',timestamp:t,bounds,...result,maritime_source:this.maritimeSource||{state:'disabled',message:'AIS disabled',last_success:null},
     tracks:result.tracks.map(track=>({...track,estimate:estimate(track.history,t,this.trackConfig),position:track.history.at(-1),history:track.history.map(p=>({lat:p.lat,lon:p.lon,timestamp:p.timestamp}))})),
     alerts:result.alerts.slice(-this.alertConfig.recent_limit).reverse(),heartbeat_interval_seconds:20};}
 }

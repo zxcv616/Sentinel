@@ -7,12 +7,18 @@ export async function recording(name,label){
     core.apply(record);
     frames.push(core.snapshot({lamin:37,lamax:39,lomin:-123,lomax:-121},record.timestamp));
   }
+  if(name==='maritime-synthetic') {
+    const combined=[...new Map(frames.map(frame=>[frame.timestamp,frame])).values()];
+    for(const frame of combined)frame.bounds={lamin:37.7,lamax:38.05,lomin:-122.7,lomax:-122.2};
+    return {label,frames:combined};
+  }
   return {label,frames};
 }
 export async function demoData(){return {recordings:[
   await recording('opensky-live','Recorded OpenSky aircraft'),
   await recording('scenario','Synthetic alert walkthrough'),
-  await trackingRecording()
+  await trackingRecording(),
+  await recording('maritime-synthetic','Synthetic air & sea / loitering')
 ]};}
 
 async function trackingRecording(){

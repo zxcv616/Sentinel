@@ -9,20 +9,20 @@
   <script defer src="/static/app.js"></script>
 </head>
 <body>
-  <header><div class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 2 29 25H3Z M16 10 22 21H10Z"/></svg></span><div><h1>SENTINEL</h1><span>OPERATIONS / AIRSPACE</span></div></div><div class="header-context">SENTINEL <span>/</span> COMMON OPERATING PICTURE</div><div id="connection" role="status">Connecting…</div></header>
+  <header><div class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 2 29 25H3Z M16 10 22 21H10Z"/></svg></span><div><h1>SENTINEL</h1><span>OPERATIONS / AIR & SEA</span></div></div><div class="header-context">SENTINEL <span>/</span> COMMON OPERATING PICTURE</div><div id="connection" role="status">Connecting…</div></header>
   <main>
     <aside>
-      <div class="eyebrow section-index">01 / SURVEILLANCE</div><h2>Airspace overview<span class="heading-cross" aria-hidden="true">+</span></h2><p class="muted">Aircraft tracking &amp; event monitoring</p>
+      <div class="eyebrow section-index">01 / SURVEILLANCE</div><h2>Air & sea overview<span class="heading-cross" aria-hidden="true">+</span></h2><p class="muted">Aircraft &amp; vessel tracking</p>
       <div class="stats"><div><b id="active">0</b><span><i class="dot active"></i> Active</span></div><div><b id="gap">0</b><span><i class="dot gap"></i> Gap</span></div><div><b id="lost">0</b><span><i class="dot lost"></i> Lost</span></div></div>
       <div class="source"><span class="eyebrow">SOURCE / OPENSKY</span><p id="source" role="status">Waiting for first update</p><small id="updated">No successful poll yet</small></div>
       <section class="alerts-panel"><div class="eyebrow">EVENT LOG <span id="alert-count">0</span></div><p id="alerts-empty" class="muted">No alerts in this session.</p><div id="alerts" aria-label="Recent alert events"></div><p class="muted">Recorded events · last known positions</p></section>
-      <div class="controls"><button id="fit">Fit coverage</button><label><input type="checkbox" id="trails" checked> Recent trails</label><label><input type="checkbox" id="estimates" checked> Estimated positions</label></div>
-      <label for="search" class="eyebrow">TRACK DIRECTORY</label><input id="search" type="search" placeholder="Search ICAO24 identifier…" autocomplete="off">
-      <p id="empty" class="muted">Waiting for aircraft…</p><div id="aircraft" aria-label="Aircraft list"></div>
-      <section id="detail" hidden><div class="eyebrow">SELECTED AIRCRAFT</div><h3 id="detail-title"></h3><dl id="detail-fields"></dl></section>
+      <p id="maritime-source" class="muted"></p><label for="domain">Domain</label><select id="domain"><option value="all">Air &amp; sea</option><option value="air">Aircraft</option><option value="sea">Vessels</option></select><div class="controls"><button id="fit">Fit coverage</button><label><input type="checkbox" id="trails" checked> Recent trails</label><label><input type="checkbox" id="estimates" checked> Estimated positions</label></div>
+      <label for="search" class="eyebrow">TRACK DIRECTORY</label><input id="search" type="search" placeholder="Search ICAO24 or MMSI…" autocomplete="off">
+      <p id="empty" class="muted">Waiting for tracks…</p><div id="aircraft" aria-label="Track list"></div>
+      <section id="detail" hidden><div class="eyebrow">SELECTED TRACK</div><h3 id="detail-title"></h3><dl id="detail-fields"></dl></section>
       <footer>Observed positions and model estimates. Gaps may reflect source outages. This display is not for navigation.</footer>
     </aside>
-    <section class="map-shell"><div class="map-heading"><div><span class="eyebrow">GEOSPATIAL VIEW</span><strong id="coverage-label">Coverage area</strong></div><span class="map-mode">OBSERVED + ESTIMATED</span></div><div id="map" aria-label="Live aircraft map"></div><div class="legend"><span class="legend-label">TRACK STATE</span><span class="dot active"></span>Active <span class="dot gap"></span>Gap <span class="dot lost"></span>Lost<span style="color:#79bfe8">◌</span>Estimate / model uncertainty</div><div id="map-error" role="status" hidden></div></section>
+    <section class="map-shell"><div class="map-heading"><div><span class="eyebrow">GEOSPATIAL VIEW</span><strong id="coverage-label">Coverage area</strong></div><span class="map-mode">OBSERVED + ESTIMATED</span></div><div id="map" aria-label="Aircraft and vessel map"></div><div class="legend"><span class="legend-label">TRACK STATE</span><span class="dot active"></span>Active <span class="dot gap"></span>Gap <span class="dot lost"></span>Lost<span style="color:#79bfe8">◌</span>Estimate / model uncertainty</div><div id="map-error" role="status" hidden></div></section>
   </main>
 </body>
 </html>

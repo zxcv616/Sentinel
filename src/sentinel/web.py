@@ -12,6 +12,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 import httpx
 
+from .ais import run_ais
 from .config import Config
 from .estimation import estimate
 from .opensky import OpenSkyClient, run_poller
@@ -31,7 +32,7 @@ def snapshot(pipeline, config):
                        "history": [{"lat": o.lat, "lon": o.lon, "timestamp": o.timestamp}
                                    for o in track.history]})
     return {"type": "snapshot", "timestamp": time.time(), "bounds": config.bounds,
-            "source": dict(pipeline.source_status), "counts": pipeline.manager.counts(), "tracks": tracks,
+            "source": dict(pipeline.source_status), "maritime_source": dict(pipeline.ais_status), "counts": pipeline.manager.counts(), "tracks": tracks,
             "alerts": list(reversed(pipeline.alerts))}
 
 
@@ -51,6 +52,8 @@ def create_app(config: Config | None = None, *, transport=None):
                         os.getenv("OPENSKY_CLIENT_SECRET"), record_response=pipeline.record_response)
                     async with asyncio.TaskGroup() as tasks:
                         tasks.create_task(pipeline.age_tracks())
+                        if os.getenv("AISSTREAM_API_KEY"):
+                            tasks.create_task(run_ais(config,pipeline,os.environ["AISSTREAM_API_KEY"]))
                         tasks.create_task(run_poller(client, pipeline=pipeline))
             except Exception:
                 # Keep the map available, but never present stopped ingestion as live.
@@ -85,7 +88,7 @@ def create_app(config: Config | None = None, *, transport=None):
 
     @app.get("/api/health")
     async def health():
-        return dict(app.state.pipeline.source_status)
+        return {**app.state.pipeline.source_status, "maritime_source":dict(app.state.pipeline.ais_status)}
 
     @app.websocket("/ws/tracks")
     async def stream(socket: WebSocket):

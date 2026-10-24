@@ -1,10 +1,10 @@
 # Sentinel
 
-A real-time airspace and maritime awareness tool. **M0–M5 implemented:** an async
+A real-time airspace and maritime awareness tool. **M0–M6 implemented:** an async
 OpenSky poller with normalized observations, in-memory tracks, bounded history,
 stale-track aging, append-only raw recording, and a live Leaflet map served by
 FastAPI, signal-gap and emergency-squawk alerts, and deterministic offline replay.
-PostgreSQL, additional anomaly rules, and ships are later milestones. M5 adds horizontal Kalman smoothing and bounded prediction.
+PostgreSQL and further anomaly rules remain future work. M6 adds optional AIS vessels and loitering detection. M5 adds horizontal Kalman smoothing and bounded prediction.
 
 ## Run
 
@@ -341,3 +341,60 @@ not improved real-world prediction accuracy. Future work should use separate tun
 and evaluation recordings, incorporate velocity measurements, and calibrate uncertainty.
 The measured mean window-rebuild time was 0.0224 ms on the development machine;
 this is not a hosted throughput benchmark.
+
+## M6: maritime tracking and loitering
+
+The local service can ingest AIS Stream position messages alongside OpenSky aircraft.
+Set `AISSTREAM_API_KEY` in the server environment, then run the existing `--serve`
+command (or the continuous CLI). With no key, AIS is disabled and aircraft ingestion
+continues. `--once` remains an aircraft-only poll. Keys are never sent to the browser
+or included in recordings. Do not commit keys or pass them in URLs.
+
+The client follows [AIS Stream's server-side subscription protocol](https://aisstream.io/documentation):
+compressed WebSocket transport, immediate bounding-box subscription, bounded messages,
+heartbeat/idle timeouts, and exponential reconnect backoff with jitter. Subscription
+errors stop the AIS client with a generic status; network interruptions retry. Raw
+position frames are recorded before normalization as `ais_message` events. Recording
+failures stop the ingestion task group rather than silently discarding data. Actual
+provider connectivity has **not** been tested: no AIS key was supplied.
+
+Supported reports: PositionReport, StandardClassBPositionReport, and
+ExtendedClassBPositionReport. Vessel tracks use MMSI and source-qualified identities.
+Speed is converted from knots to m/s; unavailable speed/course/heading and invalid
+positions are handled explicitly. Metadata reception time is used when present,
+otherwise the recorded receive time is used. AIS seconds-within-minute is not an epoch
+and is never treated as one. Ship names and voyage/static data are not yet ingested.
+
+The map provides Air & sea / Aircraft / Vessels filters, vessel silhouettes, MMSI
+search, status and movement details, trails, estimates, and loitering alert markers.
+Anchored and moored vessels are not extrapolated. Aircraft signal-gap and squawk rules
+remain separate; ship signal-gap/port-proximity detection is not implemented.
+
+Loitering requires all of the following, configured under `[alerts]`:
+- Movement within `loiter_radius_m` of an episode's initial position (default 500 m).
+- At least `loiter_seconds` of continuous qualifying observations (300 s).
+- Reported speed at least `loiter_min_speed_mps` (1 m/s) and accumulated observed
+  displacement at least `loiter_min_distance_m` (100 m).
+- No observation gap longer than `loiter_max_gap_seconds` (90 s).
+
+An episode emits one alert. Leaving the radius, missing updates, or stopping resets
+it. Anchored/moored statuses suppress the rule. Per-vessel episode memory is constant
+and stale episodes expire. Loitering is a movement pattern, **not evidence of hostile
+intent**; harbor maneuvering, positional noise, and legitimate operations can still
+trigger it. Thresholds are not operationally validated. The rule currently applies
+to vessels only.
+
+The hosted default is **Synthetic air & sea / loitering**: one aircraft, a circling
+vessel, a transiting vessel, and a moored vessel. Its 29 frames span seven simulated
+minutes and produce exactly one loitering alert; the synthetic identifiers and motion
+are not real vessel observations. Earlier recorded-aircraft demos remain available.
+Cloudflare still serves static replay; no live AIS connection or billing is added.
+
+```sh
+.venv/bin/python scripts/generate_maritime_fixture.py
+.venv/bin/sentinel --replay tests/fixtures/maritime-synthetic.jsonl
+```
+
+Tests cover normalization, units/sentinels, metadata timestamps, both Class B reports,
+reconnect behavior, credential exclusion, suppression/reset/deduplication, and full
+Python/JavaScript replay parity for the mixed-domain fixture.

@@ -11,6 +11,7 @@ from pathlib import Path
 import time
 import uuid
 
+from .maritime import normalize_ais, Loitering
 from .tracks import TrackConfig, TrackManager, normalize_opensky
 
 
@@ -43,6 +44,8 @@ class Pipeline:
         self.alert_sequence = 0
         self.received_at = None
         self.source_status = {"state": "starting", "message": "Waiting for OpenSky", "last_success": None}
+        self.ais_status = {"state":"disabled","message":"AIS disabled; set AISSTREAM_API_KEY on server","last_success":None}
+        self.loitering = Loitering(alert_config, self.emit_alert)
         self.engine = AnomalyEngine(alert_config, reference, self.emit_alert)
 
     @classmethod
@@ -105,9 +108,23 @@ class Pipeline:
         self.engine.advance(self.received_at, self.manager.tracks)
         return accepted, rejected
 
+    def accept_ais(self, raw, timestamp=None):
+        timestamp = self.clock() if timestamp is None else timestamp
+        body = raw.encode() if isinstance(raw,str) else raw
+        self.write("ais_message", timestamp, source="aisstream", body_base64=base64.b64encode(body).decode())
+        try: observation = normalize_ais(json.loads(body), timestamp)
+        except (ValueError, UnicodeDecodeError): observation = None
+        if observation is None: return False
+        self.ais_status.update(state="live",message="Receiving AIS vessel positions",last_success=timestamp)
+        self.manager.advance(timestamp)
+        if self.manager.update(observation): self.loitering.observe(observation)
+        self.loitering.advance(timestamp)
+        return True
+
     def tick(self):
         timestamp = self.clock()
         self.write("tick", timestamp)
+        self.loitering.advance(timestamp)
         self.manager.advance(timestamp)
         self.engine.advance(timestamp, self.manager.tracks)
 

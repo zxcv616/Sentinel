@@ -9,6 +9,7 @@ import tomllib
 
 import httpx
 
+from .ais import run_ais
 from .config import load_config
 from .pipeline import Pipeline
 from .opensky import FatalError, OpenSkyClient, run_poller
@@ -25,6 +26,8 @@ async def run(config, once):
                 client = OpenSkyClient(http, config, os.getenv("OPENSKY_CLIENT_ID"), os.getenv("OPENSKY_CLIENT_SECRET"), record_response=pipeline.record_response)
                 async with asyncio.TaskGroup() as group:
                     aging = group.create_task(pipeline.age_tracks())
+                    if not once and os.getenv("AISSTREAM_API_KEY"):
+                        group.create_task(run_ais(config,pipeline,os.environ["AISSTREAM_API_KEY"]))
                     try:
                         result = await run_poller(client, once=once, pipeline=pipeline)
                     finally:

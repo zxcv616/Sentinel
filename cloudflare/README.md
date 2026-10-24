@@ -149,3 +149,11 @@ Estimation runs at asset-build time using the same equations as the local Python
 service. Browser playback adds no live collection or paid resources. The blue
 marker/circle overlay is separate from observed aircraft; prediction stops after
 60 simulated seconds. See the root README for the evaluation and limitations.
+
+### M6 mixed-domain demo
+
+The default recording is now the explicitly synthetic air/sea loitering scenario.
+It includes three vessel tracks and one aircraft, domain filters, ship symbols, and
+one deterministic loitering alert. The Node replay core supports `ais_message` records
+and matches Python replay output. Live AIS remains an optional Python server feature
+requiring `AISSTREAM_API_KEY`; this deployment does not open an AIS WebSocket.
