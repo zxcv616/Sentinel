@@ -1,8 +1,23 @@
 import time
+import asyncio
 import httpx
 import pytest
 from fastapi.testclient import TestClient
-from sentinel.hosting import probe_app,create_hosted_app
+from sentinel.hosting import probe_app,create_hosted_app,probe_adsbfi
+
+
+@pytest.mark.parametrize(('payload', 'expected'), [
+    ({'ac': [], 'now': time.time()*1000}, 'success'),
+    ({'ac': [], 'now': 0}, 'failed'),
+    ({'ac': [], 'now': float('nan')}, 'failed'),
+    ({'aircraft': []}, 'failed'),
+])
+def test_alternative_requires_valid_fresh_payload(payload, expected):
+    import json
+    result=asyncio.run(probe_adsbfi(httpx.MockTransport(
+        lambda r:httpx.Response(200, content=json.dumps(payload).encode())
+    )))
+    assert result['state']==expected
 
 
 @pytest.mark.parametrize(('events','phase'), [

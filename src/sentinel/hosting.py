@@ -3,6 +3,7 @@ import asyncio
 from contextlib import asynccontextmanager
 from dataclasses import replace
 import os
+import math
 import time
 
 import httpx
@@ -10,6 +11,31 @@ from fastapi import FastAPI
 from .config import Config
 from .opensky import parse_states, RetryableError
 from .web import create_app
+
+
+async def probe_adsbfi(transport=None):
+    """One bounded check of the documented public regional endpoint."""
+    result = {'state': 'failed', 'provider': 'adsb.fi'}
+    try:
+        async with httpx.AsyncClient(timeout=25, transport=transport) as client:
+            async with client.stream('GET', 'https://opendata.adsb.fi/api/v3/lat/38/lon/-122/dist/100') as response:
+                result['upstream_status'] = response.status_code
+                if response.status_code != 200:
+                    return result
+                body = bytearray()
+                async for chunk in response.aiter_bytes():
+                    body.extend(chunk)
+                    if len(body) > 2 * 1024 * 1024:
+                        raise ValueError('Oversized response')
+                payload = httpx.Response(200, content=bytes(body)).json()
+                if not isinstance(payload, dict) or not isinstance(payload.get('ac'), list) or type(payload.get('now')) not in (int, float):
+                    raise ValueError('Invalid response')
+                if not math.isfinite(payload['now']) or abs(time.time() - payload['now'] / 1000) > 120:
+                    raise ValueError('Stale response')
+                result.update(state='success', aircraft_count=len(payload['ac']), source_timestamp=payload['now']/1000)
+    except (httpx.HTTPError, ValueError):
+        result['message'] = 'Provider request failed or returned invalid/stale data'
+    return result
 
 
 def probe_app(*, transport=None):
@@ -53,7 +79,11 @@ def probe_app(*, transport=None):
 
     @asynccontextmanager
     async def lifespan(app):
-        task=asyncio.create_task(probe())
+        async def checks():
+            await probe()
+            if result['state'] == 'failed':
+                result['alternative'] = await probe_adsbfi(transport)
+        task=asyncio.create_task(checks())
         try:yield
         finally:
             task.cancel()
