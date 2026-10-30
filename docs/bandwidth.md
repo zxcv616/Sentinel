@@ -102,7 +102,7 @@ These safeguards apply even if a client ignores the frontend JavaScript:
   receive the close reason, but no snapshot or feed slot is allocated.
 - Client messages do not move the five-second data deadline. Application pong
   replies are limited to one per ten seconds to prevent ping amplification.
-- `SENTINEL_WS_DAILY_BYTES` defaults to **150000000** (decimal 150 MB). Each outgoing
+- `SENTINEL_WS_DAILY_BYTES` defaults to **120000000** (decimal 120 MB). Each outgoing
   UTF-8 application payload, including app pongs, is reserved against one shared
   UTC-day counter before writing. A message that would exceed the remaining
   budget is not sent. Reservations for failed sends are conservatively retained.
@@ -122,7 +122,7 @@ quota would require persistent/shared storage.
 This counter measures uncompressed application bytes, not hosting invoices:
 HTTP traffic (including REST downloads and rejected upgrades), WebSocket control
 frames, and TLS/TCP overhead are outside it. It is not an account-wide or DDoS cap.
-150 MB × 31 days is 4.65 GB of application payload if the counter survives the month;
+120 MB × 31 days is 3.72 GB of application payload if the counter survives the month;
 leave headroom for the other traffic and other workspace services.
 
 Trails and alert records are now incremental. Trail updates send prefix removals

@@ -11,4 +11,4 @@ services:
       - key: SENTINEL_MODE
         value: probe
       - key: SENTINEL_WS_DAILY_BYTES
-        value: "150000000"
+        value: "120000000"

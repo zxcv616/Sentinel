@@ -204,12 +204,15 @@ def test_budget_closes_all_clients_rejects_new_and_keeps_page_available(tmp_path
         assert client.get('/').status_code == 200
         # Simulate the next UTC day; admission resumes without restarting.
         budget.day = '1970-01-01'
-        budget.limit = 150000000
+        budget.limit = 120000000
         with client.websocket_connect('/ws/tracks') as resumed:
             assert resumed.receive_json()['type'] == 'snapshot'
 
 
 def test_budget_env_and_oversized_initial_snapshot(tmp_path, monkeypatch):
+    monkeypatch.delenv('SENTINEL_WS_DAILY_BYTES', raising=False)
+    default_app = create_app(Config(raw_log_path=str(tmp_path/'raw.jsonl')), transport=transport())
+    assert default_app.state.ws_budget.limit == 120000000
     monkeypatch.setenv('SENTINEL_WS_DAILY_BYTES', '1')
     app = create_app(Config(raw_log_path=str(tmp_path/'raw.jsonl')), transport=transport())
     with TestClient(app) as client, client.websocket_connect('/ws/tracks') as ws:

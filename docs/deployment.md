@@ -85,7 +85,7 @@ or denial-of-service requests. No billing changes are required.
 
 The server defaults to a 10-minute activity timeout, a 30-minute hard session
 limit, 20 active feeds, and a shared daily payload budget. Set
-`SENTINEL_WS_DAILY_BYTES=150000000` to configure the byte allowance (positive integer).
+`SENTINEL_WS_DAILY_BYTES=120000000` to configure the byte allowance (positive integer).
 `SENTINEL_WS_BUDGET_PATH` optionally selects the accounting file; by default it is
 `ws-budget.json` beside the raw log. One worker is required. The file survives an
 ordinary process restart but cannot promise persistence across Render Free redeploys.

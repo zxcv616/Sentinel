@@ -79,20 +79,23 @@ The five-minute aircraft cadence is a hosting tradeoff: short-term predictions
 stop after 60 seconds and do not fill the entire polling interval. This is a
 portfolio demonstration, not a navigation or operational decision system.
 
-## Bandwidth-aware live updates
+## Bandwidth safeguards
 
-A connection starts with a full snapshot, followed by changed fields and track
-removals at most every **5 seconds**. Hidden tabs disconnect immediately; after
-**10 minutes without interaction**, the map pauses until the visitor clicks to
-resume. The server also caps each session at 30 minutes and admits at most 20
-active feeds. A shared 150 MB UTC-day WebSocket payload budget pauses live
-feeds when exhausted; the page remains available. Reconnecting always starts from a fresh snapshot. Predictions, lifecycle
-changes, and alerts continue to appear while viewing.
+- **Incremental updates:** one snapshot on connection, then deltas for changed
+  fields, new trail points, alerts, and removals, batched every five seconds.
+- **Automatic pauses:** hidden tabs disconnect immediately; ten minutes without
+  interaction pauses the feed until the visitor clicks to resume.
+- **Server limits:** a ten-minute activity timeout, a 30-minute maximum session,
+  and at most 20 active feeds. Heartbeats do not count as activity.
+- **Daily budget:** a shared **120 MB per UTC day** WebSocket payload allowance,
+  configurable with `SENTINEL_WS_DAILY_BYTES` (default `120000000`). Exhaustion
+  closes feeds and shows a pause notice; the page remains available.
 
-On a recorded 248-aircraft workload, outgoing JSON fell from **31.59 MB/min to
-1.03 MB/min per viewer** (96.7% less, including the initial snapshot). Compression
-further reduces transfer. These are fixture measurements, not production traffic
-or capacity guarantees. [Measurement, bandwidth budget, and limitations →](docs/bandwidth.md)
+On the recorded 248-aircraft workload, uncompressed JSON fell from **31.6 MB/min
+to about 1 MB/min per client** (96.7% less, including the initial snapshot).
+These are fixture measurements, not a production traffic guarantee. The budget
+excludes HTTP traffic, and Render's ephemeral storage can reset its saved counter
+on redeployment. [Measurements and limitations →](docs/bandwidth.md)
 
 ## Run and test
 

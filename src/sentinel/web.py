@@ -56,7 +56,7 @@ def snapshot(pipeline, config):
 
 def create_app(config: Config | None = None, *, transport=None, aircraft_source="opensky", push_interval=5, idle_timeout=600, session_timeout=1800, max_connections=20, daily_budget=None, budget_path=None):
     config = config or Config()
-    budget = DailyBudget(daily_budget if daily_budget is not None else int(os.getenv('SENTINEL_WS_DAILY_BYTES', '150000000')),
+    budget = DailyBudget(daily_budget if daily_budget is not None else int(os.getenv('SENTINEL_WS_DAILY_BYTES', '120000000')),
                          budget_path or os.getenv('SENTINEL_WS_BUDGET_PATH') or Path(config.raw_log_path).parent / 'ws-budget.json')
     connections = set()
 
