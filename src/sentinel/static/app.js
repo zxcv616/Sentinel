@@ -3,7 +3,7 @@ const el = id => document.getElementById(id);
 const colors = {active: '#bdd6c8', gap: '#dfb06c', lost: '#7c8d96'};
 const demoMode = document.body.dataset.demo === 'true';
 let snapshot = null, selected = null, map = null, bounds = null, first = true;
-let lastMessage = 0, socket = null, retry = 1000;
+let liveSession = null;
 const layers = new Map();
 const alertLayers = new Map();
 const estimateLayers = new Map();
@@ -134,20 +134,19 @@ function render() {
   details(chosen);
 }
 function connection(text, connected=false) { el('connection').textContent = text; el('connection').classList.toggle('connected',connected); }
-function connect() {
-  socket = new WebSocket(`${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}/ws/tracks`);
-  socket.onmessage = event => {
-    lastMessage = Date.now();
-    if (event.data === 'pong') { connection('Map connected',true); return; }
-    snapshot = JSON.parse(event.data); retry = 1000;
-    connection('Map connected',true);
-    const b = snapshot.bounds; bounds = [[b.lamin,b.lomin],[b.lamax,b.lomax]];
-    el('coverage-label').textContent = `${b.lamin.toFixed(1)}° to ${b.lamax.toFixed(1)}° / ${b.lomin.toFixed(1)}° to ${b.lomax.toFixed(1)}°`;
-    if (first) { fit(); first = false; }
-    render();
-  };
-  socket.onclose = () => { connection('Disconnected · reconnecting'); setTimeout(connect,retry); retry = Math.min(retry * 2,30000); };
-  socket.onerror = () => socket.close();
+function startLive() {
+  liveSession = new SentinelStream.Session({
+    url: `${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}/ws/tracks`,
+    onStatus: (text, connected, paused) => { connection(text,connected); el('resume-live').hidden=!paused; },
+    onState: state => {
+      snapshot=state;
+      const b=snapshot.bounds; bounds=[[b.lamin,b.lomin],[b.lamax,b.lomax]];
+      el('coverage-label').textContent=`${b.lamin.toFixed(1)}° to ${b.lamax.toFixed(1)}° / ${b.lomin.toFixed(1)}° to ${b.lomax.toFixed(1)}°`;
+      if(first) {fit();first=false;} render();
+    }
+  });
+  el('resume-live').onclick=()=>liveSession.resume();
+  liveSession.start();
 }
 if (typeof L !== 'undefined') {
   map = L.map('map').setView([38,-122],8);
@@ -163,12 +162,6 @@ el('search').oninput = render;
 el('domain').onchange = render;
 el('trails').onchange = render;
 el('estimates').onchange = render;
-setInterval(() => {
-  if (lastMessage && Date.now() - lastMessage > 45000) {
-    connection('Map updates interrupted · positions may be stale');
-    if (socket && socket.readyState === WebSocket.OPEN) socket.close();
-  }
-},1000);
 async function startDemo() {
   connection('Recorded demo — not live');
   try {
@@ -192,7 +185,4 @@ async function startDemo() {
     setInterval(() => { if (!paused) { frame = (frame+1)%data.recordings[recording].frames.length; show(); } },2000);
   } catch { connection('Demo unavailable'); el('source').textContent = 'Unable to load recording. Reload to try again.'; }
 }
-if (demoMode) startDemo(); else connect();
-
-// Hibernating Cloudflare sockets auto-answer these without waking the tracker.
-setInterval(() => { if (socket?.readyState === WebSocket.OPEN) socket.send('ping'); }, 20000);
+if (demoMode) startDemo(); else startLive();

@@ -11,7 +11,8 @@
 
 The live service runs independently of a local computer. Render may sleep after
 inactivity and take about a minute to wake. Browser WebSocket heartbeats represent
-active visitors; no external keepalive job is configured. Tracks and logs reset
+visible, non-idle visitors; hidden tabs disconnect and idle tabs pause after ten
+minutes. No external keepalive job is configured. Tracks and logs reset
 on restarts/redeploys/sleep. The public vessel feed is not enabled.
 
 ## Render configuration
@@ -26,7 +27,8 @@ new deployment can test provider reachability before enabling collection.
 
    ```sh
    python -m uvicorn sentinel.hosting:create_hosted_app --factory \
-     --host 0.0.0.0 --port "$PORT" --workers 1 --limit-concurrency 50
+     --host 0.0.0.0 --port "$PORT" --workers 1 --limit-concurrency 50 \
+     --ws websockets --ws-per-message-deflate true
    ```
 
 3. Set the health-check path to `/healthz`. This verifies process readiness only.
@@ -72,6 +74,12 @@ bandwidth, and build quotas are shared at the workspace level. Without a payment
 method, Render documents suspension/build restrictions when applicable free
 allowances are exhausted. This is not unlimited hosting. Consult
 [Render's current free-plan limits](https://render.com/docs/free).
+
+See [the bandwidth audit](bandwidth.md) for measured payload sizes and a conservative
+portfolio traffic budget. Ingestion and aging remain active while the process is
+awake to preserve alert continuity; snapshot/delta generation only runs for
+connected viewers. These controls reduce accidental usage, not arbitrary traffic
+or denial-of-service requests. No billing changes are required.
 
 ## Cloudflare replay
 

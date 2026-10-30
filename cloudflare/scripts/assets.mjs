@@ -2,7 +2,7 @@ import {mkdir, copyFile, readFile, writeFile} from 'node:fs/promises';
 import {demoData} from './demo.mjs';
 const config=JSON.parse(await readFile(new URL('../wrangler.jsonc',import.meta.url),'utf8'));
 await mkdir(new URL('../public/static/', import.meta.url), {recursive:true});
-for (const file of ['index.html','app.js','style.css']) {
+for (const file of ['index.html','app.js','stream.js','style.css']) {
   await copyFile(new URL(`../../src/sentinel/static/${file}`, import.meta.url),
     new URL(`../public/${file === 'index.html' ? file : `static/${file}`}`, import.meta.url));
 }

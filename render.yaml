@@ -5,7 +5,7 @@ services:
     runtime: python
     plan: free
     buildCommand: pip install .
-    startCommand: python -m uvicorn sentinel.hosting:create_hosted_app --factory --host 0.0.0.0 --port $PORT --workers 1 --limit-concurrency 50
+    startCommand: python -m uvicorn sentinel.hosting:create_hosted_app --factory --host 0.0.0.0 --port $PORT --workers 1 --limit-concurrency 50 --ws websockets --ws-per-message-deflate true
     healthCheckPath: /healthz
     envVars:
       - key: SENTINEL_MODE

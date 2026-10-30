@@ -30,11 +30,11 @@ so tracking and alert behavior can be reproduced from the original inputs.
 | Anomaly detection | Aircraft signal gaps and emergency squawks; vessel loitering. Source-health checks, airport filtering, and deduplication reduce misleading alerts. |
 | Position estimation | Horizontal constant-velocity Kalman filter with a 60-second prediction limit; observed and estimated positions remain visually distinct. |
 | Reproducible processing | Original provider payloads, configuration, airport references, and clock events recorded to JSONL and replayed offline. |
-| Live interface | FastAPI REST endpoints and shared WebSocket snapshots feeding a Leaflet map with search, trails, domain filters, and alert details. |
+| Live interface | FastAPI REST endpoints and WebSocket snapshots and batched deltas feeding a Leaflet map with search, trails, domain filters, and alert details. |
 
 ## Engineering evidence
 
-- **110 Python tests + 11 JavaScript tests** at the documented validation snapshot, covering ingestion, alerts, tracking, replay, and cross-runtime parity. [Test workflow](.github/workflows/tests.yml)
+- **116 Python tests + 16 JavaScript tests** at the documented validation snapshot, covering ingestion, alerts, tracking, replay, and cross-runtime parity. [Test workflow](.github/workflows/tests.yml)
 - **248 aircraft and 6,423 observations** in the recorded tracking evaluation dataset—not a load-test result. [Method and results](docs/validation.md)
 - **Exact replay comparisons** include track histories and alert IDs/timestamps; synthetic scenarios exercise outages, recovery, deduplication, and loitering. [Fixture provenance](tests/fixtures/README.md)
 - **One shared collector** serves all viewers. Opening additional browser connections does not create additional aircraft polls. [Server implementation](src/sentinel/web.py)
@@ -78,6 +78,19 @@ Live AIS requires a server-side key and has not been verified against the provid
 The five-minute aircraft cadence is a hosting tradeoff: short-term predictions
 stop after 60 seconds and do not fill the entire polling interval. This is a
 portfolio demonstration, not a navigation or operational decision system.
+
+## Bandwidth-aware live updates
+
+A connection starts with a full snapshot, followed by changed fields and track
+removals at most every **5 seconds**. Hidden tabs disconnect immediately; after
+**10 minutes without interaction**, the map pauses until the visitor clicks to
+resume. Reconnecting always starts from a fresh snapshot. Predictions, lifecycle
+changes, and alerts continue to appear while viewing.
+
+On a recorded 248-aircraft workload, outgoing JSON fell from **31.59 MB/min to
+1.03 MB/min per viewer** (96.7% less, including the initial snapshot). Compression
+further reduces transfer. These are fixture measurements, not production traffic
+or capacity guarantees. [Measurement, bandwidth budget, and limitations →](docs/bandwidth.md)
 
 ## Run and test
 

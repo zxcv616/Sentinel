@@ -98,7 +98,7 @@ observations and is described in [Validation](validation.md).
 | `GET /api/tracks` | Tracks, bounded trails, estimates, counts, and source status |
 | `GET /api/alerts` | Recent events in the current session |
 | `GET /api/health` | Ingestion state and last successful source receipt |
-| `WS /ws/tracks` | Full replacement snapshots; reconnecting clients need no prior state |
+| `WS /ws/tracks` | Initial snapshot, then sequenced five-second deltas; reconnecting clients need no prior state |
 | `GET /docs` | Generated API documentation |
 | `GET /healthz` | Hosted factory only: process readiness, not upstream health |
 

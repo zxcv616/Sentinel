@@ -10,3 +10,5 @@
 .alert-row.loitering {border-left:2px solid #dfb06c;}
 
 #source-attribution:not([hidden]){display:block;margin-top:8px;font:11px var(--mono);color:var(--accent);text-underline-offset:3px}
+
+#resume-live:not([hidden]){position:fixed;z-index:2000;top:70px;left:50%;transform:translateX(-50%);padding:14px 20px;background:#24352d;color:#eff7f3;border:1px solid #bdd6c8;border-radius:4px;cursor:pointer}

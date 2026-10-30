@@ -75,8 +75,12 @@ and use Fit coverage to return to the configured bounding box. Trails accumulate
 while this process runs and are limited by `history_size`. Kalman estimates are
 displayed separately; see [tracking evaluation](validation.md).
 
-The browser receives a full snapshot every second over `/ws/tracks`, reconnects
-with backoff, and removes expired tracks from the map. These snapshots do not
+The browser receives an initial snapshot over `/ws/tracks`, then changed fields
+and removals in batches at most every five seconds. Unchanged batches are skipped.
+It reconnects with backoff and a fresh snapshot; a sequence mismatch also reconnects.
+Hidden tabs disconnect; ten minutes without interaction pauses until a resume click.
+A server-side ten-minute activity timeout also closes unattended connections;
+heartbeats do not count as interaction. These presentation updates do not
 increase the OpenSky polling rate. The header reports the browser connection;
 the Data source panel separately reports successful polling, retrying, or stopped
 ingestion. Data can remain visible during an interruption and should be treated
@@ -84,8 +88,20 @@ as stale. A stopped ingestion task leaves the map available for inspection.
 
 - `GET /api/tracks`: snapshot with source status, counts, latest positions, and trails.
 - `GET /api/health`: source status and the last successful receipt timestamp.
-- `WS /ws/tracks`: full snapshots, including empty states and track removals.
+- `WS /ws/tracks`: initial snapshot and sequenced deltas, including empty states and track removals.
 - `GET /docs`: generated API documentation.
+
+The delta protocol uses `tracks.upsert` for complete new tracks, `tracks.update`
+for changed top-level track fields (identified by source and object ID), and
+`tracks.remove` for `source:object_id` keys. `meta` replaces changed top-level
+metadata fields such as counts, source status, or the recent-alert list. Sequence
+starts at zero on each connection. Applying all messages reconstructs the rounded
+presentation state; raw/replay precision is unaffected. Track schema fields are
+fixed; null explicitly clears a value.
+
+HTTP responses support gzip. Fingerprinted static URLs have one-year immutable
+caching; HTML revalidates so new deployments load the correct asset versions.
+WebSocket compression is negotiated with supporting clients. [Bandwidth measurements](bandwidth.md).
 
 Leaflet 1.9.4 loads from unpkg with integrity checks; map tiles load from
 OpenStreetMap with attribution. Internet access is required for both. A visible

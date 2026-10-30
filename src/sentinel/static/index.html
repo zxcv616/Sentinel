@@ -6,10 +6,12 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <link rel="stylesheet" href="/static/style.css">
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script defer src="/static/stream.js"></script>
   <script defer src="/static/app.js"></script>
 </head>
 <body>
   <header><div class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 2 29 25H3Z M16 10 22 21H10Z"/></svg></span><div><h1>SENTINEL</h1><span>OPERATIONS / AIR & SEA</span></div></div><div class="header-context">SENTINEL <span>/</span> COMMON OPERATING PICTURE</div><div id="connection" role="status">Connecting…</div></header>
+  <button id="resume-live" hidden>Paused to save bandwidth, click to resume</button>
   <main>
     <aside>
       <div class="eyebrow section-index">01 / SURVEILLANCE</div><h2>Air & sea overview<span class="heading-cross" aria-hidden="true">+</span></h2><p class="muted">Aircraft &amp; vessel tracking</p>

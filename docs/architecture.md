@@ -25,8 +25,14 @@ and squawk or navigation status.
 | Bound per-track history | Limits each track's memory and makes estimation reproducible from retained observations. This is not a total system capacity limit. |
 | Reject duplicate/out-of-order positions | Repeated old reports cannot keep a track alive or rewrite its history. Squawk evaluation separately uses contact timestamps. |
 | Keep estimates separate from measurements | The map labels model output; alerts continue to use observed data. |
-| Full WebSocket snapshots | Reconnection and track removal require no client-side event reconstruction. Simplicity trades off against bandwidth at larger track/viewer counts. |
+| Snapshot then sequenced deltas | Each connection starts fresh; added tracks, changed fields, and removals are batched every five seconds. Missing sequences cause reconnection. Hidden and idle viewers disconnect to bound accidental transfer. |
 | In-memory tracks and JSONL files | Small deployment footprint and straightforward replay. No durable hosted history, database queries, or multi-process coordination yet. |
+
+Presentation coordinates are rounded to five decimals; speed/heading to one decimal,
+altitude/uncertainty to whole meters, and other floats to three decimals. Raw logs,
+tracking, alert evaluation, and replay retain their original precision. No snapshot
+or delta generation runs without viewers. Ingestion and aging continue while the
+process is awake, preserving alert episodes and deduplication across visits.
 
 ## Detection rules
 

@@ -8,8 +8,11 @@ from pathlib import Path
 import time
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
-from fastapi.responses import FileResponse
+from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
+from starlette.middleware.gzip import GZipMiddleware
+import hashlib
+from .streaming import DeltaEncoder, presentation
 import httpx
 
 from .adsbfi import AdsbFiClient
@@ -21,6 +24,16 @@ from .pipeline import Pipeline
 
 STATIC = Path(__file__).parent / "static"
 log = logging.getLogger(__name__)
+ASSET_VERSION = hashlib.sha256(b"".join(p.read_bytes() for p in sorted(STATIC.glob("*")) if p.is_file())).hexdigest()[:12]
+
+
+class CachedStaticFiles(StaticFiles):
+    async def get_response(self, path, scope):
+        response = await super().get_response(path, scope)
+        version = scope.get("query_string", b"").decode()
+        response.headers["Cache-Control"] = ("public, max-age=31536000, immutable"
+            if version == f"v={ASSET_VERSION}" else "public, max-age=0, must-revalidate")
+        return response
 
 
 def snapshot(pipeline, config):
@@ -38,7 +51,7 @@ def snapshot(pipeline, config):
             "alerts": list(reversed(pipeline.alerts))}
 
 
-def create_app(config: Config | None = None, *, transport=None, aircraft_source="opensky"):
+def create_app(config: Config | None = None, *, transport=None, aircraft_source="opensky", push_interval=5, idle_timeout=600):
     config = config or Config()
 
     @asynccontextmanager
@@ -75,19 +88,23 @@ def create_app(config: Config | None = None, *, transport=None, aircraft_source=
             pipeline.close()
 
     app = FastAPI(title="Sentinel", lifespan=lifespan)
-    app.mount("/static", StaticFiles(directory=STATIC), name="static")
+    app.add_middleware(GZipMiddleware, minimum_size=500)
+    app.mount("/static", CachedStaticFiles(directory=STATIC), name="static")
 
     @app.get("/", include_in_schema=False)
     async def index():
-        return FileResponse(STATIC / "index.html")
+        html = (STATIC / "index.html").read_text()
+        for asset in ("app.js", "stream.js", "style.css"):
+            html = html.replace(f"/static/{asset}", f"/static/{asset}?v={ASSET_VERSION}")
+        return HTMLResponse(html, headers={"Cache-Control": "no-cache"})
 
     @app.get("/api/tracks")
     async def tracks():
-        return snapshot(app.state.pipeline, config)
+        return presentation(snapshot(app.state.pipeline, config))
 
     @app.get("/api/alerts")
     async def alerts():
-        return {"alerts": list(reversed(app.state.pipeline.alerts))}
+        return presentation({"alerts": list(reversed(app.state.pipeline.alerts))})
 
     @app.get("/api/health")
     async def health():
@@ -96,18 +113,32 @@ def create_app(config: Config | None = None, *, transport=None, aircraft_source=
     @app.websocket("/ws/tracks")
     async def stream(socket: WebSocket):
         await socket.accept()
+        encoder = DeltaEncoder()
+        loop = asyncio.get_running_loop()
+        last_activity = loop.time()
+        next_push = loop.time()
         try:
-            # Full replacement snapshots make reconnects and track expiry unambiguous.
-            # No queued history accumulates for a slow browser.
             while True:
-                await asyncio.wait_for(socket.send_json(snapshot(app.state.pipeline, config)), timeout=5)
+                now = loop.time()
+                if now - last_activity >= idle_timeout:
+                    await socket.close(code=4001, reason="Paused to save bandwidth")
+                    return
+                if now >= next_push:
+                    update = encoder.encode(snapshot(app.state.pipeline, config))
+                    if update is not None:
+                        await asyncio.wait_for(socket.send_json(update), timeout=5)
+                    next_push = loop.time() + push_interval
                 try:
-                    message = await asyncio.wait_for(socket.receive(), timeout=1)
+                    message = await asyncio.wait_for(socket.receive(), timeout=max(.01, min(next_push-loop.time(), idle_timeout-(loop.time()-last_activity))))
                     if message["type"] == "websocket.disconnect":
                         return
+                    if message.get("text") == "activity":
+                        last_activity = loop.time()
+                    elif message.get("text") == "ping":
+                        await asyncio.wait_for(socket.send_text("pong"), timeout=5)
                 except TimeoutError:
                     pass
-        except (WebSocketDisconnect, TimeoutError, OSError):
+        except (WebSocketDisconnect, TimeoutError, OSError, RuntimeError):
             pass
 
     return app
