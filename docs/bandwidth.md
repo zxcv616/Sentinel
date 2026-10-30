@@ -82,6 +82,11 @@ permessage-deflate and that both snapshot and delta frames are compressed. In th
 occupied 74,619 frame bytes and a 48,331-byte delta occupied 4,233 frame bytes
 (including WebSocket framing, excluding TLS/TCP).
 
+The public Render connection did **not** negotiate permessage-deflate during the
+post-deploy check. Local support and explicit Blueprint flags do not establish
+end-to-end proxy support; the remote cause is not confirmed. Do not count on
+compression savings on Render. The budget below uses uncompressed bytes.
+
 ## Portfolio budget
 
 For **100 visits/month × five minutes**, plus **one tab left open for 24 hours**:
@@ -105,7 +110,12 @@ This is not a hard account-wide spending or traffic cap.
 
 At diagnosis the public Render URL returned HTTP 503 with
 `x-render-routing: suspend-by-user`, consistent with the reported suspension.
-Pushing code cannot restore a suspended workspace. After restoration, verify
-that the page loads, `/api/health` reports live data, WebSocket frames begin with a
-snapshot and continue with deltas, and hiding the tab closes the connection.
-No payment method or paid plan is required by this change.
+The service subsequently resumed responding, and the pushed change auto-deployed.
+The post-deploy check confirmed HTTP 200, the new versioned transport asset,
+`/api/health` reporting live adsb.fi data, and a 127-track initial snapshot
+(sequence 0, 85,149 JSON bytes) followed 4.9 seconds later by a delta
+(sequence 1, 28,759 bytes, 85 changed tracks). These startup values have shorter
+histories than the benchmark and are not directly comparable to its steady workload.
+Hidden/idle/resume behavior is covered by browser-session tests; local browser
+verification also rendered the map without console errors.
+No payment method, paid plan, or Render account setting was changed.
