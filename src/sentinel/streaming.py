@@ -17,6 +17,15 @@ def track_key(track):
     return f"{track['source']}:{track['object_id']}"
 
 
+def list_patch(before, after):
+    # Retain the longest old suffix matching the new prefix; append every new
+    # point since the last batch, not just the last one (which would lose trails).
+    overlap = min(len(before), len(after))
+    while overlap and before[-overlap:] != after[:overlap]:
+        overlap -= 1
+    return {'drop': len(before)-overlap, 'append': after[overlap:]}
+
+
 class DeltaEncoder:
     def __init__(self):
         self.previous = None
@@ -36,11 +45,21 @@ class DeltaEncoder:
                        if before[key].get(field) != value},
                     'source': t['source'], 'object_id': t['object_id']}
                    for key, t in after.items() if key in before and before[key] != t]
+        for patch in updates:
+            if 'history' in patch:
+                patch['history_delta'] = list_patch(before[track_key(patch)]['history'], patch.pop('history'))
+        old_alerts = {a['id']: a for a in self.previous['alerts']}
+        new_alerts = {a['id']: a for a in current['alerts']}
+        alerts = {'upsert': [a for key, a in new_alerts.items() if old_alerts.get(key) != a],
+                  'remove': sorted(old_alerts.keys() - new_alerts.keys())}
+        # Order only needs sending when membership/order changes, never whole events.
+        if [a['id'] for a in current['alerts']] != [a['id'] for a in self.previous['alerts']]:
+            alerts['order'] = [a['id'] for a in current['alerts']]
         removed = sorted(before.keys() - after.keys())
-        meta = {k: v for k, v in current.items() if k not in ('tracks', 'timestamp', 'type') and self.previous.get(k) != v}
-        if not upsert and not updates and not removed and not meta:
+        meta = {k: v for k, v in current.items() if k not in ('tracks', 'timestamp', 'type', 'alerts') and self.previous.get(k) != v}
+        if not upsert and not updates and not removed and not meta and not alerts['upsert'] and not alerts['remove'] and 'order' not in alerts:
             return None
         self.sequence += 1
         self.previous = copy.deepcopy(current)
         return {'type': 'delta', 'sequence': self.sequence, 'timestamp': current['timestamp'],
-                'tracks': {'upsert': upsert, 'update': updates, 'remove': removed}, 'meta': meta}
+                'tracks': {'upsert': upsert, 'update': updates, 'remove': removed}, 'meta': meta, 'alerts': alerts}

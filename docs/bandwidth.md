@@ -68,11 +68,11 @@ fixture benchmark, not a production load test or a claim about current ADS-B tra
 | Per viewer, first minute | Before | After |
 | --- | ---: | ---: |
 | Data messages | 60 | 12 |
-| Mean JSON message | 526,423 B | 85,808 B |
-| Total JSON payload | 31,585,389 B | 1,029,693 B |
-| Modeled deflate payload | 4,705,005 B | 114,059 B |
+| Mean JSON message | 526,423 B | 85,572 B |
+| Total JSON payload | 31,585,389 B | 1,026,864 B |
+| Modeled deflate payload | 4,705,005 B | 113,865 B |
 
-JSON transfer is **96.74% lower**. The mean includes the larger initial snapshot;
+JSON transfer is **96.75% lower**. The mean includes the larger initial snapshot;
 subsequent estimate-only updates are smaller. Quiet periods send no data deltas,
 only heartbeat responses. Deflate figures use a persistent raw zlib context and
 exclude framing, TLS, HTTP headers, and TCP overhead; they are not Render billing
@@ -86,6 +86,52 @@ The public Render connection did **not** negotiate permessage-deflate during the
 post-deploy check. Local support and explicit Blueprint flags do not establish
 end-to-end proxy support; the remote cause is not confirmed. Do not count on
 compression savings on Render. The budget below uses uncompressed bytes.
+
+## Server-side limits
+
+These safeguards apply even if a client ignores the frontend JavaScript:
+
+- No `activity` signal for 600 seconds closes the feed (4001). Heartbeats do not
+  renew activity. The browser sends signals only for trusted input events, but a
+  custom client can forge them; these are not proof of a human.
+- A hard 1,800-second session deadline closes even continuously active clients
+  (4002). The UI requires a resume click. Reconnecting starts a new session but
+  does not reset the daily counter.
+- At most 20 active feed connections per server process; excess attempts close
+  with 4004 and a retry notice. The handshake is accepted briefly so browsers can
+  receive the close reason, but no snapshot or feed slot is allocated.
+- Client messages do not move the five-second data deadline. Application pong
+  replies are limited to one per ten seconds to prevent ping amplification.
+- `SENTINEL_WS_DAILY_BYTES` defaults to **150000000** (decimal 150 MB). Each outgoing
+  UTF-8 application payload, including app pongs, is reserved against one shared
+  UTC-day counter before writing. A message that would exceed the remaining
+  budget is not sent. Reservations for failed sends are conservatively retained.
+- Exhaustion logs a warning, closes every existing feed with 4003, and refuses
+  new feeds for the day. The map displays **“Live feed paused for today to stay
+  within hosting limits.”** and does not automatically reconnect. At the next UTC
+  day, the server allows new connections; the visitor can click to resume.
+
+The counter is atomically saved to `ws-budget.json` beside the raw log, or to
+`SENTINEL_WS_BUDGET_PATH` if set. It survives process restarts **only when that file
+survives**. Render Free storage is ephemeral; redeploys or instance replacement
+can reset it. Corrupt accounting or a write failure pauses feeds rather than
+sending unaccounted data. Run one worker: this local counter and connection cap
+are not coordinated across multiple processes or instances. A durable cross-deploy
+quota would require persistent/shared storage.
+
+This counter measures uncompressed application bytes, not hosting invoices:
+HTTP traffic (including REST downloads and rejected upgrades), WebSocket control
+frames, and TLS/TCP overhead are outside it. It is not an account-wide or DDoS cap.
+150 MB × 31 days is 4.65 GB of application payload if the counter survives the month;
+leave headroom for the other traffic and other workspace services.
+
+Trails and alert records are now incremental. Trail updates send prefix removals
+and every newly received point, not repeated retained history. Alerts send only
+new/changed records, removed IDs, and display-order IDs when necessary. The
+post-capture prediction benchmark above improves only slightly from the previous
+1,029,693 B/min because it contains no subsequent position observations; the
+additional trail savings occur on actual observation updates. Tests reconstruct
+both retained and completely replaced trails and alert lists in the browser reducer.
 
 ## Portfolio budget
 

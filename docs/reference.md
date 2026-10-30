@@ -93,8 +93,12 @@ as stale. A stopped ingestion task leaves the map available for inspection.
 
 The delta protocol uses `tracks.upsert` for complete new tracks, `tracks.update`
 for changed top-level track fields (identified by source and object ID), and
-`tracks.remove` for `source:object_id` keys. `meta` replaces changed top-level
-metadata fields such as counts, source status, or the recent-alert list. Sequence
+`tracks.remove` for `source:object_id` keys. `history_delta` drops expired prefix points and appends only new points; batches
+retain every point received since the previous update. If the entire trail turns
+over, all its new points are sent. New tracks still contain a full initial trail.
+`alerts.upsert` contains only new or changed events, `alerts.remove` contains
+expired IDs, and optional `alerts.order` contains IDs in display order.
+`meta` replaces changed top-level metadata such as counts or source status. Sequence
 starts at zero on each connection. Applying all messages reconstructs the rounded
 presentation state; raw/replay precision is unaffected. Track schema fields are
 fixed; null explicitly clears a value.

@@ -3,6 +3,7 @@ import asyncio
 from contextlib import asynccontextmanager
 from dataclasses import asdict
 import logging
+import json
 import os
 from pathlib import Path
 import time
@@ -12,8 +13,10 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.gzip import GZipMiddleware
 import hashlib
+from .bandwidth import DailyBudget, PAUSED
 from .streaming import DeltaEncoder, presentation
 import httpx
+from anyio import CancelScope
 
 from .adsbfi import AdsbFiClient
 from .ais import run_ais
@@ -51,8 +54,16 @@ def snapshot(pipeline, config):
             "alerts": list(reversed(pipeline.alerts))}
 
 
-def create_app(config: Config | None = None, *, transport=None, aircraft_source="opensky", push_interval=5, idle_timeout=600):
+def create_app(config: Config | None = None, *, transport=None, aircraft_source="opensky", push_interval=5, idle_timeout=600, session_timeout=1800, max_connections=20, daily_budget=None, budget_path=None):
     config = config or Config()
+    budget = DailyBudget(daily_budget if daily_budget is not None else int(os.getenv('SENTINEL_WS_DAILY_BYTES', '150000000')),
+                         budget_path or os.getenv('SENTINEL_WS_BUDGET_PATH') or Path(config.raw_log_path).parent / 'ws-budget.json')
+    connections = set()
+
+    def trip_connections():
+        for event in connections:
+            event.set()
+
 
     @asynccontextmanager
     async def lifespan(app):
@@ -88,6 +99,7 @@ def create_app(config: Config | None = None, *, transport=None, aircraft_source=
             pipeline.close()
 
     app = FastAPI(title="Sentinel", lifespan=lifespan)
+    app.state.ws_budget = budget
     app.add_middleware(GZipMiddleware, minimum_size=500)
     app.mount("/static", CachedStaticFiles(directory=STATIC), name="static")
 
@@ -113,32 +125,82 @@ def create_app(config: Config | None = None, *, transport=None, aircraft_source=
     @app.websocket("/ws/tracks")
     async def stream(socket: WebSocket):
         await socket.accept()
+        budget.refresh()
+        if budget.tripped:
+            await socket.close(code=4003, reason=PAUSED)
+            return
+        if len(connections) >= max_connections:
+            await socket.close(code=4004, reason="Live feed busy; click to retry")
+            return
+        stopped = asyncio.Event()
+        connections.add(stopped)
+        stop_task = asyncio.create_task(stopped.wait())
+        receive_task = None
         encoder = DeltaEncoder()
         loop = asyncio.get_running_loop()
-        last_activity = loop.time()
-        next_push = loop.time()
+        started = last_activity = next_push = loop.time()
+        last_pong = -float('inf')
+
+        async def send(text):
+            # Count uncompressed UTF-8 application bytes, including app pongs.
+            # Reservation and persistence are synchronous, so clients cannot race
+            # past the shared limit. Failed writes remain conservatively charged.
+            try:
+                allowed = budget.reserve(len(text.encode('utf-8')))
+            except OSError:
+                log.exception('WebSocket budget persistence failed; closing feeds')
+                budget.tripped = True
+                allowed = False
+            if not allowed:
+                trip_connections()
+                return False
+            await asyncio.wait_for(socket.send_text(text), timeout=5)
+            return True
+
         try:
             while True:
                 now = loop.time()
+                if stopped.is_set():
+                    await socket.close(code=4003, reason=PAUSED)
+                    return
+                if now - started >= session_timeout:
+                    await socket.close(code=4002, reason="Session paused; click to resume")
+                    return
                 if now - last_activity >= idle_timeout:
                     await socket.close(code=4001, reason="Paused to save bandwidth")
                     return
                 if now >= next_push:
                     update = encoder.encode(snapshot(app.state.pipeline, config))
                     if update is not None:
-                        await asyncio.wait_for(socket.send_json(update), timeout=5)
+                        if not await send(json.dumps(update, separators=(',', ':'), ensure_ascii=False)):
+                            continue
                     next_push = loop.time() + push_interval
-                try:
-                    message = await asyncio.wait_for(socket.receive(), timeout=max(.01, min(next_push-loop.time(), idle_timeout-(loop.time()-last_activity))))
-                    if message["type"] == "websocket.disconnect":
+                if receive_task is None:
+                    receive_task = asyncio.create_task(socket.receive())
+                deadline = min(next_push, started + session_timeout, last_activity + idle_timeout)
+                done, _ = await asyncio.wait((receive_task, stop_task), timeout=max(0, deadline-loop.time()),
+                                             return_when=asyncio.FIRST_COMPLETED)
+                if stop_task in done:
+                    continue
+                if receive_task in done:
+                    message = receive_task.result()
+                    receive_task = None
+                    if message['type'] == 'websocket.disconnect':
                         return
-                    if message.get("text") == "activity":
+                    if message.get('text') == 'activity':
                         last_activity = loop.time()
-                    elif message.get("text") == "ping":
-                        await asyncio.wait_for(socket.send_text("pong"), timeout=5)
-                except TimeoutError:
-                    pass
+                    elif message.get('text') == 'ping' and loop.time()-last_pong >= 10:
+                        last_pong = loop.time()
+                        await send('pong')
+                # Inbound traffic never changes next_push.
         except (WebSocketDisconnect, TimeoutError, OSError, RuntimeError):
             pass
+        finally:
+            connections.discard(stopped)
+            pending = [t for t in (receive_task, stop_task) if t is not None]
+            for task in pending:
+                task.cancel()
+            with CancelScope(shield=True):
+                await asyncio.gather(*pending, return_exceptions=True)
 
     return app

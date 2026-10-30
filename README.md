@@ -34,7 +34,7 @@ so tracking and alert behavior can be reproduced from the original inputs.
 
 ## Engineering evidence
 
-- **116 Python tests + 16 JavaScript tests** at the documented validation snapshot, covering ingestion, alerts, tracking, replay, and cross-runtime parity. [Test workflow](.github/workflows/tests.yml)
+- **123 Python tests + 19 JavaScript tests** at the documented validation snapshot, covering ingestion, alerts, tracking, replay, and cross-runtime parity. [Test workflow](.github/workflows/tests.yml)
 - **248 aircraft and 6,423 observations** in the recorded tracking evaluation dataset—not a load-test result. [Method and results](docs/validation.md)
 - **Exact replay comparisons** include track histories and alert IDs/timestamps; synthetic scenarios exercise outages, recovery, deduplication, and loitering. [Fixture provenance](tests/fixtures/README.md)
 - **One shared collector** serves all viewers. Opening additional browser connections does not create additional aircraft polls. [Server implementation](src/sentinel/web.py)
@@ -84,7 +84,9 @@ portfolio demonstration, not a navigation or operational decision system.
 A connection starts with a full snapshot, followed by changed fields and track
 removals at most every **5 seconds**. Hidden tabs disconnect immediately; after
 **10 minutes without interaction**, the map pauses until the visitor clicks to
-resume. Reconnecting always starts from a fresh snapshot. Predictions, lifecycle
+resume. The server also caps each session at 30 minutes and admits at most 20
+active feeds. A shared 150 MB UTC-day WebSocket payload budget pauses live
+feeds when exhausted; the page remains available. Reconnecting always starts from a fresh snapshot. Predictions, lifecycle
 changes, and alerts continue to appear while viewing.
 
 On a recorded 248-aircraft workload, outgoing JSON fell from **31.59 MB/min to

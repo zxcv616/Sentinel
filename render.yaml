@@ -10,3 +10,5 @@ services:
     envVars:
       - key: SENTINEL_MODE
         value: probe
+      - key: SENTINEL_WS_DAILY_BYTES
+        value: "150000000"

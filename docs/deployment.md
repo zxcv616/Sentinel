@@ -81,6 +81,16 @@ awake to preserve alert continuity; snapshot/delta generation only runs for
 connected viewers. These controls reduce accidental usage, not arbitrary traffic
 or denial-of-service requests. No billing changes are required.
 
+## WebSocket safeguards
+
+The server defaults to a 10-minute activity timeout, a 30-minute hard session
+limit, 20 active feeds, and a shared daily payload budget. Set
+`SENTINEL_WS_DAILY_BYTES=150000000` to configure the byte allowance (positive integer).
+`SENTINEL_WS_BUDGET_PATH` optionally selects the accounting file; by default it is
+`ws-budget.json` beside the raw log. One worker is required. The file survives an
+ordinary process restart but cannot promise persistence across Render Free redeploys.
+The HTML page remains available during a budget pause. [Scope and limitations](bandwidth.md#server-side-limits).
+
 ## Cloudflare replay
 
 The checked-in `DEMO_MODE: "true"` configuration generates playback frames from

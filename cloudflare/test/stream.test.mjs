@@ -33,15 +33,15 @@ test('ten minute inactivity pauses despite incoming data, click resumes',()=>{
   h.sockets[0].onmessage({data:JSON.stringify(snapshot)});h.session.tick();
   assert.equal(h.session.reason,'idle');assert.equal(h.timeouts.size,0);
   assert.equal(h.statuses.at(-1)[2],true);
-  h.listeners.pointerdown();h.visibility(true);h.visibility(false);
+  h.listeners.pointerdown({isTrusted:true});h.visibility(true);h.visibility(false);
   assert.equal(h.sockets.length,1);
   h.session.resume();assert.equal(h.sockets.length,2);assert.equal(h.session.reason,null);
 });
 
 test('real interaction extends idle time and signals activity with throttling',()=>{
-  const h=harness();h.advance(590000);h.listeners.keydown();
+  const h=harness();h.advance(590000);h.listeners.keydown({isTrusted:true});
   assert.deepEqual(h.sockets[0].sent,['activity']);
-  h.advance(5000);h.listeners.wheel();assert.equal(h.sockets[0].sent.length,1);
+  h.advance(5000);h.listeners.wheel({isTrusted:true});assert.equal(h.sockets[0].sent.length,1);
   h.sockets[0].onmessage({data:'pong'});h.advance(10000);h.session.tick();
   assert.equal(h.session.reason,null);
   h.advance(600000);h.session.tick();assert.equal(h.session.reason,'idle');
@@ -60,4 +60,28 @@ test('missed sequence closes connection and requests fresh state on retry',()=>{
   assert.equal(h.sockets[0].readyState,3);assert.equal(h.timeouts.size,1);
   const retry=[...h.timeouts.values()][0];retry();assert.equal(h.session.state,null);
   assert.throws(()=>apply(null,{type:'delta',sequence:1}));
+});
+
+test('budget pause survives visibility and clicks until next UTC day',()=>{
+  const h=harness();h.sockets[0].onclose({code:4003});
+  assert.equal(h.session.reason,'budget');
+  assert.equal(h.statuses.at(-1)[0],'Live feed paused for today to stay within hosting limits.');
+  h.visibility(true);h.visibility(false);h.session.resume();h.session.tick();
+  assert.equal(h.sockets.length,1);assert.equal(h.timeouts.size,0);
+  h.advance(86400000);h.session.resume();assert.equal(h.sockets.length,2);
+});
+
+test('session cap and capacity rejection require explicit resume',()=>{
+  for(const code of [4002,4004]) {
+    const h=harness();h.sockets[0].onclose({code});
+    assert.equal(h.timeouts.size,0);h.session.tick();assert.equal(h.sockets.length,1);
+    h.session.resume();assert.equal(h.sockets.length,2);
+  }
+});
+
+
+test('synthetic DOM events do not renew activity',()=>{
+  const h=harness();h.advance(590000);h.listeners.pointerdown({isTrusted:false});
+  assert.equal(h.sockets[0].sent.length,0);
+  h.advance(10000);h.session.tick();assert.equal(h.session.reason,'idle');
 });
