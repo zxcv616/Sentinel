@@ -4,16 +4,18 @@ from contextlib import asynccontextmanager
 from dataclasses import asdict
 import logging
 import json
+import hmac
 import os
 from pathlib import Path
 import time
 
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.gzip import GZipMiddleware
 import hashlib
 from .bandwidth import DailyBudget, PAUSED
+from .visits import Visits, referrer_label, ADMIN_HTML, protect_access_logs
 from .streaming import DeltaEncoder, presentation
 import httpx
 from anyio import CancelScope
@@ -56,8 +58,10 @@ def snapshot(pipeline, config):
 
 def create_app(config: Config | None = None, *, transport=None, aircraft_source="opensky", push_interval=5, idle_timeout=600, session_timeout=1800, max_connections=20, daily_budget=None, budget_path=None):
     config = config or Config()
+    protect_access_logs()
     budget = DailyBudget(daily_budget if daily_budget is not None else int(os.getenv('SENTINEL_WS_DAILY_BYTES', '120000000')),
                          budget_path or os.getenv('SENTINEL_WS_BUDGET_PATH') or Path(config.raw_log_path).parent / 'ws-budget.json')
+    visits = Visits(os.getenv('SENTINEL_VISITS_PATH') or Path(config.raw_log_path).parent / 'visits.json')
     connections = set()
 
     def trip_connections():
@@ -100,15 +104,34 @@ def create_app(config: Config | None = None, *, transport=None, aircraft_source=
 
     app = FastAPI(title="Sentinel", lifespan=lifespan)
     app.state.ws_budget = budget
+    app.state.visits = visits
     app.add_middleware(GZipMiddleware, minimum_size=500)
     app.mount("/static", CachedStaticFiles(directory=STATIC), name="static")
 
     @app.get("/", include_in_schema=False)
-    async def index():
+    async def index(request: Request):
         html = (STATIC / "index.html").read_text()
         for asset in ("app.js", "stream.js", "style.css"):
             html = html.replace(f"/static/{asset}", f"/static/{asset}?v={ASSET_VERSION}")
+        referrer = visits.sign_referrer(referrer_label(request.headers.get('referer', '')))
+        html = html.replace('<body', f'<body data-visit-referrer="{referrer}"', 1)
         return HTMLResponse(html, headers={"Cache-Control": "no-cache"})
+
+    @app.get('/admin/visits', include_in_schema=False)
+    async def admin_visits():
+        return HTMLResponse(ADMIN_HTML, headers={'Cache-Control': 'no-store', 'Referrer-Policy': 'no-referrer',
+                                                'X-Frame-Options': 'DENY'})
+
+    @app.get('/admin/visits/data', include_in_schema=False)
+    async def admin_data(request: Request):
+        token = os.getenv('SENTINEL_ADMIN_TOKEN', '')
+        headers = {'Cache-Control': 'no-store', 'Referrer-Policy': 'no-referrer'}
+        if not token:
+            return JSONResponse({'error': 'Admin access disabled'}, status_code=503, headers=headers)
+        supplied = request.headers.get('authorization', '')
+        if not hmac.compare_digest(supplied.encode(), ('Bearer '+token).encode()):
+            return JSONResponse({'error': 'Unauthorized'}, status_code=401, headers=headers)
+        return JSONResponse(visits.report(), headers=headers)
 
     @app.get("/api/tracks")
     async def tracks():
@@ -125,11 +148,17 @@ def create_app(config: Config | None = None, *, transport=None, aircraft_source=
     @app.websocket("/ws/tracks")
     async def stream(socket: WebSocket):
         await socket.accept()
+        visit, visit_started = visits.start(socket.headers)
+        visit['referrer'] = visits.read_referrer(socket.query_params.get('ref', ''))
+        sent_bytes = 0
+        end_reason = 'normal_close'
         budget.refresh()
         if budget.tripped:
+            visits.finish(visit, visit_started, 0, 'daily_budget')
             await socket.close(code=4003, reason=PAUSED)
             return
         if len(connections) >= max_connections:
+            visits.finish(visit, visit_started, 0, 'connection_limit')
             await socket.close(code=4004, reason="Live feed busy; click to retry")
             return
         stopped = asyncio.Event()
@@ -142,6 +171,7 @@ def create_app(config: Config | None = None, *, transport=None, aircraft_source=
         last_pong = -float('inf')
 
         async def send(text):
+            nonlocal sent_bytes
             # Count uncompressed UTF-8 application bytes, including app pongs.
             # Reservation and persistence are synchronous, so clients cannot race
             # past the shared limit. Failed writes remain conservatively charged.
@@ -155,18 +185,22 @@ def create_app(config: Config | None = None, *, transport=None, aircraft_source=
                 trip_connections()
                 return False
             await asyncio.wait_for(socket.send_text(text), timeout=5)
+            sent_bytes += len(text.encode("utf-8"))
             return True
 
         try:
             while True:
                 now = loop.time()
                 if stopped.is_set():
+                    end_reason = 'daily_budget'
                     await socket.close(code=4003, reason=PAUSED)
                     return
                 if now - started >= session_timeout:
+                    end_reason = 'session_cap'
                     await socket.close(code=4002, reason="Session paused; click to resume")
                     return
                 if now - last_activity >= idle_timeout:
+                    end_reason = 'idle_timeout'
                     await socket.close(code=4001, reason="Paused to save bandwidth")
                     return
                 if now >= next_push:
@@ -186,6 +220,7 @@ def create_app(config: Config | None = None, *, transport=None, aircraft_source=
                     message = receive_task.result()
                     receive_task = None
                     if message['type'] == 'websocket.disconnect':
+                        end_reason = {4005: 'hidden_tab', 4001: 'idle_timeout', 1000: 'normal_close', 1001: 'normal_close'}.get(message.get('code'), 'connection_lost')
                         return
                     if message.get('text') == 'activity':
                         last_activity = loop.time()
@@ -193,9 +228,13 @@ def create_app(config: Config | None = None, *, transport=None, aircraft_source=
                         last_pong = loop.time()
                         await send('pong')
                 # Inbound traffic never changes next_push.
+        except asyncio.CancelledError:
+            end_reason = 'server_shutdown'
+            raise
         except (WebSocketDisconnect, TimeoutError, OSError, RuntimeError):
-            pass
+            end_reason = 'connection_lost'
         finally:
+            visits.finish(visit, visit_started, sent_bytes, end_reason)
             connections.discard(stopped)
             pending = [t for t in (receive_task, stop_task) if t is not None]
             for task in pending:

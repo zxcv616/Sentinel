@@ -39,7 +39,7 @@
       if (this.reconnect !== null) this.timers.clearTimeout(this.reconnect);
       this.reconnect=null;
       const socket=this.socket; this.socket=null;
-      if(socket) socket.close();
+      if(socket) socket.close(reason==='hidden' ? 4005 : reason==='idle' ? 4001 : 1000);
       this.onStatus(reason==='budget' ? 'Live feed paused for today to stay within hosting limits.' : reason==='capacity' ? 'Live feed busy, click to retry' : reason==='idle' ? 'Paused to save bandwidth, click to resume' : 'Paused while this tab is hidden',false,reason!=='hidden');
     }
     budgetBlocked() {

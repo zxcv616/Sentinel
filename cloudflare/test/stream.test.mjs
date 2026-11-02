@@ -10,7 +10,7 @@ function harness(hidden=false){
   const timers={setInterval:()=>1,setTimeout:fn=>{const id=Symbol();timeouts.set(id,fn);return id;},clearTimeout:id=>timeouts.delete(id)};
   const session=new Session({url:'ws://test',doc,timers,now:()=>clock,
     onState:s=>states.push(s),onStatus:(...s)=>statuses.push(s),
-    makeSocket:()=>{const s={readyState:1,sent:[],send(v){this.sent.push(v);},close(){this.readyState=3;this.onclose?.({code:1000});}};sockets.push(s);return s;}});
+    makeSocket:()=>{const s={readyState:1,sent:[],send(v){this.sent.push(v);},close(code=1000){this.closeCode=code;this.readyState=3;this.onclose?.({code});}};sockets.push(s);return s;}});
   session.start();
   return {session,doc,sockets,timeouts,statuses,states,listeners,advance:ms=>clock+=ms,
     visibility:hidden=>{doc.hidden=hidden;listeners.visibilitychange();}};
@@ -84,4 +84,10 @@ test('synthetic DOM events do not renew activity',()=>{
   const h=harness();h.advance(590000);h.listeners.pointerdown({isTrusted:false});
   assert.equal(h.sockets[0].sent.length,0);
   h.advance(10000);h.session.tick();assert.equal(h.session.reason,'idle');
+});
+
+
+test('hidden and idle pauses send distinct close codes for session analytics',()=>{
+  const hidden=harness();hidden.visibility(true);assert.equal(hidden.sockets[0].closeCode,4005);
+  const idle=harness();idle.advance(600000);idle.session.tick();assert.equal(idle.sockets[0].closeCode,4001);
 });

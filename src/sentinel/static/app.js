@@ -136,7 +136,7 @@ function render() {
 function connection(text, connected=false) { el('connection').textContent = text; el('connection').classList.toggle('connected',connected); }
 function startLive() {
   liveSession = new SentinelStream.Session({
-    url: `${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}/ws/tracks`,
+    url: `${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}/ws/tracks?ref=${encodeURIComponent(document.body.dataset.visitReferrer || '')}`,
     onStatus: (text, connected, paused) => { connection(text,connected); el('resume-live').hidden=!paused; if(paused) el('resume-live').textContent=text; },
     onState: state => {
       snapshot=state;

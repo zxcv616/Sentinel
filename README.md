@@ -34,7 +34,7 @@ so tracking and alert behavior can be reproduced from the original inputs.
 
 ## Engineering evidence
 
-- **123 Python tests + 19 JavaScript tests** at the documented validation snapshot, covering ingestion, alerts, tracking, replay, and cross-runtime parity. [Test workflow](.github/workflows/tests.yml)
+- **137 Python tests + 20 JavaScript tests** at the documented validation snapshot, covering ingestion, alerts, tracking, replay, and cross-runtime parity. [Test workflow](.github/workflows/tests.yml)
 - **248 aircraft and 6,423 observations** in the recorded tracking evaluation dataset—not a load-test result. [Method and results](docs/validation.md)
 - **Exact replay comparisons** include track histories and alert IDs/timestamps; synthetic scenarios exercise outages, recovery, deduplication, and loitering. [Fixture provenance](tests/fixtures/README.md)
 - **One shared collector** serves all viewers. Opening additional browser connections does not create additional aircraft polls. [Server implementation](src/sentinel/web.py)
@@ -96,6 +96,16 @@ to about 1 MB/min per client** (96.7% less, including the initial snapshot).
 These are fixture measurements, not a production traffic guarantee. The budget
 excludes HTTP traffic, and Render's ephemeral storage can reset its saved counter
 on redeployment. [Measurements and limitations →](docs/bandwidth.md)
+
+## Visit analytics
+
+A private [visits page](https://sentinel-live-2nt0.onrender.com/admin/visits) shows
+the last 50 completed WebSocket sessions and daily totals in Pacific time.
+Set `SENTINEL_ADMIN_TOKEN` in Render, then enter it on that page. Analytics retain
+only duration, payload bytes, close reason, coarse referrer, and client category;
+no IPs, raw user agents, full referrer URLs, cookies, or unique-visitor identifiers.
+Structured session records also appear in Render's logs. Local history can reset
+on redeploy. [Setup, privacy details, and retention →](docs/visits.md)
 
 ## Run and test
 
