@@ -232,3 +232,35 @@ def test_corrupt_budget_fails_closed_without_breaking_page(tmp_path):
             with pytest.raises(WebSocketDisconnect) as error:
                 ws.receive_text()
             assert error.value.code == 4003
+
+
+@pytest.mark.parametrize('limits', [{'idle_timeout': .03}, {'session_timeout': .03}])
+def test_reconnect_lease_cannot_reset_deadlines(tmp_path, limits):
+    app = create_app(Config(raw_log_path=str(tmp_path/'raw.jsonl')), transport=transport(), push_interval=30, **limits)
+    with TestClient(app) as client:
+        with client.websocket_connect('/ws/tracks') as ws:
+            token = ws.receive_json()['resume_token']
+            with pytest.raises(WebSocketDisconnect):
+                ws.receive_text()
+        used = app.state.ws_budget.used
+        with client.websocket_connect('/ws/tracks?resume='+token) as ws:
+            with pytest.raises(WebSocketDisconnect) as error:
+                ws.receive_text()
+            assert error.value.code == 4001
+        assert app.state.ws_budget.used == used
+        assert app.state.visits.report()['sessions'][0]['end_reason'] == 'resume_expired'
+
+
+def test_websocket_trails_are_bounded_without_changing_raw_history(tmp_path, monkeypatch):
+    current = frame()
+    current['tracks'][0]['history'] = [{'lat': i} for i in range(20)]
+    monkeypatch.setattr('sentinel.web.snapshot', lambda *args: copy.deepcopy(current))
+    monkeypatch.delenv('SENTINEL_WS_TRAIL_POINTS', raising=False)
+    app = create_app(Config(raw_log_path=str(tmp_path/'raw.jsonl')), transport=transport(), push_interval=.02)
+    with TestClient(app) as client, client.websocket_connect('/ws/tracks') as ws:
+        initial = ws.receive_json()
+        assert initial['tracks'][0]['history'] == current['tracks'][0]['history'][-6:]
+        current['tracks'][0]['history'].append({'lat': 20})
+        delta = ws.receive_json()
+        assert delta['tracks']['update'][0]['history_delta'] == {'drop': 1, 'append': [{'lat': 20}]}
+        assert len(current['tracks'][0]['history']) == 21

@@ -71,13 +71,15 @@ browser does not stop the server or its API usage.
 The map shows heading arrows (a circle for unknown heading), recent position
 trails, and active/gap/lost colors. Select an aircraft marker or list row for
 position, altitude, speed, heading, and squawk. Search by ICAO24, toggle trails,
-and use Fit coverage to return to the configured bounding box. Trails accumulate
-while this process runs and are limited by `history_size`. Kalman estimates are
+and use Fit coverage to return to the configured bounding box. Tracking histories accumulate
+while this process runs and are limited by `history_size`. Live WebSocket trails
+show only the latest six points by default (`SENTINEL_WS_TRAIL_POINTS`); full
+histories remain available through REST and replay. Kalman estimates are
 displayed separately; see [tracking evaluation](validation.md).
 
 The browser receives an initial snapshot over `/ws/tracks`, then changed fields
 and removals in batches at most every five seconds. Unchanged batches are skipped.
-It reconnects with backoff and a fresh snapshot; a sequence mismatch also reconnects.
+It reconnects with a bounded retry budget after user interaction and a fresh snapshot; a sequence mismatch also reconnects.
 Hidden tabs disconnect; ten minutes without interaction pauses until a resume click.
 A server-side ten-minute activity timeout also closes unattended connections;
 heartbeats do not count as interaction. These presentation updates do not

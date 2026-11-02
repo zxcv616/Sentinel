@@ -68,11 +68,11 @@ fixture benchmark, not a production load test or a claim about current ADS-B tra
 | Per viewer, first minute | Before | After |
 | --- | ---: | ---: |
 | Data messages | 60 | 12 |
-| Mean JSON message | 526,423 B | 85,572 B |
-| Total JSON payload | 31,585,389 B | 1,026,864 B |
-| Modeled deflate payload | 4,705,005 B | 113,865 B |
+| Mean JSON message | 526,423 B | 61,553 B |
+| Total JSON payload | 31,585,389 B | 738,638 B |
+| Modeled deflate payload | 4,705,005 B | 69,278 B |
 
-JSON transfer is **96.75% lower**. The mean includes the larger initial snapshot;
+JSON transfer is **97.66% lower**. The mean includes the larger initial snapshot;
 subsequent estimate-only updates are smaller. Quiet periods send no data deltas,
 only heartbeat responses. Deflate figures use a persistent raw zlib context and
 exclude framing, TLS, HTTP headers, and TCP overhead; they are not Render billing
@@ -128,9 +128,9 @@ leave headroom for the other traffic and other workspace services.
 Trails and alert records are now incremental. Trail updates send prefix removals
 and every newly received point, not repeated retained history. Alerts send only
 new/changed records, removed IDs, and display-order IDs when necessary. The
-post-capture prediction benchmark above improves only slightly from the previous
-1,029,693 B/min because it contains no subsequent position observations; the
-additional trail savings occur on actual observation updates. Tests reconstruct
+six-point presentation window further reduces the initial snapshot to 225,814 B
+in this workload. The benchmark includes a fixed-length reconnect token; actual
+compression varies with its random content. Tests reconstruct
 both retained and completely replaced trails and alert lists in the browser reducer.
 
 ## Portfolio budget
@@ -145,8 +145,8 @@ For **100 visits/month × five minutes**, plus **one tab left open for 24 hours*
 - Add 1 KiB/minute for heartbeats and a fresh uncompressed static load plus 4 KiB
   overhead for all 101 visits. Ignore compression and caching savings.
 
-This model totals approximately **0.53 GB/month**; doubling it for additional
-headroom gives **1.06 GB**, comfortably below the reported 5 GB allowance.
+This model totals approximately **0.38 GB/month**; doubling it for additional
+headroom gives **0.76 GB**, comfortably below the reported 5 GB allowance.
 It assumes the measured 248-track/trail workload and normal browser behavior.
 More aircraft, longer histories, repeated API downloads, automated traffic, other
 workspace services, or deliberately bypassed client controls change the budget.
@@ -165,3 +165,53 @@ histories than the benchmark and are not directly comparable to its steady workl
 Hidden/idle/resume behavior is covered by browser-session tests; local browser
 verification also rendered the map without console errors.
 No payment method, paid plan, or Render account setting was changed.
+
+
+## Reconnect-loop investigation
+
+The reported sessions followed 67/67/187-second disconnect patterns. Inspection
+confirmed that the old browser transport reset retry backoff to one second after
+**every snapshot or pong**, and had no retry-count ceiling. The server initialized
+its idle deadline on **every socket**, allowing repeated new connections to reset
+that window. Every connection also sent the full retained trail.
+
+The current browser's ten-minute idle clock was already independent of reconnects;
+an unattended single instance of that version should have paused after ten minutes.
+The aggregate labels `desktop_browser` and `direct_or_unavailable` do not identify
+one visitor. Old scripts, reloads, multiple clients, or actual user interaction
+cannot be distinguished retrospectively from those labels.
+
+No configured timer directly matches 67/187 seconds: updates are every five seconds,
+source polling every 300 seconds, the browser stale-data watchdog is 45 seconds,
+app heartbeats 20 seconds, and server idle/session deadlines 600/1800 seconds.
+Installed Uvicorn defaults are a 20-second protocol ping interval and 20-second pong
+timeout. Predictions expire after 60 seconds, but that stops estimate updates, not
+the socket; pongs continue. `connection_lost` alone does not prove a timeout or
+identify the transport failure. The initiating disconnect cause remains unconfirmed.
+
+The fixes remove the amplification regardless of that trigger:
+
+- An unexpected disconnect without trusted user input pauses immediately. After
+  input, at most three automatic retries use 2/4/8-second delays plus up to 25%
+  jitter. Snapshots and pongs never replenish retries. Further loss requires user
+  interaction. Hidden-tab resumes also require prior interaction or a resume click.
+- Per-tab session storage preserves activity time, retry count, and pause state
+  across reloads. No IP, fingerprint, or analytics visitor ID is used. Clearing
+  storage or using a fresh tab is still a fresh anonymous visit.
+- A server-issued opaque resume token preserves idle and hard session deadlines
+  across automatic reconnects. Expired/unknown tokens receive no snapshot. The
+  token and its state live only in bounded process memory and tab session storage,
+  not the analytics log. A manual resume after interaction starts a fresh lease.
+  Server restart invalidates leases and requires a resume click.
+- Streamed trails use only six recent points (`SENTINEL_WS_TRAIL_POINTS`, clamped
+  to 1–120). Both snapshots and subsequent deltas use the same bounded window.
+  Tracking, estimator inputs, raw logs, REST snapshots, and replay are unchanged.
+- Close codes distinguish browser staleness (4006), protocol/decode failure (4007),
+  and transport loss; visit records include available close codes and exception
+  classes without raw error text or identifying details.
+
+This is an anonymous public service: a custom client can omit tokens, clear storage,
+or forge activity and obtain fresh sessions. The shared daily byte budget and
+connection cap remain the defenses against those clients. Existing open tabs must
+reload to receive the new browser code; the shorter server-side trail applies to
+all connections immediately. No claim is made that these controls authenticate humans.

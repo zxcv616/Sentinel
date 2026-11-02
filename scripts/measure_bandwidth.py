@@ -5,6 +5,7 @@ For a conservative portfolio bound, repeat that busy minute for every minute of
 visiting time, including a fresh snapshot each minute (real sessions send one).
 """
 import base64
+import copy
 import json
 from pathlib import Path
 import zlib
@@ -53,13 +54,20 @@ def sizes(messages):
 
 def report(frames):
     encoder = DeltaEncoder()
-    updates = [u for f in frames[::5] if (u := encoder.encode(f)) is not None]
+    display_frames = copy.deepcopy(frames[::5])
+    for frame in display_frames:
+        for track in frame['tracks']:
+            track['history'] = track['history'][-6:]
+    updates = [u for f in display_frames if (u := encoder.encode(f)) is not None]
+    # Production adds a 32-character ephemeral reconnect token to the snapshot.
+    updates[0]['resume_token'] = 'x'*32
     before, after = sizes(frames), sizes(updates)
     # Three app pongs + three protocol pings/pongs: conservative 1 KiB/min reserve.
     static = sum(p.stat().st_size for p in (ROOT/'src/sentinel/static').glob('*') if p.is_file())
     minutes = 100*5 + 10  # 100 visits and one abandoned visible tab, capped at 10m.
     upper = (after['json_bytes_per_minute']+1024)*minutes + 101*(static+4096)
     return {'tracks': len(frames[0]['tracks']),
+            'initial_snapshot_bytes': len(json.dumps(updates[0],separators=(',', ':')).encode()),
             'mean_trail_points': sum(len(t['history']) for t in frames[0]['tracks'])/len(frames[0]['tracks']),
             'before': before, 'after': after,
             'reduction_percent': round(100*(1-after['json_bytes_per_minute']/before['json_bytes_per_minute']),2),

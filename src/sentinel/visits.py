@@ -131,7 +131,7 @@ document.getElementById('login').onsubmit=async event=>{
  const data=await response.json();status.textContent='Updated '+new Date().toLocaleTimeString();
  function table(title,headers,rows){const h=document.createElement('h2');h.textContent=title;root.append(h);const t=document.createElement('table');for(const row of [headers,...rows]){const tr=document.createElement('tr');for(const value of row){const td=document.createElement('td');td.textContent=String(value);tr.append(td);}t.append(tr);}root.append(t);}
  table('Daily totals',['Day (Pacific)','Sessions','Bytes','Duration (seconds)'],Object.entries(data.daily).map(([day,v])=>[day,v.sessions,v.bytes_sent,v.duration_seconds]));
- table('Recent sessions',['Started (Pacific)','Seconds','Bytes','Ended by','Referrer','Client'],data.sessions.map(s=>[s.started_at,s.duration_seconds,s.bytes_sent,s.end_reason,s.referrer,s.client_type]));
+ table('Recent sessions',['Started (Pacific)','Seconds','Bytes','Ended by','Close code','Transport error','Referrer','Client'],data.sessions.map(s=>[s.started_at,s.duration_seconds,s.bytes_sent,s.end_reason,s.close_code ?? '—',s.transport_error ?? '—',s.referrer,s.client_type]));
  }catch(error){status.textContent=error.message;}
 };
 </script></html>'''

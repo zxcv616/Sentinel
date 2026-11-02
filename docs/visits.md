@@ -29,7 +29,7 @@ budget or connection cap. It contains:
 | `started_at` | ISO timestamp in `America/Los_Angeles`, including the PST/PDT offset |
 | `duration_seconds` | Monotonic elapsed connection time |
 | `bytes_sent` | Successfully handed-off uncompressed UTF-8 application payload bytes, including app pongs; not TLS, framing, or HTTP bytes |
-| `end_reason` | `normal_close`, `hidden_tab`, `idle_timeout`, `session_cap`, `daily_budget`, `connection_limit`, `connection_lost`, or `server_shutdown` |
+| `end_reason` | `normal_close`, `hidden_tab`, `idle_timeout`, `session_cap`, `daily_budget`, `connection_limit`, `connection_lost`, `client_stale_timeout`, `client_protocol_error`, `resume_expired`, or `server_shutdown` |
 | `referrer` | Coarse label derived from the **page load's HTTP Referer** |
 | `client_type` | `desktop_browser`, `mobile_browser`, `known_bot_crawler`, or `other_client` |
 | `day` | Pacific session-start date used for daily totals |
@@ -41,6 +41,9 @@ sessions, bytes, and duration, assigning the whole session to its start day.
 Reconnects are separate sessions, **not unique visitors**. Active sessions appear
 when they end. A force-killed process cannot emit a final record; there is no claim
 of complete crash-proof accounting.
+
+Where available, `close_code` and an allowlisted `transport_error` exception class
+are recorded to diagnose disconnects. No raw exception message or close reason is stored.
 
 The browser uses distinct close codes for hidden-tab and idle pauses. Those
 reasons are client-reported and spoofable; an abrupt network/browser failure may
@@ -62,7 +65,10 @@ secret admin token. Each tab keeps its own original attribution across reconnect
 Unsigned, invalid, or old-process labels become `direct_or_unavailable`. This does
 not prove that a visit genuinely originated from that source: HTTP headers can be
 spoofed. No cookies, IP addresses, salted IP hashes, device fingerprints, full user
-agents, or cross-session identifiers are created. There is no third-party analytics
+agents, or analytics visitor identifiers are created. A separate, random reconnect token
+is held in tab session storage and bounded server memory for up to about 31 minutes
+to preserve idle/session deadlines across socket reconnects; it is never included
+in visit records. It is not an analytics identity or a cross-tab fingerprint. There is no third-party analytics
 script or external analytics request.
 
 Normal Uvicorn HTTP access lines and WebSocket handshake lines are suppressed

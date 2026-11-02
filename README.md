@@ -34,7 +34,7 @@ so tracking and alert behavior can be reproduced from the original inputs.
 
 ## Engineering evidence
 
-- **137 Python tests + 20 JavaScript tests** at the documented validation snapshot, covering ingestion, alerts, tracking, replay, and cross-runtime parity. [Test workflow](.github/workflows/tests.yml)
+- **140 Python tests + 23 JavaScript tests** at the documented validation snapshot, covering ingestion, alerts, tracking, replay, and cross-runtime parity. [Test workflow](.github/workflows/tests.yml)
 - **248 aircraft and 6,423 observations** in the recorded tracking evaluation dataset—not a load-test result. [Method and results](docs/validation.md)
 - **Exact replay comparisons** include track histories and alert IDs/timestamps; synthetic scenarios exercise outages, recovery, deduplication, and loitering. [Fixture provenance](tests/fixtures/README.md)
 - **One shared collector** serves all viewers. Opening additional browser connections does not create additional aircraft polls. [Server implementation](src/sentinel/web.py)
@@ -83,8 +83,11 @@ portfolio demonstration, not a navigation or operational decision system.
 
 - **Incremental updates:** one snapshot on connection, then deltas for changed
   fields, new trail points, alerts, and removals, batched every five seconds.
+  Live map trails retain only the latest six points; tracking/replay retain full history.
 - **Automatic pauses:** hidden tabs disconnect immediately; ten minutes without
-  interaction pauses the feed until the visitor clicks to resume.
+  interaction pauses the feed until the visitor clicks to resume. Unexpected loss
+  without interaction also pauses; an active visitor gets at most three automatic
+  retries, with increasing delays. Reconnects do not refresh the idle deadline.
 - **Server limits:** a ten-minute activity timeout, a 30-minute maximum session,
   and at most 20 active feeds. Heartbeats do not count as activity.
 - **Daily budget:** a shared **120 MB per UTC day** WebSocket payload allowance,
@@ -92,7 +95,7 @@ portfolio demonstration, not a navigation or operational decision system.
   closes feeds and shows a pause notice; the page remains available.
 
 On the recorded 248-aircraft workload, uncompressed JSON fell from **31.6 MB/min
-to about 1 MB/min per client** (96.7% less, including the initial snapshot).
+to about 0.74 MB/min per client** (97.7% less, including the initial snapshot).
 These are fixture measurements, not a production traffic guarantee. The budget
 excludes HTTP traffic, and Render's ephemeral storage can reset its saved counter
 on redeployment. [Measurements and limitations →](docs/bandwidth.md)
@@ -103,7 +106,8 @@ A private [visits page](https://sentinel-live-2nt0.onrender.com/admin/visits) sh
 the last 50 completed WebSocket sessions and daily totals in Pacific time.
 Set `SENTINEL_ADMIN_TOKEN` in Render, then enter it on that page. Analytics retain
 only duration, payload bytes, close reason, coarse referrer, and client category;
-no IPs, raw user agents, full referrer URLs, cookies, or unique-visitor identifiers.
+no IPs, raw user agents, full referrer URLs, cookies, or unique-visitor analytics IDs.
+An ephemeral reconnect token is kept only in tab session storage/server memory.
 Structured session records also appear in Render's logs. Local history can reset
 on redeploy. [Setup, privacy details, and retention →](docs/visits.md)
 

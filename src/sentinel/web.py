@@ -5,6 +5,7 @@ from dataclasses import asdict
 import logging
 import json
 import hmac
+import secrets
 import os
 from pathlib import Path
 import time
@@ -63,6 +64,8 @@ def create_app(config: Config | None = None, *, transport=None, aircraft_source=
                          budget_path or os.getenv('SENTINEL_WS_BUDGET_PATH') or Path(config.raw_log_path).parent / 'ws-budget.json')
     visits = Visits(os.getenv('SENTINEL_VISITS_PATH') or Path(config.raw_log_path).parent / 'visits.json')
     connections = set()
+    leases = {}  # Short-lived, memory-only reconnect continuity; never logged.
+    trail_points = max(1, min(120, int(os.getenv('SENTINEL_WS_TRAIL_POINTS', '6'))))
 
     def trip_connections():
         for event in connections:
@@ -161,13 +164,34 @@ def create_app(config: Config | None = None, *, transport=None, aircraft_source=
             visits.finish(visit, visit_started, 0, 'connection_limit')
             await socket.close(code=4004, reason="Live feed busy; click to retry")
             return
+        loop = asyncio.get_running_loop()
+        now = loop.time()
+        for key in list(leases):
+            if now-leases[key]['started'] > session_timeout+60:
+                del leases[key]
+        resume_token = socket.query_params.get('resume')
+        if resume_token:
+            lease = leases.get(resume_token)
+            if lease is None or now-lease['activity'] >= idle_timeout or now-lease['started'] >= session_timeout:
+                visits.finish(visit, visit_started, 0, 'resume_expired')
+                await socket.close(code=4001, reason='Resume expired; click to resume')
+                return
+        else:
+            if len(leases) >= 1000:
+                visits.finish(visit, visit_started, 0, 'connection_limit')
+                await socket.close(code=4004, reason='Live feed busy; click to retry')
+                return
+            resume_token = secrets.token_urlsafe(24)
+            lease = leases[resume_token] = {'started': now, 'activity': now}
         stopped = asyncio.Event()
         connections.add(stopped)
         stop_task = asyncio.create_task(stopped.wait())
         receive_task = None
         encoder = DeltaEncoder()
         loop = asyncio.get_running_loop()
-        started = last_activity = next_push = loop.time()
+        started = lease['started']
+        last_activity = lease['activity']
+        next_push = loop.time()
         last_pong = -float('inf')
 
         async def send(text):
@@ -204,7 +228,12 @@ def create_app(config: Config | None = None, *, transport=None, aircraft_source=
                     await socket.close(code=4001, reason="Paused to save bandwidth")
                     return
                 if now >= next_push:
-                    update = encoder.encode(snapshot(app.state.pipeline, config))
+                    state = snapshot(app.state.pipeline, config)
+                    for track in state['tracks']:
+                        track['history'] = track['history'][-trail_points:]
+                    update = encoder.encode(state)
+                    if update is not None and update['type'] == 'snapshot':
+                        update['resume_token'] = resume_token
                     if update is not None:
                         if not await send(json.dumps(update, separators=(',', ':'), ensure_ascii=False)):
                             continue
@@ -220,10 +249,12 @@ def create_app(config: Config | None = None, *, transport=None, aircraft_source=
                     message = receive_task.result()
                     receive_task = None
                     if message['type'] == 'websocket.disconnect':
-                        end_reason = {4005: 'hidden_tab', 4001: 'idle_timeout', 1000: 'normal_close', 1001: 'normal_close'}.get(message.get('code'), 'connection_lost')
+                        visit['close_code'] = message.get('code')
+                        end_reason = {4005: 'hidden_tab', 4001: 'idle_timeout', 4006: 'client_stale_timeout', 4007: 'client_protocol_error', 1000: 'normal_close', 1001: 'normal_close'}.get(message.get('code'), 'connection_lost')
                         return
                     if message.get('text') == 'activity':
                         last_activity = loop.time()
+                        lease['activity'] = last_activity
                     elif message.get('text') == 'ping' and loop.time()-last_pong >= 10:
                         last_pong = loop.time()
                         await send('pong')
@@ -231,7 +262,10 @@ def create_app(config: Config | None = None, *, transport=None, aircraft_source=
         except asyncio.CancelledError:
             end_reason = 'server_shutdown'
             raise
-        except (WebSocketDisconnect, TimeoutError, OSError, RuntimeError):
+        except (WebSocketDisconnect, TimeoutError, OSError, RuntimeError) as exc:
+            visit['transport_error'] = type(exc).__name__
+            if isinstance(exc, WebSocketDisconnect):
+                visit['close_code'] = exc.code
             end_reason = 'connection_lost'
         finally:
             visits.finish(visit, visit_started, sent_bytes, end_reason)

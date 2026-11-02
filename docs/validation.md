@@ -4,7 +4,7 @@
 
 ## Automated checks
 
-The documented local validation snapshot contains **137 Python tests and 20
+The documented local validation snapshot contains **140 Python tests and 23
 JavaScript tests**. Counts may change; GitHub Actions is the current pass/fail
 record. Tests use mocked transports, synthetic scenarios, and recorded inputs,
 not live provider availability.
